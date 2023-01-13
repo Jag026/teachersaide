@@ -38,6 +38,10 @@ module.exports = (sequelize, DataTypes) => {
       planBody: {
         type: DataTypes.STRING,
         allowNull: false,
+        validate: {
+          len: [3, 4000]
+        }
+
       },
     },
     {

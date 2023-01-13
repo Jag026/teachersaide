@@ -54,10 +54,16 @@ module.exports = (sequelize, DataTypes) => {
       first_name: {
         type: DataTypes.STRING,
         allowNull: false,
+        validate: {
+          len: [3, 256]
+        },
       },
       last_name: {
         type: DataTypes.STRING,
         allowNull: false,
+        validate: {
+          len: [3, 256]
+        },
       },
       username: {
         type: DataTypes.STRING,
@@ -74,11 +80,17 @@ module.exports = (sequelize, DataTypes) => {
       email: {
         type: DataTypes.STRING,
         allowNull: false,
+        validate: {
+          len: [3, 256]
+        },
       },
       hashedPassword: {
         type: DataTypes.STRING.BINARY,
         allowNull: false,
-      }
+        validate: {
+          len: [60, 60]
+        }
+      },
     },
     {
       sequelize,
@@ -99,8 +111,8 @@ module.exports = (sequelize, DataTypes) => {
     }
   );
   User.associate = function (models) {
-    User.hasMany(models.Lesson_plan, {
-      as: 'lesson_plans',
+    User.hasMany(models.Lessonplan, {
+      as: 'lessonplans',
       foreignKey: 'userId'
     });
   };
