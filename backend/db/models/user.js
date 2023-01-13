@@ -35,7 +35,7 @@ module.exports = (sequelize, DataTypes) => {
     static async signup({ first_name, last_name, username, email, password }) {
       const hashedPassword = bcrypt.hashSync(password);
       const user = await User.create({
-        first_name,
+        first_name, 
         last_name,
         username,
         email,
@@ -55,19 +55,20 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.STRING,
         allowNull: false,
         validate: {
-          len: [3, 256]
-        },
+          len: [4, 30],
+          }
       },
       last_name: {
         type: DataTypes.STRING,
         allowNull: false,
         validate: {
-          len: [3, 256]
-        },
+          len: [4, 30],
+          }
       },
       username: {
         type: DataTypes.STRING,
         allowNull: false,
+        unique: true,
         validate: {
           len: [4, 30],
           isNotEmail(value) {
@@ -75,14 +76,15 @@ module.exports = (sequelize, DataTypes) => {
               throw new Error("Cannot be an email.");
             }
           }
-        },
+        }
       },
       email: {
         type: DataTypes.STRING,
         allowNull: false,
+        unique: true,
         validate: {
           len: [3, 256]
-        },
+        }
       },
       hashedPassword: {
         type: DataTypes.STRING.BINARY,
@@ -90,7 +92,7 @@ module.exports = (sequelize, DataTypes) => {
         validate: {
           len: [60, 60]
         }
-      },
+      }
     },
     {
       sequelize,
@@ -110,11 +112,5 @@ module.exports = (sequelize, DataTypes) => {
       }
     }
   );
-  User.associate = function (models) {
-    User.hasMany(models.Lessonplan, {
-      as: 'lessonplans',
-      foreignKey: 'userId'
-    });
-  };
   return User;
 };
