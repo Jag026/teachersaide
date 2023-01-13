@@ -4,7 +4,7 @@ module.exports = {
   up: async (queryInterface, Sequelize) => {
     const lessonplans = await queryInterface.bulkInsert('Lessonplans', [
       {
-        userId: 10,
+        userId: 1,
         planBody: `Lesson Title: The Cold War: Causes and Consequences
         Objective: Students will be able to explain the causes of the Cold War and its impact on world events.
         Materials: Textbook, handouts, internet access
