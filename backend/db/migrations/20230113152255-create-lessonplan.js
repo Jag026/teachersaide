@@ -18,7 +18,7 @@ module.exports = {
         type: Sequelize.INTEGER,
         },
       planBody: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING(4000)
       },
       createdAt: {
         allowNull: false,
