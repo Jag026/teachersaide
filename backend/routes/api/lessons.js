@@ -1,4 +1,5 @@
 const express = require('express')
+const { fetchAi } = require('../../utils/fetchAi');
 const { check } = require('express-validator');
 const { handleValidationErrors } = require('../../utils/validation');
 
@@ -26,4 +27,13 @@ router.post(
     }
   );
 
+  router.post(
+    '/get-lessonplan',
+    async (req, res) => {
+      const lessonplan = await fetchAi('A lessonplan for a 5th grade science teacher.')
+      return res.json({
+        lessonplan
+      });
+    }
+  );
 module.exports = router;
