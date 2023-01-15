@@ -1,5 +1,5 @@
 const { Configuration, OpenAIApi } = require("openai")
-const { api_key } = require('../config/index.js');
+const api_key = require('../config/index.js');
 
 const fetchAi = async(text) => {
 const configuration = new Configuration({

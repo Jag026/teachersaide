@@ -30,10 +30,22 @@ router.post(
   router.post(
     '/get-lessonplan',
     async (req, res) => {
-      const lessonplan = await fetchAi('A lessonplan for a 5th grade science teacher.')
+      const { planBody} = req.body;
+      const lessonplan = await fetchAi(planBody)
       return res.json({
         lessonplan
       });
+    }
+  );
+
+  router.get(
+    '/get-lessonplan',
+    async (req, res) => {
+      const { planBody} = req.body;
+      const lessonplan = await fetchAi('A lesson plan for a 5th grade english teacher')
+      return res.json(
+        JSON.stringify(lessonplan)
+      );
     }
   );
 module.exports = router;
