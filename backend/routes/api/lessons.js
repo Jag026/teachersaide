@@ -30,8 +30,8 @@ router.post(
   router.post(
     '/get-lessonplan',
     async (req, res) => {
-      const { planBody} = req.body;
-      const lessonplan = await fetchAi(planBody)
+      const { grade, subject } = req.body;
+      const lessonplan = await fetchAi(grade, subject)
       return res.json({
         lessonplan
       });
