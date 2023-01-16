@@ -1,5 +1,5 @@
 const { Configuration, OpenAIApi } = require("openai")
-const api_key = require('../config/index.js');
+const { api_key } = require('../config/index.js');
 
 const fetchAi = async(grade, subject) => {
 const configuration = new Configuration({
@@ -12,7 +12,7 @@ const configuration = new Configuration({
     max_tokens: 4000,
     temperature: .5,
   })
-  //console.log(response.data.choices[0].text);  
+  console.log(api_key);  
   return response.data.choices[0].text;
 }
 
