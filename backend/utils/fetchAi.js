@@ -12,7 +12,6 @@ const configuration = new Configuration({
     max_tokens: 4000,
     temperature: .5,
   })
-  console.log(api_key);  
   return response.data.choices[0].text;
 }
 
