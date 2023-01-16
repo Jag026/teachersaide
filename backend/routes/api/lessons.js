@@ -32,9 +32,9 @@ router.post(
     async (req, res) => {
       const { grade, subject } = req.body;
       const lessonplan = await fetchAi(JSON.stringify(grade), JSON.stringify(subject))
-      return res.json({
-        lessonplan
-      });
+      return res.json(
+        { lessonplan }.lessonplan
+      );
     }
   );
 
@@ -44,7 +44,7 @@ router.post(
       const { planBody} = req.body;
       const lessonplan = await fetchAi('A lesson plan for a 5th grade english teacher')
       return res.json(
-        JSON.stringify(lessonplan)
+        { lessonplan }.lessonplan
       );
     }
   );
