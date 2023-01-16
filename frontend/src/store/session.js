@@ -1,7 +1,10 @@
+import LessonPlan from '../components/LessonPlan';
 import { csrfFetch } from './csrf';
 
 const SET_USER = 'session/setUser';
 const REMOVE_USER = 'session/removeUser';
+const SET_LESSONPLAN = 'session/setUser';
+const REMOVE_LESSONPLAN = 'session/removeUser';
 
 const setUser = (user) => {
   return {
@@ -10,11 +13,23 @@ const setUser = (user) => {
   };
 };
 
+const setLessonplan = (lessonplan) => {
+    return {
+      type: SET_LESSONPLAN,
+      payload: lessonplan,
+    };
+  };
 const removeUser = () => {
   return {
     type: REMOVE_USER,
   };
 };
+
+const removeLessonplan = () => {
+    return {
+      type: REMOVE_LESSONPLAN,
+    };
+  };
 
 export const login = (user) => async (dispatch) => {
   const { credential, password } = user;
@@ -43,6 +58,14 @@ const sessionReducer = (state = initialState, action) => {
       newState = Object.assign({}, state);
       newState.user = null;
       return newState;
+      case SET_LESSONPLAN:
+        newState = Object.assign({}, state);
+        newState.lessonplan = action.payload;
+        return newState;
+      case REMOVE_LESSONPLAN:
+        newState = Object.assign({}, state);
+        newState.lessonplan = null;
+        return newState;
     default:
       return state;
   }
@@ -79,5 +102,20 @@ export const restoreUser = () => async dispatch => {
     dispatch(removeUser());
     return response;
   };
+
+  export const fetchLessonplan = (lessonplan) => async (dispatch) => {
+    const { grade, subject } = LessonPlan;
+    const response = await csrfFetch("/api/lessons/get-lessonplan", {
+      method: "POST",
+      body: JSON.stringify({
+        grade, 
+        subject
+      }),
+    });
+    const data = await response.json();
+    dispatch(setLessonplan(data.lessonplan));
+    return response;
+  };
+
   
 export default sessionReducer;
