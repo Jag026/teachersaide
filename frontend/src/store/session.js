@@ -113,6 +113,7 @@ export const restoreUser = () => async dispatch => {
       }),
     });
     const data = await response.json();
+    console.log(lessonplan)
     dispatch(setLessonplan(data.lessonplan));
     return response;
   };
