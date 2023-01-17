@@ -10,7 +10,8 @@ function LessonPlan(props) {
   const [grade, setGrade] = useState("");
   const [subject, setSubject] = useState("");
   const [errors, setErrors] = useState([]);
-  const [textContent, setTextContent] = useState("Click the get plan button to get a lesson plan.")
+  const [textContent, setTextContent] = useState("")
+
 
   const handleSubmit = async(e) => {
     e.preventDefault();
@@ -21,35 +22,38 @@ function LessonPlan(props) {
     // return setErrors(['Confirm Password field must be the same as the Password field']);
   };
 
-  let editor = <RichTextEditor text={textContent} />
-
   return (
     <div>
         <form onSubmit={handleSubmit}>
           <ul>
             {errors.map((error, idx) => <li key={idx}>{error}</li>)}
           </ul>
-          <label>
-            Grade
+          <label className="mx-4 text-xl">
+            Enter a grade level
             <input
               type="text"
               value={grade}
               onChange={(e) => setGrade(e.target.value)}
               required
+              className="mx-2 border border-sky-500"
             />
           </label>
-          <label>
-            Subject
+          <label className="mx-4 text-xl">
+            Enter a subject
             <input
               type="text"
               value={subject}
               onChange={(e) => setSubject(e.target.value)}
               required
+              className="mx-2 border border-sky-500"
             />
           </label>
-          <button type="submit">Get Plan</button>
+          <button className="mx-4 w-28 bg-slate-200 border text-l" type="submit">Get Plan</button>
         </form>
         <div>
+          <p>Example: 11th grade, history</p>
+          <p>You can also go more in-depth with the subject --- history, the battle of Waterloo</p>
+          <p>You can also go more in-depth with the subject --- chemistry, atomic theory</p>
           {textContent}
         </div>
     </div>
