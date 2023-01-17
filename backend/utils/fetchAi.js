@@ -8,9 +8,12 @@ const configuration = new Configuration({
   const openai = new OpenAIApi(configuration);
   const response = await openai.createCompletion({
     model: "text-davinci-003",
-    prompt: `Write a detailed lesson plan for a ${grade} grade ${subject} teacher.}`,
+    prompt: `A detailed lesson plan for a ${grade} grade ${subject} teacher.`,
     max_tokens: 4000,
     temperature: .5,
+    top_p: 1,
+    frequency_penalty: 0,
+    presence_penalty: 0,
   })
   return response.data.choices[0].text;
 }

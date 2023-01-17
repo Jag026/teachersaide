@@ -15,7 +15,10 @@ function LessonPlan() {
   const handleSubmit = async(e) => {
     e.preventDefault();
     setErrors([]);
-    setPlanText(dispatch(sessionActions.fetchLessonplan({ grade, subject })))
+    setPlanText("Loading lesson plan...");
+    let plan =  await dispatch(await sessionActions.fetchLessonplan({ grade, subject }))
+    console.log(grade, subject);
+    await setPlanText(plan.replace(/\n/g, '\n'))
     // return setErrors(['Confirm Password field must be the same as the Password field']);
   };
 
@@ -45,7 +48,7 @@ function LessonPlan() {
           </label>
           <button type="submit">Get Plan</button>
         </form>
-        <p>{planText}</p>
+        <textarea value={planText}></textarea>
     </div>
   );
 }

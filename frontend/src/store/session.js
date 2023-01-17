@@ -104,7 +104,7 @@ export const restoreUser = () => async dispatch => {
   };
 
   export const fetchLessonplan = (lessonplan) => async (dispatch) => {
-    const { grade, subject } = LessonPlan;
+    const { grade, subject } = lessonplan;
     const response = await csrfFetch("/api/lessons/get-lessonplan", {
       method: "POST",
       body: JSON.stringify({
@@ -113,9 +113,8 @@ export const restoreUser = () => async dispatch => {
       }),
     });
     const data = await response.json();
-    console.log(lessonplan)
     dispatch(setLessonplan(data.lessonplan));
-    return response;
+    return data.lessonplan;
   };
 
   
