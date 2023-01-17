@@ -2,25 +2,26 @@ import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Redirect } from "react-router-dom";
 import * as sessionActions from "../../store/session";
+import RichTextEditor from "./RichText"
 
-function LessonPlan() {
+function LessonPlan(props) {
   const dispatch = useDispatch();
   const sessionUser = useSelector((state) => state.session.user);
   const [grade, setGrade] = useState("");
   const [subject, setSubject] = useState("");
-  const [planText, setPlanText] = useState("Click the get plan button to get a lesson plan.");
   const [errors, setErrors] = useState([]);
-
+  const [textContent, setTextContent] = useState("Click the get plan button to get a lesson plan.")
 
   const handleSubmit = async(e) => {
     e.preventDefault();
     setErrors([]);
-    setPlanText("Loading lesson plan...");
+    await setTextContent("Loading lesson plan...");
     let plan =  await dispatch(await sessionActions.fetchLessonplan({ grade, subject }))
-    console.log(grade, subject);
-    await setPlanText(plan.replace(/\n/g, '\n'))
+    await setTextContent(<RichTextEditor text={plan.replace(/\n/g, '\n')} />)
     // return setErrors(['Confirm Password field must be the same as the Password field']);
   };
+
+  let editor = <RichTextEditor text={textContent} />
 
   return (
     <div>
@@ -48,7 +49,9 @@ function LessonPlan() {
           </label>
           <button type="submit">Get Plan</button>
         </form>
-        <textarea value={planText}></textarea>
+        <div>
+          {textContent}
+        </div>
     </div>
   );
 }
