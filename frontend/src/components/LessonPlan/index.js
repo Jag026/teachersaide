@@ -18,6 +18,7 @@ function LessonPlan(props) {
     await setTextContent("Loading lesson plan...");
     let plan =  await dispatch(await sessionActions.fetchLessonplan({ grade, subject }))
     await setTextContent(<RichTextEditor text={plan.replace(/\n/g, '\n')} />)
+    // return setErrors(['Confirm Password field must be the same as the Password field']);
   };
 
   let editor = <RichTextEditor text={textContent} />
