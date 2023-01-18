@@ -23,11 +23,18 @@ function LessonPlan(props) {
   };
 
   return (
-    <div>
-        <form onSubmit={handleSubmit}>
+    <div className="flex flex-col items-center">
+        <h2 className="font-serif text-5xl my-10">Teacher's AIde</h2>
+        <p className="p-5">An AI assistant that can quickly generate lesson plans for all grade levels. Enter a grade level and subject to get started</p>
+        <p>Example: grade level: 11th || subject: science, molar mass</p>
+        <p>Example: grade level: 10th || subject: history, the French Revolution</p> 
+        <p>Example: grade level: 2nd || subject: math, addition an subtraction</p>
+
+        <form onSubmit={handleSubmit} className="flex flex-col items-center">
           <ul>
             {errors.map((error, idx) => <li key={idx}>{error}</li>)}
           </ul>
+          <div>
           <label className="mx-4 text-xl">
             Enter a grade level
             <input
@@ -48,12 +55,10 @@ function LessonPlan(props) {
               className="mx-2 border border-sky-500"
             />
           </label>
-          <button className="mx-4 w-28 bg-slate-200 border text-l" type="submit">Get Plan</button>
+          </div>
+          <button className="m-6 w-28 bg-slate-200 border text-l" type="submit">Get Plan</button>
         </form>
         <div>
-          <p>Example: 11th grade, history</p>
-          <p>You can also go more in-depth with the subject --- history, the battle of Waterloo</p>
-          <p>You can also go more in-depth with the subject --- chemistry, atomic theory</p>
           {textContent}
         </div>
     </div>
