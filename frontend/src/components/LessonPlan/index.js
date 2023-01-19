@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Redirect } from "react-router-dom";
 import * as sessionActions from "../../store/session";
 import RichTextEditor from "./RichText"
+import './index.css'
 
 function LessonPlan(props) {
   const dispatch = useDispatch();
@@ -33,12 +34,14 @@ function LessonPlan(props) {
 
   return (
     <div className="flex flex-col items-center">
-        <h2 className="font-serif text-5xl my-10">Teacher's AIde</h2>
-        <p className="p-5">A powerful AI assistant that can generate lessons plans for any class.</p>
-        <p>Example: grade level: 11th || subject: science, molar mass</p>
-        <p>Example: grade level: 7th || subject: history, the American Revolution</p> 
-        <p>Example: grade level: 3rd || subject: math, addition and subtraction</p>
-
+      <h2 className="font-serif text-5xl mt-10 mb-6">Teacher's AIde</h2>
+      <p className="text-s">A powerful AI assistant that can generate lessons plans for any subject.</p>
+      <div className="mt-10">
+        <p className="text-s">Examples:</p>
+        <p className="text-s">Grade: 11th || Subject: The American Revolution</p> 
+        <p className="text-s">Grade: 2nd || Subject: The sun and temperature</p>
+        <p className="text-s">Grade: 7th || Subject: Biology, animal cell structures</p>
+      </div>
         {formVisible && <form onSubmit={handleSubmit} className="flex flex-col items-center mt-8">
           <ul>
             {errors.map((error, idx) => <li key={idx}>{error}</li>)}
@@ -70,6 +73,11 @@ function LessonPlan(props) {
         <div className="w-3/5 mt-6 flex flex-col items-center">
           {visible && <button className="m-6 w-28 h-10 bg-slate-300 border text-l" onClick={resetForm} type="submit">Reset</button>}
           {textContent}
+          <div class="container">
+		        <span class="gear-logo">
+		        	<img src={require("./apple.png")}  alt="gear image" />
+		        </span>
+          </div>
         </div>
     </div>
   );
