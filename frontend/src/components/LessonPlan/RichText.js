@@ -6,6 +6,7 @@ import PrintButton from './PrintButton';
 function RichTextEditor(props) {
   const editorRef = useRef(null);
   const [content, setContent] = useState("");
+  const [print, setPrint] = useState("");
 
   useEffect(() => {
     // Initialize Quill editor
@@ -20,7 +21,9 @@ function RichTextEditor(props) {
       theme: 'snow'
     });
     editor.setText(props.text);
-    setContent(props.text);
+    let formattedContents = editor.getContents(props.text);
+    setContent(formattedContents);
+    setPrint(<PrintButton content={content} />)
 
     return () => {
       // Clean up Quill editor
@@ -31,7 +34,7 @@ function RichTextEditor(props) {
   return (
     <div>
       <div ref={editorRef} />
-      <PrintButton content={content} />
+      {print}
     </div>
   );
 }

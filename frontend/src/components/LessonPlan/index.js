@@ -67,7 +67,7 @@ function LessonPlan(props) {
           </div>
           <button className="m-6 w-28 h-10 bg-slate-300 border text-l" type="submit">Get Plan</button>
         </form>}
-        <div className="w-3/5 mt-6">
+        <div className="w-3/5 mt-6 flex flex-col items-center">
           {visible && <button className="m-6 w-28 h-10 bg-slate-300 border text-l" onClick={resetForm} type="submit">Reset</button>}
           {textContent}
         </div>
