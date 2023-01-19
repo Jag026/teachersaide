@@ -15,6 +15,7 @@ function LessonPlan(props) {
   const [resetButton, setResetButton] = useState("")
   const [visible, setVisible] = useState(false);
   const [formVisible, setFormVisible] = useState(true);
+  const [logoVisible, setLogoVisible] = useState(false);
 
   const resetForm = () => {
     window.location.reload();
@@ -24,8 +25,10 @@ function LessonPlan(props) {
     e.preventDefault();
     setErrors([]);
     await setTextContent("Loading lesson plan...");
+    await setLogoVisible(true);
     let plan =  await dispatch(await sessionActions.fetchLessonplan({ grade, subject }))
     await setTextContent(<RichTextEditor text={plan.replace(/\n/g, '\n')} />)
+    await setLogoVisible(false);
     await setVisible(true)
     await setFormVisible(false)
 
@@ -73,11 +76,12 @@ function LessonPlan(props) {
         <div className="w-3/5 mt-6 flex flex-col items-center">
           {visible && <button className="m-6 w-28 h-10 bg-slate-300 border text-l" onClick={resetForm} type="submit">Reset</button>}
           {textContent}
-          <div class="container">
+          {logoVisible && <div class="container">
 		        <span class="gear-logo">
 		        	<img src={require("./apple.png")}  alt="gear image" />
 		        </span>
-          </div>
+          </div>}
+
         </div>
     </div>
   );
