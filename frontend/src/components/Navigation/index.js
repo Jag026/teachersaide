@@ -8,13 +8,21 @@ function Navigation({ isLoaded }){
   let sessionLinks;
   if (sessionUser) {
     sessionLinks = (
-      <p></p>
+      <div className='flex justify-between p-3 bg-red-500'>
+        <div className='flex ml-8 justify-start'>
+          <NavLink exact to="test">Test/Quizzes</NavLink>
+        </div>
+        <div className='flex mr-6 justify-end'>
+          <i className="fa-solid fa-user"></i>
+          <p className="">{sessionUser.username}</p>
+        </div>
+      </div>
     );
   } else {
     sessionLinks = (
       <>
-        <NavLink to="/login">Log In</NavLink>
-        <NavLink to="/signup">Sign Up</NavLink>
+        <NavLink exact to="/login">Log In</NavLink>
+        <NavLink exact to="/signup">Sign Up</NavLink>
       </>
     );
   }
@@ -22,7 +30,6 @@ function Navigation({ isLoaded }){
   return (
     <ul>
       <li>
-        <NavLink exact to="/">Home</NavLink>
         {isLoaded && sessionLinks}
       </li>
     </ul>
