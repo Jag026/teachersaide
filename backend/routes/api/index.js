@@ -2,6 +2,7 @@ const router = require('express').Router();
 const sessionRouter = require('./session.js');
 const usersRouter = require('./users.js');
 const lessonsRouter = require('./lessons.js');
+const testRouter = require('./test.js');
 
 const { restoreUser } = require("../../utils/auth.js");
 
@@ -16,5 +17,6 @@ router.use('/users', usersRouter);
 
 router.use('/lessons', lessonsRouter);
 
+router.use('/tests', testRouter);
 
 module.exports = router;

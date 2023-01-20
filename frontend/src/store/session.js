@@ -3,8 +3,10 @@ import { csrfFetch } from './csrf';
 
 const SET_USER = 'session/setUser';
 const REMOVE_USER = 'session/removeUser';
-const SET_LESSONPLAN = 'session/setUser';
-const REMOVE_LESSONPLAN = 'session/removeUser';
+const SET_LESSONPLAN = 'session/setLessonplan';
+const REMOVE_LESSONPLAN = 'session/removeLessonplan';
+const SET_TEST= 'session/setTest';
+const REMOVE_TEST = 'session/setTest';
 
 const setUser = (user) => {
   return {
@@ -19,6 +21,14 @@ const setLessonplan = (lessonplan) => {
       payload: lessonplan,
     };
   };
+
+  const setTest = (test) => {
+    return {
+      type: SET_TEST,
+      payload: test,
+    };
+  };
+
 const removeUser = () => {
   return {
     type: REMOVE_USER,
@@ -28,6 +38,12 @@ const removeUser = () => {
 const removeLessonplan = () => {
     return {
       type: REMOVE_LESSONPLAN,
+    };
+  };
+
+  const removeTest = () => {
+    return {
+      type: REMOVE_TEST
     };
   };
 
@@ -66,6 +82,14 @@ const sessionReducer = (state = initialState, action) => {
         newState = Object.assign({}, state);
         newState.lessonplan = null;
         return newState;
+        case SET_TEST:
+          newState = Object.assign({}, state);
+          newState.test = action.payload;
+          return newState;
+        case REMOVE_TEST:
+          newState = Object.assign({}, state);
+          newState.test = null;
+          return newState;
     default:
       return state;
   }
@@ -117,5 +141,19 @@ export const restoreUser = () => async dispatch => {
     return data.lessonplan;
   };
 
-  
+  export const fetchTest = (test) => async (dispatch) => {
+    const { grade, subject, numberOfQuestions } = test;
+    const response = await csrfFetch("/api/tests/get-test", {
+      method: "POST",
+      body: JSON.stringify({
+        grade, 
+        subject,
+        numberOfQuestions
+      }),
+    });
+    const data = await response.json();
+    dispatch(setTest(data.test));
+    return data.test;
+  };
+
 export default sessionReducer;
