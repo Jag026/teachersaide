@@ -39,12 +39,10 @@ function Test(props) {
   return (
     <div className="flex flex-col items-center">
       <h2 className="font-serif text-5xl mt-10 mb-6">Teacher's AIde</h2>
-      <p className="text-s">A powerful AI assistant that can generate lessons plans for any subject.</p>
+      <p className="text-s">A powerful AI assistant that can generate tests and quizzes in a breeze.</p>
       <div className="mt-10">
-        <p className="text-s">Examples:</p>
-        <p className="text-s">Grade: 11th || Subject: The American Revolution</p> 
-        <p className="text-s">Grade: 2nd || Subject: The sun and temperature</p>
-        <p className="text-s">Grade: 7th || Subject: Biology, animal cell structures</p>
+        <p className="text-s">Example:</p>
+        <p className="text-s">Grade: 11th, Subject: The American Revolution, Number of questions: 10</p> 
       </div>
         {formVisible && <form onSubmit={handleSubmit} className="flex flex-col items-center mt-8">
           <ul>
