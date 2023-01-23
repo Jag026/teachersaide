@@ -38,5 +38,26 @@ router.post(
     }
   );
   
+  //get lesson plans for user
+  router.get(
+    '/lessonplans',
+    async (req, res) => {
+      const { token } = req.cookies;
+      const splitJwt = token.split('.');
+      const payload = splitJwt[1];
+      const strPayload = Buffer.from(payload, 'base64').toString()
+      const parsedPayload = JSON.parse(strPayload);
+      const userId = parsedPayload["data"].id
+      const lessonplans = await Lessonplan.findAll({ 
+        where: { userId: userId },
+        order: [['createdAt', 'DESC']]
+      });
+      
+      return res.json({
+        lessonplans
+      });
+    }
+  );
+
 
 module.exports = router;

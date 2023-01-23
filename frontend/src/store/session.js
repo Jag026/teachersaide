@@ -5,6 +5,8 @@ const SET_USER = 'session/setUser';
 const REMOVE_USER = 'session/removeUser';
 const SET_LESSONPLAN = 'session/setLessonplan';
 const REMOVE_LESSONPLAN = 'session/removeLessonplan';
+const SET_LESSONS = 'session/setLessons';
+const REMOVE_LESSONS = 'session/removeLessons';
 const SET_TEST= 'session/setTest';
 const REMOVE_TEST = 'session/setTest';
 
@@ -44,6 +46,19 @@ const removeLessonplan = () => {
   const removeTest = () => {
     return {
       type: REMOVE_TEST
+    };
+  };
+
+  const setLessons = (lessons) => {
+    return {
+      type: SET_LESSONS,
+      payload: lessons,
+    };
+  };
+
+  const removeLessons = () => {
+    return {
+      type: REMOVE_LESSONS
     };
   };
 
@@ -90,6 +105,14 @@ const sessionReducer = (state = initialState, action) => {
           newState = Object.assign({}, state);
           newState.test = null;
           return newState;
+          case SET_LESSONS:
+            newState = Object.assign({}, state);
+            newState.lessons = action.payload;
+            return newState;
+          case REMOVE_LESSONS:
+            newState = Object.assign({}, state);
+            newState.lessons = null;
+            return newState;
     default:
       return state;
   }
@@ -165,6 +188,15 @@ export const restoreUser = () => async dispatch => {
       }),
     });
     const data = await response.json();
+    return response;
+  };
+
+  export const restoreLessons = () => async dispatch => {
+    const response = await csrfFetch("/api/lessons/lessonplans", {
+      method: "GET"
+    });
+    const data = await response.json();
+    console.log(data);
     return response;
   };
 

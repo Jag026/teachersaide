@@ -7,12 +7,15 @@ import Test from "./components/Test";
 import SignupFormPage from "./components/SignupFormPage";
 import * as sessionActions from "./store/session";
 import Navigation from "./components/Navigation";
+import ProfilePage from "./components/ProfilePage";
+
 
 function App() {
   const dispatch = useDispatch();
   const [isLoaded, setIsLoaded] = useState(false);
   useEffect(() => {
     dispatch(sessionActions.restoreUser()).then(() => setIsLoaded(true));
+    dispatch(sessionActions.restoreLessons()).then(() => setIsLoaded(true));
   }, [dispatch]);
 
   return (
@@ -31,6 +34,9 @@ function App() {
           </Route>
           <Route exact path="/signup">
             <SignupFormPage />
+          </Route>
+          <Route exact path="/profile">
+            <ProfilePage />
           </Route>
         </Switch>
       )}
