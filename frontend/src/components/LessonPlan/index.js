@@ -24,7 +24,7 @@ function LessonPlan(props) {
   const handleSubmit = async(e) => {
     e.preventDefault();
     setErrors([]);
-    await setTextContent("Loading lesson plan...");
+    await setTextContent("Drafting lesson plan...");
     await setLogoVisible(true);
     let plan =  await dispatch(await sessionActions.fetchLessonplan({ grade, subject }))
     await setTextContent(<RichTextEditor text={plan.replace(/\n/g, '\n')} />)

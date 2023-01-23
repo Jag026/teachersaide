@@ -10,7 +10,8 @@ function Navigation({ isLoaded }){
     sessionLinks = (
       <div className='flex justify-between p-3 h-14 bg-red-500'>
         <div className='flex ml-8 justify-start'>
-          <NavLink exact to="test">Test/Quizzes</NavLink>
+          <NavLink exact to="/test">Test/Quizzes</NavLink>
+          <NavLink className="ml-4" exact to="/">Lesson Plans</NavLink>
         </div>
         <div className='flex mr-6 justify-end'>
           <i className="fa-solid fa-user"></i>

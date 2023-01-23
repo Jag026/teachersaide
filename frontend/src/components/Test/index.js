@@ -25,7 +25,7 @@ function Test(props) {
   const handleSubmit = async(e) => {
     e.preventDefault();
     setErrors([]);
-    await setTextContent("Loading lesson plan...");
+    await setTextContent("Generating test...");
     await setLogoVisible(true);
     let plan =  await dispatch(await sessionActions.fetchTest({ grade, subject, numberOfQuestions }))
     await setTextContent(<RichTextEditor text={plan.replace(/\n/g, '\n')} />)
@@ -87,7 +87,7 @@ function Test(props) {
           {textContent}
           {logoVisible && <div class="container">
 		        <span class="gear-logo">
-		        	<img src={require("./apple.png")}  alt="gear image" />
+		        	<img src={require("./apple.png")}  alt="apple image" />
 		        </span>
           </div>}
 
