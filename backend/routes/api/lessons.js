@@ -37,16 +37,6 @@ router.post(
     });
     }
   );
-
-  router.get(
-    '/get-lessonplan',
-    async (req, res) => {
-      const { planBody} = req.body;
-      const lessonplan = await fetchAi('A lesson plan for a 8th grade algebra teacher')
-      return res.json(
-        lessonplan
-      );
-    }
-  );
   
+
 module.exports = router;

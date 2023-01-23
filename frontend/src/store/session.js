@@ -156,4 +156,16 @@ export const restoreUser = () => async dispatch => {
     return data.test;
   };
 
+  export const addLessonplan = (lessonplan) => async (dispatch) => {
+    const { planBody } = lessonplan;
+    const response = await csrfFetch("/api/lessons", {
+      method: "POST",
+      body: JSON.stringify({
+        planBody
+      }),
+    });
+    const data = await response.json();
+    return response;
+  };
+
 export default sessionReducer;

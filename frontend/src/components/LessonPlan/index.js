@@ -16,6 +16,7 @@ function LessonPlan(props) {
   const [visible, setVisible] = useState(false);
   const [formVisible, setFormVisible] = useState(true);
   const [logoVisible, setLogoVisible] = useState(false);
+  const [saveSuccessMessage, setSaveSuccessMessage] = useState("");
 
   const resetForm = () => {
     window.location.reload();
@@ -33,6 +34,21 @@ function LessonPlan(props) {
     await setFormVisible(false)
 
     // return setErrors(['Confirm Password field must be the same as the Password field']);
+  };
+
+  const saveLessonplan = async(e) => {
+    e.preventDefault();
+    setErrors([]);
+    const planBody = JSON.stringify(textContent["props"]["text"]);
+    if (planBody !== "") {
+      dispatch(await sessionActions.addLessonplan({ planBody }))
+      setSaveSuccessMessage("Plan Saved Successfully");
+      setTimeout(() => {
+        setSaveSuccessMessage("");
+      }, 2000)
+    } else {
+      setSaveSuccessMessage("Plan cannot be blank")
+    }
   };
 
   return (
@@ -74,7 +90,13 @@ function LessonPlan(props) {
           <button className="m-10 w-28 h-10 bg-slate-300 border text-l" type="submit">Create Plan</button>
         </form>}
         <div className="w-3/5 mt-6 flex flex-col items-center">
-          {visible && <button className="m-6 w-28 h-10 bg-slate-300 border text-l" onClick={resetForm} type="submit">Reset</button>}
+          {visible && 
+            <div>
+              <button className="m-6 w-28 h-10 bg-slate-300 border text-l" onClick={resetForm} type="submit">Reset</button>
+              <button className="m-6 w-28 h-10 bg-slate-300 border text-l" onClick={saveLessonplan} type="submit">Save Plan</button>
+              <p className="mx-6 mb-10 text-s">{saveSuccessMessage}</p>
+            </div>
+          }
           {textContent}
           {logoVisible && <div class="container">
 		        <span class="gear-logo">
