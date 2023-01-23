@@ -25,29 +25,31 @@ function LoginFormPage() {
   }
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} className="m-10 bg-white p-6 rounded-lg shadow-md flex flex-col sm:w-2/4 sm:max-w-[600px]">
       <ul>
         {errors.map((error, idx) => <li key={idx}>{error}</li>)}
       </ul>
-      <label>
+      <label className="p-2 mb-4">
         Username or Email
         <input
           type="text"
           value={credential}
           onChange={(e) => setCredential(e.target.value)}
           required
+          className="ml-2 border border-sky-500"
         />
       </label>
-      <label>
+      <label className="p-2 mb-4">
         Password
         <input
           type="password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           required
+          className="ml-2 border border-sky-500"
         />
       </label>
-      <button type="submit">Log In</button>
+      <button type="submit" className="w-20 mt-3 p-1 border border-sky-500">Log In</button>
     </form>
   );
 }
