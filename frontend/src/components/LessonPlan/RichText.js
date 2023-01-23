@@ -1,7 +1,7 @@
 import React, { useRef, useEffect, useState } from 'react';
 import Quill from 'quill';
 import 'quill/dist/quill.snow.css';
-import PrintButton from './PrintButton';
+import PrintButton from '../PrintButton';
 
 function RichTextEditor(props) {
   const editorRef = useRef(null);

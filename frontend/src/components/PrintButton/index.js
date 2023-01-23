@@ -1,5 +1,4 @@
 import React from 'react';
-import Quill from 'quill';
 
 function PrintButton(props) {
     const print = () => {
@@ -13,7 +12,7 @@ function PrintButton(props) {
         newWindow.close();
     }
     return (
-        <button onClick={print}>Print</button>
+        <button onClick={print} className="w-28 h-10 bg-slate-300 border text-l mt-4 mb-20">Print</button>
     );
 }
 

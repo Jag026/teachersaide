@@ -1,7 +1,7 @@
 import React, { useRef, useEffect, useState } from 'react';
 import Quill from 'quill';
 import 'quill/dist/quill.snow.css';
-import PrintButton from './PrintButton';
+import PrintButton from '../PrintButton';
 
 function RichTextEditor(props) {
   const editorRef = useRef(null);
@@ -21,9 +21,10 @@ function RichTextEditor(props) {
       theme: 'snow'
     });
     editor.setText(props.text);
-    let formattedContents = editor.getContents(props.text);
+    let formattedContents = JSON.parse(JSON.stringify(editor.getContents()["ops"][0]["insert"].replace(/\n/g, '<br>')));
+    console.log(formattedContents)
     setContent(formattedContents);
-    setPrint(<PrintButton content={content} />)
+    //setPrint()
 
     return () => {
       // Clean up Quill editor
@@ -34,7 +35,7 @@ function RichTextEditor(props) {
   return (
     <div>
       <div ref={editorRef} />
-      {print}
+      {content && <PrintButton content={content} />}
     </div>
   );
 }
