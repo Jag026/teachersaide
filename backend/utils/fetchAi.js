@@ -27,7 +27,7 @@ const fetchAiTest = async(grade, subject, numberOfQuestions) => {
     const response = await openai.createCompletion({
       model: "text-davinci-003",
       prompt: `Create a formatted test for a ${grade} class over ${subject} that has ${numberOfQuestions}`,
-      max_tokens: 875,
+      max_tokens: 1000,
       temperature: .78,
       top_p: 1,
       frequency_penalty: 0,
