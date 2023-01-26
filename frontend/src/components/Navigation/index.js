@@ -15,7 +15,7 @@ function Navigation({ isLoaded }){
   let sessionLinks;
   if (sessionUser) {
     sessionLinks = (
-      <div className='flex justify-between pt-4 p-3 h-14 bg-red-500'>
+      <div className='flex justify-between pt-4 p-3 h-14 bg-red-500 shadow-lg'>
         <div className='flex sm:ml-16 justify-start'>
           <NavLink exact to="/test">Test/Quizzes</NavLink>
           <NavLink className="ml-4" exact to="/">Lesson Plans</NavLink>
