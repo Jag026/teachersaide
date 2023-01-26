@@ -87,12 +87,12 @@ function LessonPlan(props) {
             />
           </label>
           </div>
-          <button className="m-10 w-28 h-10 bg-slate-300 border text-l" type="submit">Create Plan</button>
+          <button className="m-10 w-28 h-10 bg-slate-300 border text-l hover:bg-slate-500" type="submit">Create Plan</button>
         </form>}
         <div className="w-3/5 mt-6 flex flex-col items-center">
           {visible && 
             <div>
-              <button className="m-6 w-28 h-10 bg-slate-300 border text-l" onClick={resetForm} type="submit">Reset</button>
+              <button className="m-6 w-28 h-10 bg-slate-300 border text-l hover:bg-slate-500" onClick={resetForm} type="submit">Reset</button>
               <button className="m-6 w-28 h-10 bg-slate-300 border text-l" onClick={saveLessonplan} type="submit">Save Plan</button>
               <p className="mx-6 mb-10 text-s">{saveSuccessMessage}</p>
             </div>
