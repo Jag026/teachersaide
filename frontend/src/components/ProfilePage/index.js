@@ -40,7 +40,7 @@ function ProfilePage() {
         <div className="mt-10 px-4">
           <p>Saved Tests</p>
         {userLessons.map((element) => {
-            return <p>{JSON.parse(element).substring(0, 200)}.....</p>
+            return <p>{element.substring(0, 200)}.....</p>
           })}
         </div>
     </div>
