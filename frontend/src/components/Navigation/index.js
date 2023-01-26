@@ -1,5 +1,5 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, Redirect } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import * as sessionActions from '../../store/session';
 
@@ -12,6 +12,10 @@ function Navigation({ isLoaded }){
     dispatch(sessionActions.logout());
   };
 
+  const profileRedirect =  (e) => {
+    e.preventDefault();
+    return <Redirect to="profile" />
+  };
   let sessionLinks;
   if (sessionUser) {
     sessionLinks = (
@@ -22,7 +26,7 @@ function Navigation({ isLoaded }){
         </div>
         <div className='flex mr-3 sm:mr-12 justify-end'>
           <button className="mr-6 hover:text-slate-100" onClick={logout}>Logout</button>
-          <i className="cursor-pointer text-2xl fa-solid fa-user hover:text-slate-100"></i>
+          <NavLink className="ml-4" exact to="/profile">{<i className="cursor-pointer text-2xl fa-solid fa-user hover:text-slate-100"></i>}</NavLink>
         </div>
       </div>
     );
