@@ -45,7 +45,6 @@ function Navigation({ isLoaded }){
     );
   }
 
-  
   return (
     <ul>
       <li>
@@ -54,6 +53,5 @@ function Navigation({ isLoaded }){
     </ul>
   );
 }
-
 
 export default Navigation;
