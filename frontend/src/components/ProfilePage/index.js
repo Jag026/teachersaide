@@ -47,12 +47,11 @@ function ProfilePage() {
     <div>
         {sessionUser && <p className="p-4">Username: {sessionUser["username"]}</p>}
         <div className="mt-10 px-4">
-          <p>Saved Tests</p>
+          <p>Saved Plans</p>
         {userLessons.map((element) => {
             return <div>
               <p>{element.substring(0, 120)}.....</p>
               <button onClick={handleOpen} className="m-6 w-28 h-10 bg-slate-300 border text-l">View</button>
-              <button className="m-6 w-28 h-10 bg-slate-300 border text-l">Delete</button>
       {isOpen && (
           <div>
            <div>
