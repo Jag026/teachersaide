@@ -200,4 +200,25 @@ export const restoreUser = () => async dispatch => {
     return response;
   };
 
+  export const addTest = (test) => async (dispatch) => {
+    const { testBody } = test;
+    const response = await csrfFetch("/api/tests", {
+      method: "POST",
+      body: JSON.stringify({
+        testBody
+      }),
+    });
+    const data = await response.json();
+    return response;
+  };
+
+  export const restoreTests = () => async dispatch => {
+    const response = await csrfFetch("/api/tests/", {
+      method: "GET"
+    });
+    const data = await response.json();
+    console.log(data);
+    return response;
+  };
+
 export default sessionReducer;

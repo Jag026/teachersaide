@@ -4,8 +4,28 @@ const { check } = require('express-validator');
 const { handleValidationErrors } = require('../../utils/validation');
 
 const { setTokenCookie, requireAuth } = require('../../utils/auth');
+const { Test } = require('../../db/models');
 
 const router = express.Router();
+
+// Add Test
+router.post(
+  '/',
+  async (req, res) => {
+    const { token } = req.cookies;
+    const splitJwt = token.split('.');
+    const payload = splitJwt[1];
+    const strPayload = Buffer.from(payload, 'base64').toString()
+    const parsedPayload = JSON.parse(strPayload);
+    const userId = parsedPayload["data"].id
+    const { testBody} = req.body;
+    const test = await Test.addTest({ userId, testBody });
+    
+    return res.json({
+      test
+    });
+  }
+);
 
   router.post(
     '/get-test',
@@ -21,7 +41,7 @@ const router = express.Router();
   router.get(
     '/get-test',
     async (req, res) => {
-      const { planBody} = req.body;
+      const { testBody} = req.body;
       const test = await fetchAiTest(`Create a formatted test for a 9th grade english class over Hamlet that has 4 writing questions, include an answer key at the end.`)
       return res.json(
         test
@@ -29,4 +49,25 @@ const router = express.Router();
     }
   );
   
+  //get tests for user
+  router.get(
+    '/',
+    async (req, res) => {
+      const { token } = req.cookies;
+      const splitJwt = token.split('.');
+      const payload = splitJwt[1];
+      const strPayload = Buffer.from(payload, 'base64').toString()
+      const parsedPayload = JSON.parse(strPayload);
+      const userId = parsedPayload["data"].id
+      const tests = await Test.findAll({ 
+        where: { userId: userId },
+        order: [['createdAt', 'DESC']]
+      });
+      
+      return res.json({
+        tests
+      });
+    }
+  );
+
 module.exports = router;

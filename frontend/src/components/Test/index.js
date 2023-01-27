@@ -17,6 +17,7 @@ function Test(props) {
   const [visible, setVisible] = useState(false);
   const [formVisible, setFormVisible] = useState(true);
   const [logoVisible, setLogoVisible] = useState(false);
+  const [saveSuccessMessage, setSaveSuccessMessage] = useState("");
 
   const resetForm = () => {
     window.location.reload();
@@ -35,6 +36,22 @@ function Test(props) {
 
     // return setErrors(['Confirm Password field must be the same as the Password field']);
   };
+
+  const saveTest = async(e) => {
+    e.preventDefault();
+    setErrors([]);
+    const testBody = JSON.stringify(textContent["props"]["text"]);
+    if (testBody !== "") {
+      dispatch(await sessionActions.addTest({ testBody }))
+      setSaveSuccessMessage("Test Saved Successfully");
+      setTimeout(() => {
+        setSaveSuccessMessage("");
+      }, 2000)
+    } else {
+      setSaveSuccessMessage("Test cannot be blank")
+    }
+  };
+
 
   return (
     <div className="flex flex-col items-center">
@@ -83,7 +100,12 @@ function Test(props) {
           <button className="m-6 mt-10 w-28 h-10 bg-slate-300 border text-l" type="submit">Get Test</button>
         </form>}
         <div className="w-5/6 mt-6 flex flex-col items-center sm:w-3/5">
-          {visible && <button className="m-6 w-28 h-10 bg-slate-300 border text-l" onClick={resetForm} type="submit">Reset</button>}
+        {visible && 
+            <div>
+              <button className="m-6 w-28 h-10 bg-slate-300 border text-l hover:bg-slate-500" onClick={resetForm} type="submit">Reset</button>
+              <button className="m-6 w-28 h-10 bg-slate-300 border text-l" onClick={saveTest} type="submit">Save Test</button>
+              <p className="mx-6 mb-10 text-s">{saveSuccessMessage}</p>
+            </div>}          
           {textContent}
           {logoVisible && <div class="container">
 		        <span class="gear-logo">
