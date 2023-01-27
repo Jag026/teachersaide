@@ -31,7 +31,6 @@ function ProfilePage() {
         i++;
       }
       setUserLessons(formattedData)
-      console.log(formattedData);
       return
     }
     fetchData();

@@ -7,7 +7,9 @@ import Test from "./components/Test";
 import SignupFormPage from "./components/SignupFormPage";
 import * as sessionActions from "./store/session";
 import Navigation from "./components/Navigation";
+import Footer from "./components/Footer";
 import ProfilePage from "./components/ProfilePage";
+import SitePolicies from "./components/SitePolicies";
 
 
 function App() {
@@ -38,8 +40,12 @@ function App() {
           <Route exact path="/profile">
             <ProfilePage />
           </Route>
+          <Route exact path="/policies">
+            <SitePolicies />
+          </Route>
         </Switch>
       )}
+      <Footer />
     </>
   );
 }
