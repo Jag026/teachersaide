@@ -8,6 +8,15 @@ function ProfilePage() {
   const dispatch = useDispatch();
   const sessionUser = useSelector((state) => state.session.user);
   const [userLessons, setUserLessons] = useState([]);
+  const [isOpen, setIsOpen] = useState(false);
+
+  const handleOpen = () => {
+    setIsOpen(true);
+  };
+
+  const handleClose = () => {
+    setIsOpen(false);
+  };
 
   useEffect(() => {
     async function fetchData() {
@@ -18,7 +27,7 @@ function ProfilePage() {
       let formattedData = []
       let i = 0;
       while (i < data["lessonplans"].length) {
-        formattedData.push(data["lessonplans"][i]["planBody"])
+        formattedData.push((String(data["lessonplans"][i]["planBody"])).replace(/\\n/g, ""))
         i++;
       }
       setUserLessons(formattedData)
@@ -40,7 +49,20 @@ function ProfilePage() {
         <div className="mt-10 px-4">
           <p>Saved Tests</p>
         {userLessons.map((element) => {
-            return <p>{element.substring(0, 200)}.....</p>
+            return <div>
+              <p>{element.substring(0, 120)}.....</p>
+              <button onClick={handleOpen} className="m-6 w-28 h-10 bg-slate-300 border text-l">View</button>
+              <button className="m-6 w-28 h-10 bg-slate-300 border text-l">Delete</button>
+      {isOpen && (
+          <div>
+           <div>
+             <div>
+               <p>{element}</p>
+               <button onClick={handleClose} className="m-2 w-14 bg-slate-300 border text-s mb-20">Close</button>
+             </div>
+             </div>
+           </div>)}
+              </div>
           })}
         </div>
     </div>
