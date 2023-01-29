@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Redirect } from "react-router-dom";
 import * as sessionActions from "../../store/session";
 import RichTextEditor from "./RichText"
+import CookiesBanner from './CookiesBanner'
 import './index.css'
 
 function LessonPlan(props) {
@@ -105,6 +106,7 @@ function LessonPlan(props) {
           </div>}
 
         </div>
+        <CookiesBanner />
     </div>
   );
 }
