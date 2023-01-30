@@ -22,9 +22,9 @@ const SetCookieButton = () => {
 }
   
 return (
-<div className=" bg-blue-800 py-8 fixed bottom-0 flex w-full">
-  <p className="text-white text-2xl pl-10">We use cookies to enhance your experience on our website. By continuing to browse, you agree to our use of cookies and <a href="/policies">site policies</a>.</p>
-    <button onClick={e => { e.preventDefault(); handleClose(); SetCookieButton() }} className="bg-white ml-4 py-1 px-4 w-24">Close</button>
+<div className=" bg-blue-500 fixed bottom-0 flex w-full h-8">
+  <p className="text-white text-xs pl-10 mt-2">We use cookies to enhance your experience on our website. By continuing to browse, you agree to our use of cookies and <a href="/policies" className="text-black">site policies</a>.</p>
+    <button onClick={e => { e.preventDefault(); handleClose(); SetCookieButton() }} className="bg-white mx-4 h-4 w-16 text-xs mt-2">I Agree</button>
 </div>
 );
 }
