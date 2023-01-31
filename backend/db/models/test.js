@@ -10,7 +10,7 @@ module.exports = (sequelize, DataTypes) => {
     }
 
     static getCurrentTestById(id) {
-      return Test.scope("currentLessonplan").findByPk(id);
+      return Test.scope("currentTest").findByPk(id);
     }
 
     static async addTest({ userId, testBody }) {
