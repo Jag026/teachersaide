@@ -84,25 +84,18 @@ router.post(
     }
   );
   
-  //get tests for user
-  router.get(
-    '/',
-    async (req, res) => {
-      const { token } = req.cookies;
-      const splitJwt = token.split('.');
-      const payload = splitJwt[1];
-      const strPayload = Buffer.from(payload, 'base64').toString()
-      const parsedPayload = JSON.parse(strPayload);
-      const userId = parsedPayload["data"].id
-      const tests = await Test.findAll({ 
-        where: { userId: userId },
-        order: [['createdAt', 'DESC']]
-      });
-      
-      return res.json({
-        tests
-      });
+  router.get('/:slug', async (req, res) => {
+    try {
+      console.log(req.params.slug)
+      const blogpost = await Blogpost.findOne({ where: {slug: req.params.slug }});
+      if (!blogpost) {
+        return res.status(404).send('Blog post not found');
+      }
+      res.send(blogpost);
+    } catch (error) {
+      console.error(error);
+      res.status(500).send('Server error');
     }
-  );
+  });
 
 module.exports = router;

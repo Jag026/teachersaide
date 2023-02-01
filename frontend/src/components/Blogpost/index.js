@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import * as sessionActions from "../../store/session";
 
-function Blogpost(props) {
+function CreateBlogpost(props) {
   const dispatch = useDispatch();
   const sessionUser = useSelector((state) => state.session.user);
   const [slug, setSlug] = useState("");
@@ -186,4 +186,4 @@ function Blogpost(props) {
   );
 }
 
-export default Blogpost;
+export default CreateBlogpost;

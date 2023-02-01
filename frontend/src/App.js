@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { Route, Switch } from "react-router-dom";
+import { Route, Switch, useParams } from "react-router-dom";
 import LoginFormPage from "./components/LoginFormPage";
 import LessonPlan from "./components/LessonPlan";
 import Test from "./components/Test";
@@ -10,7 +10,8 @@ import Navigation from "./components/Navigation";
 import Footer from "./components/Footer";
 import ProfilePage from "./components/ProfilePage";
 import SitePolicies from "./components/SitePolicies";
-import Blogpost from "./components/Blogpost";
+import CreateBlogpost from "./components/Blogpost";
+import BlogPosts from "./components/Blogpost/blogposts.js";
 
 
 function App() {
@@ -44,8 +45,11 @@ function App() {
           <Route exact path="/policies">
             <SitePolicies />
           </Route>
-          <Route exact path="/blogposts">
-            <Blogpost />
+          <Route exact path="/create-blogpost">
+            <CreateBlogpost />
+          </Route>
+          <Route exact path="/:slug">
+            <BlogPosts />
           </Route>
         </Switch>
       )}
