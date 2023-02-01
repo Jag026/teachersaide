@@ -4,7 +4,8 @@ const { check } = require('express-validator');
 const { handleValidationErrors } = require('../../utils/validation');
 
 const { setTokenCookie, requireAuth } = require('../../utils/auth');
-const { Test } = require('../../db/models');
+const { Blogpost } = require('../../db/models');
+const { post_secret } = require('../../config/index.js');
 
 const router = express.Router();
 
@@ -18,13 +19,47 @@ router.post(
     const strPayload = Buffer.from(payload, 'base64').toString()
     const parsedPayload = JSON.parse(strPayload);
     const userId = parsedPayload["data"].id
-    const { testBody } = req.body;
-    const test = await Test.addTest({ userId, testBody });
-    
-    return res.json({
-      test
+    const {         
+        slug, 
+        title, 
+        description, 
+        content, 
+        ogTitle, 
+        ogDescription, 
+        ogImage, 
+        canonicalUrl, 
+        author, 
+        categories,
+        featuredImage, 
+        tags,
+        password } = req.body;
+
+   if (password === post_secret) {
+    const blogpost = await Blogpost.addBlogpost({ 
+        userId, 
+        slug, 
+        title, 
+        description, 
+        content, 
+        ogTitle, 
+        ogDescription, 
+        ogImage, 
+        canonicalUrl, 
+        author, 
+        categories,
+        featuredImage, 
+        tags
     });
+  
+    return res.json({
+      blogpost
+    });
+  } else {
+    return res.json(
+        'error: invalid credentials'
+    );
   }
+ }
 );
 
   router.post(
