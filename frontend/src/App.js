@@ -10,6 +10,7 @@ import Navigation from "./components/Navigation";
 import Footer from "./components/Footer";
 import ProfilePage from "./components/ProfilePage";
 import SitePolicies from "./components/SitePolicies";
+import Blogpost from "./components/Blogpost";
 
 
 function App() {
@@ -42,6 +43,9 @@ function App() {
           </Route>
           <Route exact path="/policies">
             <SitePolicies />
+          </Route>
+          <Route exact path="/blogposts">
+            <Blogpost />
           </Route>
         </Switch>
       )}

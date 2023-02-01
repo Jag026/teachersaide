@@ -9,6 +9,8 @@ const SET_LESSONS = 'session/setLessons';
 const REMOVE_LESSONS = 'session/removeLessons';
 const SET_TEST= 'session/setTest';
 const REMOVE_TEST = 'session/setTest';
+const SET_BLOGPOST= 'session/setBlogpost';
+const REMOVE_BLOGPOST = 'session/setBlogpost';
 
 const setUser = (user) => {
   return {
@@ -28,6 +30,12 @@ const setLessonplan = (lessonplan) => {
     return {
       type: SET_TEST,
       payload: test,
+    };
+  };
+  const setBlogpost = (blogpost) => {
+    return {
+      type: SET_BLOGPOST,
+      payload: blogpost,
     };
   };
 
@@ -59,6 +67,12 @@ const removeLessonplan = () => {
   const removeLessons = () => {
     return {
       type: REMOVE_LESSONS
+    };
+  };
+
+  const removeBlogpost = () => {
+    return {
+      type: REMOVE_BLOGPOST
     };
   };
 
@@ -113,6 +127,14 @@ const sessionReducer = (state = initialState, action) => {
             newState = Object.assign({}, state);
             newState.lessons = null;
             return newState;
+            case SET_BLOGPOST:
+              newState = Object.assign({}, state);
+              newState.blogpost = action.payload;
+              return newState;
+            case REMOVE_BLOGPOST:
+              newState = Object.assign({}, state);
+              newState.blogpost = null;
+              return newState;
     default:
       return state;
   }
@@ -218,6 +240,43 @@ export const restoreUser = () => async dispatch => {
     });
     const data = await response.json();
     console.log(data);
+    return response;
+  };
+
+  export const addBlogpost = (blogpost) => async (dispatch) => {
+    const {         
+      slug, 
+      title, 
+      description, 
+      content, 
+      ogTitle, 
+      ogDescription, 
+      ogImage, 
+      canonicalUrl, 
+      author, 
+      categories,
+      featuredImage, 
+      tags,
+      password } = blogpost;
+    const response = await csrfFetch("/api/posts", {
+      method: "POST",
+      body: JSON.stringify({
+        slug, 
+        title, 
+        description, 
+        content, 
+        ogTitle, 
+        ogDescription, 
+        ogImage, 
+        canonicalUrl, 
+        author, 
+        categories,
+        featuredImage, 
+        tags,
+        password
+      }),
+    });
+    const data = await response.json();
     return response;
   };
 
