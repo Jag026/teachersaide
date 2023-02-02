@@ -22,7 +22,10 @@ function BlogPosts() {
         method: "GET"
       });
       const data = await response.json();
-      setAdditionalBlogPost(data)
+      let formattedPosts = [];
+      data.forEach(post => {
+        formattedPosts.push(<a href={`${post.canonicalUrl}`}>{post.title}</a>)
+      }).then(console.log(formattedPosts)).then(setAdditionalBlogPost(formattedPosts))
     };
     fetchBlogPost(slug);
     fetchAdditionalPosts()
@@ -58,7 +61,6 @@ function BlogPosts() {
             <h1 className="px-28 mt-20 text-4xl">{blogpost.title}</h1>
           </div>
           <p className="px-80 mt-20 text-l leading-8 tracking-wide font-serif">{blogpost.content}</p>
-          <p>{JSON.stringify(additionalblogpost)}</p>
         </div>
       </>
   );
