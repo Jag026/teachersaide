@@ -5,17 +5,27 @@ import { csrfFetch } from '../../store/csrf';
 
 function BlogPosts() {
   const [blogpost, setBlogPost] = useState({});
+  const [additionalblogpost, setAdditionalBlogPost] = useState({});
   let { slug } = useParams();
 
   useEffect(() => {
     const fetchBlogPost = async (slug) => {
-      const response = await csrfFetch(`/api/posts/${slug}`, {
+      const response = await csrfFetch(`/api/posts/latest/${slug}`, {
         method: "GET"
       });
       const data = await response.json();
       setBlogPost(data)
     };
+    
+    const fetchAdditionalPosts = async () => {
+      const response = await csrfFetch(`/api/posts/additional-posts`, {
+        method: "GET"
+      });
+      const data = await response.json();
+      setAdditionalBlogPost(data)
+    };
     fetchBlogPost(slug);
+    fetchAdditionalPosts()
   }, [slug]);
 
   return (
@@ -48,6 +58,7 @@ function BlogPosts() {
             <h1 className="px-28 mt-20 text-4xl">{blogpost.title}</h1>
           </div>
           <p className="px-80 mt-20 text-l leading-8 tracking-wide font-serif">{blogpost.content}</p>
+          <p>{JSON.stringify(additionalblogpost)}</p>
         </div>
       </>
   );

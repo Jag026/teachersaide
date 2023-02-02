@@ -83,10 +83,10 @@ router.post(
       );
     }
   );
-  
-  router.get('/:slug', async (req, res) => {
+
+
+  router.get('/latest/:slug', async (req, res) => {
     try {
-      console.log(req.params.slug)
       const blogpost = await Blogpost.findOne({ where: {slug: req.params.slug }});
       if (!blogpost) {
         return res.status(404).send('Blog post not found');
@@ -98,4 +98,19 @@ router.post(
     }
   });
 
+  router.get('/additional-posts', async (req, res) => {
+    try {
+      const additionalPosts = await Blogpost.findAll({ 
+        attributes: ['title', 'canonicalUrl'],
+        order: [
+          ['createdAt', 'DESC']
+        ],
+        limit: 6
+      });
+      res.send(additionalPosts);
+    } catch (error) {
+      console.error(error);
+      res.status(500).send('Server error');
+    }
+  });
 module.exports = router;
