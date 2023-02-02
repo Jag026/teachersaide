@@ -48,7 +48,7 @@ function App() {
           <Route exact path="/create-blogpost">
             <CreateBlogpost />
           </Route>
-          <Route exact path="/:slug">
+          <Route exact path="/posts/:slug">
             <BlogPosts />
           </Route>
         </Switch>

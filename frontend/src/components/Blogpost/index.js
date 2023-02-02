@@ -38,7 +38,7 @@ function CreateBlogpost(props) {
         featuredImage, 
         tags,
         password
-     }))
+     })).then(() => {window.location = `/posts/${slug}`})
   };
 
 

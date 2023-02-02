@@ -101,7 +101,7 @@ function LessonPlan(props) {
           {textContent}
           {logoVisible && <div class="container">
 		        <span class="gear-logo">
-		        	<img src={require("./apple.png")}  alt="gear image" />
+		        	<img src={require("./apple.png")}  alt="apple image" />
 		        </span>
           </div>}
 
