@@ -65,7 +65,7 @@ function LessonPlan(props) {
         <p className="px-6 text-s">Examples:</p>
         <p className="px-6 ml-4 text-s">11th -- World History, the major effects of the following events from 8000 BC to 500 BC</p> 
         <p className="px-6 ml-4 text-s">2nd -- Science, forms of energy and properties of matter</p>
-        <p className="px-6 ml-4 text-s">7th -- Subject: Biology, animal cell structures</p>
+        <p className="px-6 ml-4 text-s">7th -- Biology, animal cell structures</p>
       </div>
         {formVisible && <form onSubmit={handleSubmit} className="flex flex-col items-center mt-8">
           <ul>

@@ -9,7 +9,7 @@ const configuration = new Configuration({
   const openai = new OpenAIApi(configuration);
   const response = await openai.createCompletion({
     model: "text-davinci-003",
-    prompt: `A detailed lesson plan for a ${grade} grade ${subject} teacher that's a minimum of 2500 words.`,
+    prompt: `create a detailed teacher's lesson plan for a ${grade} grade class over the subject ${subject} and is a minimum of 2500 words.`,
     max_tokens: 875,
     temperature: .78,
     top_p: 1,
@@ -26,7 +26,7 @@ const fetchAiTest = async(grade, subject, numberOfQuestions) => {
     const openai = new OpenAIApi(configuration);
     const response = await openai.createCompletion({
       model: "text-davinci-003",
-      prompt: `Create a formatted test for a ${grade} class over ${subject} that has ${numberOfQuestions}`,
+      prompt: `Create a formatted test for a ${grade} grade class over the topic of ${subject} and has ${numberOfQuestions}`,
       max_tokens: 1000,
       temperature: .78,
       top_p: 1,

@@ -9,7 +9,7 @@ const { post_secret } = require('../../config/index.js');
 
 const router = express.Router();
 
-// Add Test
+// Add Post
 router.post(
   '/',
   async (req, res) => {
@@ -62,29 +62,6 @@ router.post(
  }
 );
 
-  router.post(
-    '/get-test',
-    async (req, res) => {
-      const { grade, subject, numberOfQuestions } = req.body;
-      const test = await fetchAiTest(`Create a formatted test for a ${grade} grade class over ${subject} that has ${numberOfQuestions} questions.`)
-      return res.json({
-         test 
-    });
-    }
-  );
-
-  router.get(
-    '/get-test',
-    async (req, res) => {
-      const { testBody} = req.body;
-      const test = await fetchAiTest(`Create a formatted test for a 9th grade english class over Hamlet that has 4 writing questions, include an answer key at the end.`)
-      return res.json(
-        test
-      );
-    }
-  );
-
-
   router.get('/latest/:slug', async (req, res) => {
     try {
       const blogpost = await Blogpost.findOne({ where: {slug: req.params.slug }});
@@ -113,4 +90,5 @@ router.post(
       res.status(500).send('Server error');
     }
   });
+
 module.exports = router;
