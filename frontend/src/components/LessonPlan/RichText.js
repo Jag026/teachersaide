@@ -22,7 +22,6 @@ function RichTextEditor(props) {
     });
     editor.setText(props.text);
     let formattedContents = JSON.parse(JSON.stringify(editor.getContents()["ops"][0]["insert"].replace(/\n/g, '<br>')));
-    console.log(formattedContents)
     setContent(formattedContents);
     //setPrint()
 

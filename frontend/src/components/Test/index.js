@@ -55,11 +55,14 @@ function Test(props) {
 
   return (
     <div className="flex flex-col items-center">
-      <h2 className="font-serif text-5xl mt-10 mb-6">Teacher's AIde</h2>
-      <p className="px-6 text-s">A powerful AI assistant that can generate tests and quizzes in a breeze.</p>
+      <h1 className="font-serif text-6xl mt-10 mb-6">Teacher's AIde</h1>
+      <h2 className="px-6 text-s">A powerful AI assistant that can generate tests and quizzes in a breeze.</h2>
       <div className="mt-10">
         <p className="px-6 text-s">Example:</p>
-        <p className="px-6 text-s">Grade: 11th, Subject: The American Revolution, Number of questions: 10</p> 
+        <p className="px-6 ml-4 text-s">11th -- Declaration of Independence and the U.S. Constitution -- Number of questions: 10</p> 
+        <p className="px-6 ml-4 text-s">7th -- Models and diagrams to explain the Pythagorean theorem -- Number of questions: 12</p> 
+        <p className="px-6 ml-4 text-s">4th -- Measurement units within the customary and metric systems -- Number of questions: 6</p> 
+
       </div>
         {formVisible && <form onSubmit={handleSubmit} className="flex flex-col items-center mt-8">
           <ul>
@@ -97,7 +100,7 @@ function Test(props) {
             />
           </label>
           </div>
-          <button className="m-6 mt-10 w-28 h-10 bg-slate-300 border text-l" type="submit">Get Test</button>
+          <button className="m-6 mt-10 w-28 h-10 bg-slate-300 border text-l" type="submit">Create Test</button>
         </form>}
         <div className="w-5/6 mt-6 flex flex-col items-center sm:w-3/5">
         {visible && 

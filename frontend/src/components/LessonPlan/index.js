@@ -52,15 +52,20 @@ function LessonPlan(props) {
     }
   };
 
+  const user = sessionUser;
+  if (!user) {
+    return <Redirect to="/signup-new" />
+  }
+  
   return (
     <div className="flex flex-col items-center">
-      <h2 className="font-serif text-5xl mt-10 mb-6">Teacher's AIde</h2>
+      <h2 className="font-serif text-5xl mt-14 mb-6">Teacher's AIde</h2>
       <p className="text-s px-6">A powerful AI assistant that can generate lessons plans for any subject.</p>
-      <div className="mt-10">
+      <div className="mt-14">
         <p className="px-6 text-s">Examples:</p>
-        <p className="px-6 text-s">Grade: 11th || Subject: The American Revolution</p> 
-        <p className="px-6 text-s">Grade: 2nd || Subject: The sun and temperature</p>
-        <p className="px-6 text-s">Grade: 7th || Subject: Biology, animal cell structures</p>
+        <p className="px-6 ml-4 text-s">11th -- World History, the major effects of the following events from 8000 BC to 500 BC</p> 
+        <p className="px-6 ml-4 text-s">2nd -- Science, forms of energy and properties of matter</p>
+        <p className="px-6 ml-4 text-s">7th -- Subject: Biology, animal cell structures</p>
       </div>
         {formVisible && <form onSubmit={handleSubmit} className="flex flex-col items-center mt-8">
           <ul>
