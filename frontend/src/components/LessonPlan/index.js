@@ -26,7 +26,7 @@ function LessonPlan(props) {
   const handleSubmit = async(e) => {
     e.preventDefault();
     setErrors([]);
-    await setTextContent("Drafting lesson plan...");
+    setTextContent("Drafting lesson plan...");
     await setLogoVisible(true);
     let plan =  await dispatch(await sessionActions.fetchLessonplan({ grade, subject }))
     await setTextContent(<RichTextEditor text={plan.replace(/\n/g, '\n')} />)
@@ -95,7 +95,7 @@ function LessonPlan(props) {
           </div>
           <button className="m-10 w-28 h-10 bg-slate-300 border text-l hover:bg-slate-500" type="submit">Create Plan</button>
         </form>}
-        <div className="w-3/5 mt-6 flex flex-col items-center">
+        <div className="w-full sm:w-4/5 sm:max-w-2xl px-1 mt-6 flex flex-col items-center">
           {visible && 
             <div>
               <button className="m-6 w-28 h-10 bg-slate-300 border text-l hover:bg-slate-500" onClick={resetForm} type="submit">Reset</button>

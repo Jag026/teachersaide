@@ -102,7 +102,7 @@ function Test(props) {
           </div>
           <button className="m-6 mt-10 w-28 h-10 bg-slate-300 border text-l" type="submit">Create Test</button>
         </form>}
-        <div className="w-5/6 mt-6 flex flex-col items-center sm:w-3/5">
+        <div className="w-full sm:w-4/5 sm:max-w-2xl mt-6 flex flex-col items-center sm:w-3/5">
         {visible && 
             <div>
               <button className="m-6 w-28 h-10 bg-slate-300 border text-l hover:bg-slate-500" onClick={resetForm} type="submit">Reset</button>
