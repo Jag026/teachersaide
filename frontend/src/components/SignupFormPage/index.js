@@ -107,7 +107,7 @@ function SignupFormPage() {
       </label>
       <ReCAPTCHA 
       onChange={handleRecaptcha}
-      sitekey="6LfhIVAkAAAAACL7tM7-2BquUz7JQhBGpRPJ_3vT"
+      sitekey="6LcPFVAkAAAAAJHksr21rryn5tB46mu1Pkm7JB2p"
       />
       <button type="submit" className="w-20 mt-3 p-1 border border-sky-500">Sign Up</button>
     </form>
