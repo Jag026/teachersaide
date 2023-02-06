@@ -54,7 +54,7 @@ function LessonPlan(props) {
 
   const user = sessionUser;
   if (!user) {
-    return <Redirect to="/signup-new" />
+    return <Redirect to="/signup" />
   }
   
   return (

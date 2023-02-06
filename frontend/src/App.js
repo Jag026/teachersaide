@@ -5,7 +5,6 @@ import LoginFormPage from "./components/LoginFormPage";
 import LessonPlan from "./components/LessonPlan";
 import Test from "./components/Test";
 import SignupFormPage from "./components/SignupFormPage";
-import LessonplanSignUpPage from "./components/SignupFormPage/LessonplanSignUpPage.js";
 import * as sessionActions from "./store/session";
 import Navigation from "./components/Navigation";
 import Footer from "./components/Footer";
@@ -38,9 +37,6 @@ function App() {
           </Route>
           <Route exact path="/signup">
             <SignupFormPage />
-          </Route>
-          <Route exact path="/signup-new">
-            <LessonplanSignUpPage />
           </Route>
           <Route exact path="/profile">
             <ProfilePage />
