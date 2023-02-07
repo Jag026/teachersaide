@@ -9,13 +9,13 @@ const configuration = new Configuration({
   const openai = new OpenAIApi(configuration);
   const response = await openai.createCompletion({
     model: "text-davinci-003",
-    prompt: `create a lesson plan for a ${grade} grade class over ${subject}`,
-    max_tokens: 1500,
-    temperature: .6,
+    prompt: `Create a lesson plan for a ${grade} grade science class, the topic is: ${subject}, minimum 500 tokens`,
+    temperature: 0.28,
+    max_tokens: 1107,
     top_p: 1,
-    frequency_penalty: 0,
-    presence_penalty: 0,
-  })
+    frequency_penalty: 1,
+    presence_penalty: 1.01,
+  });
   return response.data.choices[0].text;
 }
 
