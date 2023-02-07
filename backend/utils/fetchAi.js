@@ -9,7 +9,7 @@ const configuration = new Configuration({
   const openai = new OpenAIApi(configuration);
   const response = await openai.createCompletion({
     model: "text-davinci-003",
-    prompt: `create a detailed teacher's lesson plan for a ${grade} grade class over the subject ${subject} and is a minimum of 2000 words.`,
+    prompt: `create a lesson plan for a ${grade} grade class over ${subject}`,
     max_tokens: 875,
     temperature: .78,
     top_p: 1,
