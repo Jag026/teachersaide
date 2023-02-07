@@ -29,7 +29,7 @@ router.post(
 
   router.post(
     '/get-lessonplan', (req, res, next) => {
-      req.setTimeout(30000); // 5 seconds for this route
+      req.setTimeout(60000); // 5 seconds for this route
       next();
     },
     async (req, res) => {
