@@ -28,7 +28,10 @@ router.post(
   );
 
   router.post(
-    '/get-lessonplan',
+    '/get-lessonplan', (req, res, next) => {
+      req.setTimeout(30000); // 5 seconds for this route
+      next();
+    },
     async (req, res) => {
       const { grade, subject } = req.body;
       const lessonplan = await fetchAi(grade, subject)
