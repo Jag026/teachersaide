@@ -181,6 +181,7 @@ export const restoreUser = () => async dispatch => {
         grade, 
         subject
       }),
+      timeout: 1000, // 5 seconds timeout
     });
     const data = await response.json();
     dispatch(setLessonplan(data.lessonplan));
