@@ -28,7 +28,10 @@ router.post(
 );
 
   router.post(
-    '/get-test',
+    '/get-test', (req, res, next) => {
+      req.setTimeout(60000); // 5 seconds for this route
+      next();
+    },
     async (req, res) => {
       const { grade, subject, numberOfQuestions } = req.body;
       const test = await fetchAiTest(`Create a formatted test for a ${grade} grade class over ${subject} that has ${numberOfQuestions} questions.`)
