@@ -4,7 +4,10 @@ import { Redirect } from "react-router-dom";
 import * as sessionActions from "../../store/session";
 import RichTextEditor from "./RichText"
 import CookiesBanner from './CookiesBanner'
+import { useCookies } from 'react-cookie';
 import './index.css'
+
+const MAX_USAGE_COUNT = 6;
 
 function LessonPlan(props) {
   const dispatch = useDispatch();
@@ -18,6 +21,13 @@ function LessonPlan(props) {
   const [formVisible, setFormVisible] = useState(true);
   const [logoVisible, setLogoVisible] = useState(false);
   const [saveSuccessMessage, setSaveSuccessMessage] = useState("");
+  const [cookies, setCookie] = useCookies(['usageCount']);
+  const [usageCount, setUsageCount] = useState(cookies.usageCount || 0);
+
+  const incrementUsageCount = () => {
+    setUsageCount(parseInt(usageCount) + 1);
+    setCookie('usageCount', parseInt(usageCount) + 1, { path: '/' });
+  };
 
   const resetForm = () => {
     window.location.reload();
@@ -28,6 +38,7 @@ function LessonPlan(props) {
     setErrors([]);
     setTextContent("Drafting lesson plan...");
     await setLogoVisible(true);
+    incrementUsageCount();
     let plan =  await dispatch(await sessionActions.fetchLessonplan({ grade, subject }))
     await setTextContent(<RichTextEditor text={plan.replace(/\n/g, '\n')} />)
     await setLogoVisible(false);
@@ -51,12 +62,16 @@ function LessonPlan(props) {
       setSaveSuccessMessage("Plan cannot be blank")
     }
   };
-
-  const user = sessionUser;
-  if (!user) {
-    return <Redirect to="/signup" />
-  }
   
+  if (usageCount >= MAX_USAGE_COUNT) {
+    return (
+      <div>
+        <h1>You have reached the maximum usage limit</h1>
+        <p>Please create an account to continue using the app.</p>
+      </div>
+    );
+  }
+
   return (
     <div className="flex flex-col items-center">
       <h2 className="font-serif text-5xl mt-14 mb-6">Teacher's AIde</h2>
