@@ -24,9 +24,15 @@ function LessonPlan(props) {
   const [cookies, setCookie] = useCookies(['usageCount']);
   const [usageCount, setUsageCount] = useState(cookies.usageCount || 0);
 
+  const user = sessionUser;
+  if (user) {
+    setCookie('usageCount', '', { expires: new Date(0) });
+  }
   const incrementUsageCount = () => {
-    setUsageCount(parseInt(usageCount) + 1);
-    setCookie('usageCount', parseInt(usageCount) + 1, { path: '/' });
+    if (!user) {
+      setUsageCount(parseInt(usageCount) + 1);
+      setCookie('usageCount', parseInt(usageCount) + 1, { path: '/' });
+    }
   };
 
   const resetForm = () => {
@@ -67,7 +73,7 @@ function LessonPlan(props) {
     return (
       <div>
         <h1>You have reached the maximum usage limit</h1>
-        <p>Please create an account to continue using the app.</p>
+        <p>Please <a href="/login" className="text-blue-500">login</a> or <a href="/signup" className="text-blue-500">create an account</a> to continue using the app.</p>
       </div>
     );
   }
