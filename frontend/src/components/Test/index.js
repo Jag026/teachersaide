@@ -3,7 +3,10 @@ import { useDispatch, useSelector } from "react-redux";
 import { Redirect } from "react-router-dom";
 import * as sessionActions from "../../store/session";
 import RichTextEditor from "./RichText"
+import { useCookies } from 'react-cookie';
 import './index.css'
+
+const MAX_USAGE_COUNT = 6;
 
 function Test(props) {
   const dispatch = useDispatch();
@@ -18,6 +21,19 @@ function Test(props) {
   const [formVisible, setFormVisible] = useState(true);
   const [logoVisible, setLogoVisible] = useState(false);
   const [saveSuccessMessage, setSaveSuccessMessage] = useState("");
+  const [cookies, setCookie] = useCookies(['usageCount']);
+  const [usageCount, setUsageCount] = useState(cookies.usageCount || 0);
+
+  const user = sessionUser;
+  if (user) {
+    setCookie('usageCount', '', { expires: new Date(0) });
+  }
+  const incrementUsageCount = () => {
+    if (!user) {
+      setUsageCount(parseInt(usageCount) + 1);
+      setCookie('usageCount', parseInt(usageCount) + 1, { path: '/' });
+    }
+  };
 
   const resetForm = () => {
     window.location.reload();
@@ -28,6 +44,7 @@ function Test(props) {
     setErrors([]);
     await setTextContent("Generating test...");
     await setLogoVisible(true);
+    incrementUsageCount();
     let plan =  await dispatch(await sessionActions.fetchTest({ grade, subject, numberOfQuestions }))
     await setTextContent(<RichTextEditor text={plan.replace(/\n/g, '\n')} />)
     await setLogoVisible(false);
@@ -52,7 +69,15 @@ function Test(props) {
     }
   };
 
-
+  if (usageCount >= MAX_USAGE_COUNT) {
+    return (
+      <div>
+        <h1>You have reached the maximum usage limit</h1>
+        <p>Please <a href="/login" className="text-blue-500">login</a> or <a href="/signup" className="text-blue-500">create an account</a> to continue using the app.</p>
+      </div>
+    );
+  }
+  
   return (
     <div className="flex flex-col items-center">
       <h1 className="font-serif text-6xl mt-10 mb-6">Teacher's AIde</h1>
