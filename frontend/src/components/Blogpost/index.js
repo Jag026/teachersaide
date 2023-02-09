@@ -56,7 +56,7 @@ function CreateBlogpost(props) {
               value={slug}
               onChange={(e) => setSlug(e.target.value)}
               required
-              className="mx-2 mt-4 h-10 w-14 p-2 border border-sky-500"
+              className="mx-2 mt-4 h-10 w-96 p-2 border border-sky-500"
             />
           </label>
           <label className="mx-4 text-l">
@@ -66,7 +66,7 @@ function CreateBlogpost(props) {
               value={title}
               onChange={(e) => setTitle(e.target.value)}
               required
-              className="mx-2 mt-4 h-10 p-2 border border-sky-500"
+              className="mx-2 mt-4 h-10 w-96 p-2 border border-sky-500"
             />
           </label>
           <label className="mx-4 text-l">
@@ -76,7 +76,7 @@ function CreateBlogpost(props) {
               value={description}
               onChange={(e) => setDescription(e.target.value)}
               required
-              className="mx-2 mt-4 h-10 w-14 p-2 border border-sky-500"
+              className="mx-2 mt-4 h-10 w-14 w-96 p-2 border border-sky-500"
             />
           </label>
           <label className="mx-4 text-l">
@@ -86,7 +86,7 @@ function CreateBlogpost(props) {
               value={ogTitle}
               onChange={(e) => setOgTitle(e.target.value)}
               required
-              className="mx-2 mt-4 h-10 w-14 p-2 border border-sky-500"
+              className="mx-2 mt-4 h-10 w-14 w-96 p-2 border border-sky-500"
             />
           </label>
           <label className="mx-4 text-l">
@@ -96,7 +96,7 @@ function CreateBlogpost(props) {
               value={ogDescription}
               onChange={(e) => setOgDescription(e.target.value)}
               required
-              className="mx-2 mt-4 h-10 w-14 p-2 border border-sky-500"
+              className="mx-2 mt-4 h-10 w-14 w-96 p-2 border border-sky-500"
             />
           </label>
           <label className="mx-4 text-l">
@@ -106,7 +106,7 @@ function CreateBlogpost(props) {
               value={ogImage}
               onChange={(e) => setOgImage(e.target.value)}
               required
-              className="mx-2 mt-4 h-10 w-14 p-2 border border-sky-500"
+              className="mx-2 mt-4 h-10 w-14 w-96 p-2 border border-sky-500"
             />
           </label>
           <label className="mx-4 text-l">
@@ -116,7 +116,7 @@ function CreateBlogpost(props) {
               value={canonicalUrl}
               onChange={(e) => setCanonicalUrl(e.target.value)}
               required
-              className="mx-2 mt-4 h-10 w-14 p-2 border border-sky-500"
+              className="mx-2 mt-4 h-10 w-96 p-2 border border-sky-500"
             />
           </label>
           <label className="mx-4 text-l">
@@ -126,7 +126,7 @@ function CreateBlogpost(props) {
               value={author}
               onChange={(e) => setAuthor(e.target.value)}
               required
-              className="mx-2 mt-4 h-10 w-14 p-2 border border-sky-500"
+              className="mx-2 mt-4 h-10 w-96 p-2 border border-sky-500"
             />
           </label>
           <label className="mx-4 text-l">
@@ -136,7 +136,7 @@ function CreateBlogpost(props) {
               value={categories}
               onChange={(e) => setCategories(e.target.value)}
               required
-              className="mx-2 mt-4 h-10 w-14 p-2 border border-sky-500"
+              className="mx-2 mt-4 h-10 w-96 p-2 border border-sky-500"
             />
           </label>
           <label className="mx-4 text-l">
@@ -146,7 +146,7 @@ function CreateBlogpost(props) {
               value={featuredImage}
               onChange={(e) => setFeaturedImage(e.target.value)}
               required
-              className="mx-2 mt-4 h-10 w-14 p-2 border border-sky-500"
+              className="mx-2 mt-4 h-10 w-96 p-2 border border-sky-500"
             />
           </label>
           <label className="mx-4 text-l">
@@ -156,7 +156,7 @@ function CreateBlogpost(props) {
               value={tags}
               onChange={(e) => setTags(e.target.value)}
               required
-              className="mx-2 mt-4 h-10 w-14 p-2 border border-sky-500"
+              className="mx-2 mt-4 h-10 w-96 p-2 border border-sky-500"
             />
           </label>
           <label className="mx-4 text-l">
@@ -166,7 +166,7 @@ function CreateBlogpost(props) {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               required
-              className="mx-2 mt-4 h-10 w-14 p-2 border border-sky-500"
+              className="mx-2 mt-4 h-10 w-96 p-2 border border-sky-500"
             />
           </label>
           <label className="mx-4 text-l">
@@ -176,7 +176,7 @@ function CreateBlogpost(props) {
               value={content}
               onChange={(e) => setContent(e.target.value)}
               required
-              className="mx-2 mt-4 h-10 p-2 border border-sky-500"
+              className="mx-2 mt-4 h-96 w-[1000px] px-2 border border-sky-500"
             />
           </label>
           </div>
