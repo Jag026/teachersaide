@@ -30,7 +30,7 @@ module.exports = {
         allowNull: false
       },
       content: {
-        type: Sequelize.STRING,
+        type: Sequelize.STRING(20000),
         allowNull: false
       },
       ogTitle: {
