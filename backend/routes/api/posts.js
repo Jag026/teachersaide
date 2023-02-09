@@ -62,6 +62,7 @@ router.post(
  }
 );
 
+
   router.get('/latest/:slug', async (req, res) => {
     try {
       const blogpost = await Blogpost.findOne({ where: {slug: req.params.slug }});
