@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
+import { Helmet } from "react-helmet";
 import { Route, Switch, useParams } from "react-router-dom";
 import LoginFormPage from "./components/LoginFormPage";
 import LessonPlan from "./components/LessonPlan";
@@ -27,6 +28,20 @@ function App() {
       {isLoaded && (
         <Switch>
           <Route exact path="/">
+            <Helmet>
+              <title>Teacher's Aide - AI Powered Teaching</title>
+              <meta name="description" content="Our AI-powered educational platform creates personalized lesson plans and tests for classes of all ages. Save time, focus more on students, live happier." />
+              <meta property="og:title" content="Teacher's Aide - AI Powered Lesson Plans" />
+              <meta property="og:description" content="Our AI-powered educational platform creates personalized lesson plans and tests for classes of all ages. Save time, focus more on students, live happier." />
+              <meta property="og:image" content="https://user-images.githubusercontent.com/74638539/217420111-f38ec093-4b7d-4a82-86d2-0a7ead8a7f7a.jpg" />
+              <meta property="og:url" content="https://www.teachersaide.io"/>
+              <meta property="og:type" content="website" />
+              <meta property="twitter:card" content="https://user-images.githubusercontent.com/74638539/217420111-f38ec093-4b7d-4a82-86d2-0a7ead8a7f7a.jpg" />
+              <meta property="twitter:title" content="Teacher's Aide - AI Powered Teaching" />
+              <meta property="twitter:description" content="Our AI-powered educational platform creates personalized lesson plans and tests for classes of all ages. Save time, focus more on students, live happier." />
+              <meta property="twitter:image" content="https://user-images.githubusercontent.com/74638539/217420111-f38ec093-4b7d-4a82-86d2-0a7ead8a7f7a.jpg" />
+              <link rel="canonical" href="https://www.teachersaide.io" />
+            </Helmet>
             <LessonPlan />
           </Route>
           <Route exact path="/test">

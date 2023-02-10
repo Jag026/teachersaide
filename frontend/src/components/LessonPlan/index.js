@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Redirect } from "react-router-dom";
-import { Helmet } from "react-helmet";
 import * as sessionActions from "../../store/session";
 import RichTextEditor from "./RichText"
 import CookiesBanner from './CookiesBanner'
@@ -80,21 +79,6 @@ function LessonPlan(props) {
   }
 
   return (
-   <>
-     <Helmet>
-          <title>Teacher's Aide - AI Powered Teaching</title>
-          <meta name="description" content="Our AI-powered educational platform creates personalized lesson plans and tests for classes of all ages. Save time, focus more on students, live happier." />
-          <meta property="og:title" content="Teacher's Aide - AI Powered Lesson Plans" />
-          <meta property="og:description" content="Our AI-powered educational platform creates personalized lesson plans and tests for classes of all ages. Save time, focus more on students, live happier." />
-          <meta property="og:image" content="https://user-images.githubusercontent.com/74638539/217420111-f38ec093-4b7d-4a82-86d2-0a7ead8a7f7a.jpg" />
-          <meta property="og:url" content="https://www.teachersaide.io"/>
-          <meta property="og:type" content="website" />
-          <meta property="twitter:card" content="https://user-images.githubusercontent.com/74638539/217420111-f38ec093-4b7d-4a82-86d2-0a7ead8a7f7a.jpg" />
-          <meta property="twitter:title" content="Teacher's Aide - AI Powered Teaching" />
-          <meta property="twitter:description" content="Our AI-powered educational platform creates personalized lesson plans and tests for classes of all ages. Save time, focus more on students, live happier." />
-          <meta property="twitter:image" content="https://user-images.githubusercontent.com/74638539/217420111-f38ec093-4b7d-4a82-86d2-0a7ead8a7f7a.jpg" />
-          <link rel="canonical" href="https://www.teachersaide.io" />
-     </Helmet>
     <div className="flex flex-col items-center">
       <h2 className="font-serif text-5xl mt-14 mb-6">Teacher's AIde</h2>
       <p className="text-s px-6">A powerful AI assistant that can generate lessons plans for any subject.</p>
@@ -150,7 +134,6 @@ function LessonPlan(props) {
         </div>
         <CookiesBanner />
     </div>
-  </>
   );
 }
 
