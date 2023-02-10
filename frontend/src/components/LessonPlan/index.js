@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Redirect } from "react-router-dom";
+import { Helmet } from "react-helmet";
 import * as sessionActions from "../../store/session";
 import RichTextEditor from "./RichText"
 import CookiesBanner from './CookiesBanner'
