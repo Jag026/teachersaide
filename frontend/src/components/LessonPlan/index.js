@@ -92,7 +92,7 @@ function LessonPlan(props) {
           <meta property="twitter:card" content="https://user-images.githubusercontent.com/74638539/217420111-f38ec093-4b7d-4a82-86d2-0a7ead8a7f7a.jpg" />
           <meta property="twitter:title" content="Teacher's Aide - AI Powered Teaching" />
           <meta property="twitter:description" content="Our AI-powered educational platform creates personalized lesson plans and tests for classes of all ages. Save time, focus more on students, live happier." />
-          <meta property="twitter:image" content="https://user-images.githubusercontent.com/74638539/217420111-f38ec093-4b7d-4a82-86d2-0a7ead8a7f7a.jpg" />
+          <meta property="twitter:image" src="https://user-images.githubusercontent.com/74638539/217420111-f38ec093-4b7d-4a82-86d2-0a7ead8a7f7a.jpg" />
           <link rel="canonical" href="https://www.teachersaide.io" />
      </Helmet>
     <div className="flex flex-col items-center">
