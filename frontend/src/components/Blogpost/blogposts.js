@@ -56,14 +56,14 @@ function BlogPosts() {
         </Helmet>
         <div className="flex flex-col">
           <div className="flex justify-center">
-            <img className="h-96 px-28 mt-20 w-5/6" src={blogpost.featuredImage}  alt="" />
+            <img className="h-96 md:px-28 mt-20 w-5/6" src={blogpost.featuredImage}  alt="" />
           </div>
           <div className="flex justify-center">
-            <h1 className="px-28 mt-20 text-4xl">{blogpost.title}</h1>
+            <h1 className="px-2 md:px-28 mt-20 text-4xl">{blogpost.title}</h1>
           </div>
-          <p className="px-80 mt-20 text-l leading-8 tracking-wide font-serif">{blogpost.content}</p>
-          <p className="px-80 mt-20 text-l leading-8 tracking-wide font-serif" >Related Links:</p>
-          <p className="flex flex-col px-80 mt-6 text-l leading-8 tracking-wide font-serif">{additionalblogpost}</p>
+          <p className="px-10 lg:px-80 mt-20 text-l leading-8 width-3/4 font-serif">{blogpost.content}</p>
+          <p className="px-10 md:px-80 mt-20 text-l leading-8 tracking-wide font-serif" >Related Links:</p>
+          <p className="flex flex-col px-10 sm:px-80 mt-6 text-l leading-8 tracking-wide font-serif">{additionalblogpost}</p>
         </div>
       </>
   );
