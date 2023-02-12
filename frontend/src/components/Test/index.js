@@ -106,12 +106,12 @@ function Test(props) {
           </label>
           <label className="mx-4 text-l">
             Enter a subject
-            <input
+            <textarea
               type="text"
               value={subject}
               onChange={(e) => setSubject(e.target.value)}
               required
-              className="mx-2 mt-4 h-10 p-2 border border-sky-500"
+              className="mx-2 mt-4 h-12 sm:w-[400px] px-2 border border-sky-500"
             />
           </label>
           <label className="mx-4 text-l">
