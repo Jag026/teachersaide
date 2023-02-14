@@ -1,5 +1,5 @@
 const express = require('express')
-const { fetchAi } = require('../../utils/fetchAi');
+const { fetchAi, fetchAiTeks } = require('../../utils/fetchAi');
 const { check } = require('express-validator');
 const { handleValidationErrors } = require('../../utils/validation');
 
@@ -36,6 +36,26 @@ router.post(
       try {
         const { grade, subject } = req.body;
         const lessonplan = await fetchAi(grade, subject);
+        return res.json({
+          lessonplan
+        });
+      } catch (error) {
+        return res.status(500).json({
+          error: "Could not fetch lesson plan. Please try again later."
+        });
+      }
+    }
+  );
+
+  router.post(
+    '/get-lessonplan-test', (req, res, next) => {
+      req.setTimeout(90000); // 5 seconds for this route
+      next();
+    },
+    async (req, res) => {
+      try {
+        const { grade, knowledge, skill } = req.body;
+        const lessonplan = await fetchAiTeks(grade, knowledge, skill);
         return res.json({
           lessonplan
         });

@@ -188,6 +188,22 @@ export const restoreUser = () => async dispatch => {
     return data.lessonplan;
   };
 
+  export const fetchLessonplanTeks = (lessonplan) => async (dispatch) => {
+    const { grade, knowledge, skill } = lessonplan;
+    const response = await csrfFetch("/api/lessons/get-lessonplan", {
+      method: "POST",
+      body: JSON.stringify({
+        grade,
+        knowledge, 
+        skill
+      }),
+      timeout: 1000, // 5 seconds timeout
+    });
+    const data = await response.json();
+    dispatch(setLessonplan(data.lessonplan));
+    return data.lessonplan;
+  };
+
   export const fetchTest = (test) => async (dispatch) => {
     const { grade, subject, numberOfQuestions } = test;
     const response = await csrfFetch("/api/tests/get-test", {
