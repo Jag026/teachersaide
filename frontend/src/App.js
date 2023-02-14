@@ -13,6 +13,7 @@ import ProfilePage from "./components/ProfilePage";
 import SitePolicies from "./components/SitePolicies";
 import CreateBlogpost from "./components/Blogpost";
 import BlogPosts from "./components/Blogpost/blogposts.js";
+import Teks from "./components/Teks";
 
 function App() {
   const dispatch = useDispatch();
@@ -64,6 +65,9 @@ function App() {
           </Route>
           <Route exact path="/posts/:slug">
             <BlogPosts />
+          </Route>
+          <Route exact path="/teks">
+            <Teks />
           </Route>
         </Switch>
       )}
