@@ -42,10 +42,44 @@ function LessonPlan(props) {
   const handleSubmit = async(e) => {
     e.preventDefault();
     setErrors([]);
-    setTextContent("Drafting lesson plan...");
+    setTextContent("Loading...");
     await setLogoVisible(true);
     incrementUsageCount();
-    let plan =  await dispatch(await sessionActions.fetchLessonplan({ grade, subject }))
+    let plan = "";
+
+    //update text while plan is loading
+    setTimeout(() => {
+      if (plan === "") {
+        setTextContent("Sharpening Pencils...");
+        }
+    }, 4000)
+    setTimeout(() => {
+      if (plan === "") {
+        setTextContent("Brainstorming ideas...");
+        }
+    }, 8000)
+    setTimeout(() => {
+      if (plan === "") {
+        setTextContent("Drafting lessons...");
+        }
+    }, 12000)
+    setTimeout(() => {
+      if (plan === "") {
+        setTextContent("Formatting document...");
+        }
+    }, 16000)
+    setTimeout(() => {
+      if (plan === "") {
+        setTextContent("Almost finished...");
+        }
+    }, 23000)
+    setTimeout(() => {
+      if (plan === "") {
+        setTextContent("Sorry, unable to draft plan, we're currently experiencing high volume. Please try again soon.");
+        }
+    }, 48000)
+    plan =  await dispatch(await sessionActions.fetchLessonplan({ grade, subject }))
+
     await setTextContent(<RichTextEditor text={plan.replace(/\n/g, '\n')} />)
     await setLogoVisible(false);
     await setVisible(true)

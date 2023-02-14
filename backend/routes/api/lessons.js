@@ -33,14 +33,20 @@ router.post(
       next();
     },
     async (req, res) => {
-      const { grade, subject } = req.body;
-      const lessonplan = await fetchAi(grade, subject)
-      return res.json({
-         lessonplan 
-    });
+      try {
+        const { grade, subject } = req.body;
+        const lessonplan = await fetchAi(grade, subject);
+        return res.json({
+          lessonplan
+        });
+      } catch (error) {
+        return res.status(500).json({
+          error: "Could not fetch lesson plan. Please try again later."
+        });
+      }
     }
   );
-  
+
   //get lesson plans for user
   router.get(
     '/lessonplans',

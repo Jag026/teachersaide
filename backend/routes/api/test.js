@@ -33,11 +33,17 @@ router.post(
       next();
     },
     async (req, res) => {
+      try {
       const { grade, subject, numberOfQuestions } = req.body;
       const test = await fetchAiTest(`Create a formatted test for a ${grade} grade class over ${subject} that has ${numberOfQuestions} questions.`)
       return res.json({
          test 
-    });
+    })
+      } catch (error) {
+      return res.status(500).json({
+        error: "Could not fetch test. Please try again later."
+      });
+    }
     }
   );
 
