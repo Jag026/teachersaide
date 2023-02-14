@@ -42,10 +42,44 @@ function Test(props) {
   const handleSubmit = async(e) => {
     e.preventDefault();
     setErrors([]);
-    await setTextContent("Generating test...");
+    await setTextContent("Loading...");
     await setLogoVisible(true);
     incrementUsageCount();
-    let plan =  await dispatch(await sessionActions.fetchTest({ grade, subject, numberOfQuestions }))
+    let plan = "";
+
+    //update text while plan is loading
+    setTimeout(() => {
+      if (plan === "") {
+        setTextContent("Searching the database...");
+        }
+    }, 4000)
+    setTimeout(() => {
+      if (plan === "") {
+        setTextContent("Drafting questions...");
+        }
+    }, 8000)
+    setTimeout(() => {
+      if (plan === "") {
+        setTextContent("Writing answer choices...");
+        }
+    }, 12000)
+    setTimeout(() => {
+      if (plan === "") {
+        setTextContent("Formatting test...");
+        }
+    }, 16000)
+    setTimeout(() => {
+      if (plan === "") {
+        setTextContent("Almost finished...");
+        }
+    }, 23000)
+    setTimeout(() => {
+      if (plan === "") {
+        setTextContent("Sorry, unable to draft plan, we're currently experiencing high volume. Please try again soon.");
+        }
+    }, 48000)
+
+    plan =  await dispatch(await sessionActions.fetchTest({ grade, subject, numberOfQuestions }))
     await setTextContent(<RichTextEditor text={plan.replace(/\n/g, '\n')} />)
     await setLogoVisible(false);
     await setVisible(true)
