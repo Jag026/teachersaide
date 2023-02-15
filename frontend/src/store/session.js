@@ -191,7 +191,6 @@ export const restoreUser = () => async dispatch => {
   export const fetchLessonplanTeks = (lessonplan) => async (dispatch) => {
     removeLessonplan();
     const { grade, knowledge, skill } = lessonplan;
-    console.log(lessonplan);
     const response = await csrfFetch("/api/lessons/get-lessonplan-tek", {
       method: "POST",
       body: JSON.stringify({

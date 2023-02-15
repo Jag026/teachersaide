@@ -22,7 +22,6 @@ function Teks(props) {
     const handleFormSubmit = async (values) => {
         setFormValues(values);
         const { gradeLevel, knowledge, skill } = values;
-        console.log({ grade: gradeLevel, knowledge, skill })
         let plan = await dispatch(sessionActions.fetchLessonplanTeks({ grade: gradeLevel, knowledge, skill }));
         console.log(plan);
         setText(plan);
