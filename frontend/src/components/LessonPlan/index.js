@@ -78,6 +78,7 @@ function LessonPlan(props) {
         setTextContent("Sorry, unable to draft plan, we're currently experiencing high volume. Please try again soon.");
         }
     }, 48000)
+    
     plan =  await dispatch(await sessionActions.fetchLessonplan({ grade, subject }))
 
     await setTextContent(<RichTextEditor text={plan.replace(/\n/g, '\n')} />)
