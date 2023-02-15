@@ -43,9 +43,9 @@ const fetchAiTest = async(grade, subject, numberOfQuestions) => {
       const openai = new OpenAIApi(configuration);
       const response = await openai.createCompletion({
         model: "text-davinci-003",
-        prompt: `Create a detailed lesson plan for a ${grade} class over the following: ${skill}`,
-        max_tokens: 1000,
-        temperature: .78,
+        prompt: `Create a detailed lesson plan for a ${grade} class over the following: ${skill}.`,
+        max_tokens: 2000,
+        temperature: .99,
         top_p: 1,
         frequency_penalty: 0,
         presence_penalty: 0,

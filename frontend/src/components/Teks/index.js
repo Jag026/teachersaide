@@ -18,16 +18,15 @@ function Teks(props) {
     const [skill, setSkill] = useState("");
     const [text, setText] = useState("");
 
-    const handleFormSubmit = async(values) => {
+
+    const handleFormSubmit = async (values) => {
         setFormValues(values);
-        console.log(formValues.skill);
-        setGrade(formValues.gradeLevel)
-        setKnowledge(formValues.knowledge)
-        setSkill(formValues.skill)
-        let plan =  await dispatch(await sessionActions.fetchLessonplanTeks({ grade, knowledge, skill }))
-        console.log(plan)
-        setText(plan)
-      };
+        const { gradeLevel, knowledge, skill } = values;
+        console.log({ grade: gradeLevel, knowledge, skill })
+        let plan = await dispatch(sessionActions.fetchLessonplanTeks({ grade: gradeLevel, knowledge, skill }));
+        console.log(plan);
+        setText(plan);
+    };
     
       return (
         <div>

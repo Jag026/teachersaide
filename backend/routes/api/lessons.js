@@ -48,7 +48,7 @@ router.post(
   );
 
   router.post(
-    '/get-lessonplan-test', (req, res, next) => {
+    '/get-lessonplan-tek', (req, res, next) => {
       req.setTimeout(90000); // 5 seconds for this route
       next();
     },
