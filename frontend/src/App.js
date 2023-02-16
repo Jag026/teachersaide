@@ -66,7 +66,7 @@ function App() {
           <Route exact path="/posts/:slug">
             <BlogPosts />
           </Route>
-          <Route exact path="/teks">
+          <Route exact path="/tek-lesson-plans">
             <Teks />
           </Route>
         </Switch>

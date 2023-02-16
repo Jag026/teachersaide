@@ -9,24 +9,16 @@ const Form = ({ onSubmit }) => {
   //structure form data so that innermost children are passed up through the select options (start with skill options)ß
 
   const subjectOptions = {
-    Elementary: ['Math', 'Science', 'English'],
-    'Middle School': ['Math', 'Science', 'English', 'History'],
-    'High School': ['Math', 'High School Science', 'English', 'History', 'Foreign Language'],
+    // Elementary: ['Math', 'Science', 'English'],
+    // 'Middle School': ['Math', 'Science', 'English', 'History'],
+    'High School': ['High School Science'],
   };
 
   const knowledgeOptions = {
-    Math: ['Algebra', 'Geometry', 'Trigonometry'],
-    Science: ['Biology', 'Chemistry', 'Physics'],
-    English: ['Literature', 'Grammar', 'Composition'],
-    History: ['World History', 'US History', 'European History'],
-    'Foreign Language': ['Spanish', 'French', 'German', 'Mandarin'],
-    'High School Science': ['Aquatic Science', 'Biology', 'Chemistry', 'Physics'],
+    'High School Science': ['Aquatic Science', 'Biology', 'Chemistry'],
   };
 
   const skillOptions = {
-    Algebra: ['Equations', 'Graphing', 'Functions'],
-    Geometry: ['Angles', 'Lines', 'Circles'],
-    Trigonometry: ['Trigonometric Functions', 'Identities', 'Equations'],
     'Chemistry': [
         "(1A) ask questions and define problems based on observations or information from text, phenomena, models, or investigations;","(1B) apply scientific practices to plan and conduct descriptive, comparative, and experimental investigations and use engineering practices to design solutions to problems;","(1C) use appropriate safety equipment and practices during laboratory, classroom, and field investigations as outlined in Texas Education Agency-approved safety standards;","(1D) use appropriate tools such as Safety Data Sheets (SDS), scientific or graphing calculators, computers and probes, electronic balances, an adequate supply of consumable chemicals, and sufficient scientific glassware such as beakers, Erlenmeyer flasks, pipettes, graduated cylinders, volumetric flasks, and burettes;","(1E) collect quantitative data using the International System of Units (SI) and qualitative data as evidence;","(1F) organize quantitative and qualitative data using oral or written lab reports, labeled drawings, particle diagrams, charts, tables, graphs, journals, summaries, or technology-based reports;","(1G) develop and use models to represent phenomena, systems, processes, or solutions to engineering problems; and","(1H) distinguish between scientific hypotheses, theories, and laws.",
         "(2A) identify advantages and limitations of models such as their size, scale, properties, and materials;","(2B) analyze data by identifying significant statistical features, patterns, sources of error, and limitations;","(2C) use mathematical calculations to assess quantitative relationships in data; and","(2D) evaluate experimental and engineering designs.",
@@ -44,17 +36,6 @@ const Form = ({ onSubmit }) => {
         "(14A) describe the characteristics of alpha, beta, and gamma radioactive decay processes in terms of balanced nuclear equations;","(14B) compare fission and fusion reactions; and","(14C) give examples of applications of nuclear phenomena such as nuclear stability, radiation therapy, diagnostic imaging, solar cells, and nuclear power."
     
     ],
-    Physics: ['Mechanics', 'Thermodynamics', 'Electromagnetism'],
-    Literature: ['Novels', 'Poetry', 'Drama'],
-    Grammar: ['Parts of Speech', 'Sentence Structure', 'Punctuation'],
-    Composition: ['Essays', 'Research Papers', 'Creative Writing'],
-    'World History': ['Ancient History', 'Medieval History', 'Modern History'],
-    'US History': ['Colonial America', 'Civil War', 'World War II'],
-    'European History': ['Renaissance', 'Enlightenment', 'World War I'],
-    Spanish: ['Grammar', 'Vocabulary', 'Conversational Skills'],
-    French: ['Grammar', 'Vocabulary', 'Conversational Skills'],
-    German: ['Grammar', 'Vocabulary', 'Conversational Skills'],
-    Mandarin: ['Grammar', 'Vocabulary', 'Conversational Skills'],
     'Aquatic Science': [
         "(A1) ask questions and define problems based on observations or information from text, phenomena, models, or investigations;","(B1) apply scientific practices to plan and conduct descriptive, comparative, and experimental investigations and use engineering practices to design solutions to problems;","(C1) use appropriate safety equipment and practices during laboratory, classroom, and field investigations as outlined in Texas Education Agency-approved safety standards;","(D1) use appropriate tools such as Global Positioning System (GPS), Geographic Information System (GIS), weather balloons, etc.;","(E1) collect quantitative data using the International System of Units (SI) and qualitative data as evidence;","(F1) organize quantitative and qualitative data using probeware, spreadsheets, lab notebooks or journals, models, diagrams, graphs paper, computers, or cellphone applications;","(G1) develop and use models to represent phenomena, systems, processes, or solutions to engineering problems; and","(H1) distinguish between scientific hypotheses, theories, and laws.","(2A) identify advantages and limitations of models such as their size, scale, properties, and materials;",
         "(2B) analyze data by identifying significant statistical features, patterns, sources of error, and limitations;","(2C) use mathematical calculations to assess quantitative relationships in data; and","(2D) evaluate experimental and engineering designs.",
@@ -131,8 +112,8 @@ const Form = ({ onSubmit }) => {
         <label htmlFor="gradeLevel">Grade Level:</label>
         <select id="gradeLevel" value={gradeLevel} onChange={handleGradeLevelChange}>
           <option value="">Select a grade level</option>
-          <option value="Elementary">Elementary</option>
-          <option value="Middle School">Middle School</option>
+          {/*<option value="Elementary">Elementary</option>*/}
+          {/*<option value="Middle School">Middle School</option>*/}
           <option value="High School">High School</option>
         </select>
         </div>
