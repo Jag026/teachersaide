@@ -126,60 +126,60 @@ const Form = ({ onSubmit }) => {
     };
     
     return (
-    <form onSubmit={handleSubmit}>
-    <div>
-    <label htmlFor="gradeLevel">Grade Level:</label>
-    <select id="gradeLevel" value={gradeLevel} onChange={handleGradeLevelChange}>
-    <option value="">Select a grade level</option>
-    <option value="Elementary">Elementary</option>
-    <option value="Middle School">Middle School</option>
-    <option value="High School">High School</option>
-    </select>
-    </div>
-    {gradeLevel && (
-    <div>
-    <label htmlFor="subject">Subject:</label>
-    <select id="subject" value={subject} onChange={handleSubjectChange}>
-    <option value="">Select a subject</option>
-    {subjectOptions[gradeLevel].map((option) => (
-    <option key={option} value={option}>
-    {option}
-    </option>
-    ))}
-    </select>
-    </div>
-    )}
-    {subject && (
-    <div>
-    <label htmlFor="knowledge">Knowledge:</label>
-    <select id="knowledge" value={knowledge} onChange={handleKnowledgeChange}>
-    <option value="">Select a knowledge</option>
-    {knowledgeOptions[subject].map((option) => (
-    <option key={option} value={option}>
-    {option}
-    </option>
-    ))}
-    </select>
-    </div>
-    )}
-    {knowledge && (
-    <div>
-    <label htmlFor="skill">Skill:</label>
-    <select id="skill" value={skill} onChange={handleSkillChange}>
-    <option value="">Select a skill</option>
-    {skillOptions[knowledge].map((option) => (
-    <option key={option} value={option}>
-    {option}
-    </option>
-    ))}
-    </select>
-    </div>
-    )}
-    {skill && (
-    <div>
-    <button type="submit">Submit</button>
-    </div>
-    )}
+    <form className="mt-10 mb-6 px-2" onSubmit={handleSubmit}>
+      <div className="mb-2">
+        <label htmlFor="gradeLevel">Grade Level:</label>
+        <select id="gradeLevel" value={gradeLevel} onChange={handleGradeLevelChange}>
+          <option value="">Select a grade level</option>
+          <option value="Elementary">Elementary</option>
+          <option value="Middle School">Middle School</option>
+          <option value="High School">High School</option>
+        </select>
+        </div>
+        {gradeLevel && (
+        <div className="mb-2">
+        <label htmlFor="subject">Subject:</label>
+        <select id="subject" value={subject} onChange={handleSubjectChange}>
+          <option value="">Select a subject</option>
+          {subjectOptions[gradeLevel].map((option) => (
+          <option key={option} value={option}>
+          {option}
+          </option>
+        ))}
+        </select>
+        </div>
+        )}
+        {subject && (
+        <div className="mb-2">
+        <label htmlFor="knowledge">Knowledge:</label>
+        <select id="knowledge" value={knowledge} onChange={handleKnowledgeChange}>
+          <option value="">Select a knowledge</option>
+          {knowledgeOptions[subject].map((option) => (
+          <option key={option} value={option}>
+          {option}
+          </option>
+        ))}
+        </select>
+        </div>
+        )}
+        {knowledge && (
+        <div className="w-fit">
+        <label htmlFor="skill">Skill:</label>
+        <select id="skill" className="w-96 truncate" value={skill} onChange={handleSkillChange}>
+          <option className="w-28" value="">Select a skill</option>
+          {skillOptions[knowledge].map((option) => (
+          <option className="w-28" key={option} value={option}>
+          {option}
+          </option>
+        ))}
+        </select>
+        </div>
+        )}
+        {skill && (
+        <div className="mt-2">
+        <button className="mt-6 w-28 h-10 bg-slate-300 border text-l hover:bg-slate-500" type="submit">Submit</button>
+      </div>
+      )}
     </form>
     );
     };

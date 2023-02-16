@@ -8,7 +8,7 @@ import CookiesBanner from './CookiesBanner'
 import { useCookies } from 'react-cookie';
 import './index.css'
 
-const MAX_USAGE_COUNT = 6;
+const MAX_USAGE_COUNT = 5;
 
 function Teks(props) {
     const dispatch = useDispatch();
@@ -87,6 +87,7 @@ function Teks(props) {
   if (user) {
     setCookie('usageCount', '', { expires: new Date(0) });
   }
+
   const incrementUsageCount = () => {
     if (!user) {
       setUsageCount(parseInt(usageCount) + 1);
@@ -122,9 +123,11 @@ function Teks(props) {
     );
   }
       return (
-        <>
+    <div className="flex flex-col items-center">
+      <h2 className="font-serif text-5xl mt-14 mb-6">Teacher's AIde</h2>
+      <p className="text-s px-6">A powerful AI assistant that can generate lessons plans for any subject.</p>
         <div>
-          <Form onSubmit={handleFormSubmit} />
+          {formVisible && <Form onSubmit={handleFormSubmit} />}
           <br></br>
           <p>{text}</p>
         </div>
@@ -145,7 +148,7 @@ function Teks(props) {
       
               </div>
               <CookiesBanner />
-          </>
+           </div>
       );
     };
 
