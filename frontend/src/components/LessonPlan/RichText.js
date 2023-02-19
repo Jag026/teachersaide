@@ -31,9 +31,14 @@ function RichTextEditor(props) {
     };
   }, [props.text]);
 
+  function handleEditorChange() {
+    const newContent = editorRef.current.innerHTML;
+    setContent(newContent);
+  }
+
   return (
     <div>
-      <div ref={editorRef} />
+      <div contentEditable ref={editorRef} onInput={handleEditorChange} />
       {content && <PrintButton content={content} />}
     </div>
   );
