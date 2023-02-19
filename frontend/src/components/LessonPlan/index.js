@@ -24,6 +24,7 @@ function LessonPlan(props) {
   const [cookies, setCookie] = useCookies(['usageCount']);
   const [usageCount, setUsageCount] = useState(cookies.usageCount || 0);
 
+  
   const user = sessionUser;
   if (user) {
     setCookie('usageCount', '', { expires: new Date(0) });
