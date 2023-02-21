@@ -3,9 +3,11 @@ const { check } = require('express-validator');
 const { handleValidationErrors } = require('../../utils/validation');
 const { setTokenCookie, requireAuth } = require('../../utils/auth');
 const request = require('request');
+const sgMail = require('@sendgrid/mail');
 
 const { User } = require('../../db/models');
 const { captcha_secret } = require('../../config/index.js');
+const { send_email } = require('../../config/index.js');
 
 const router = express.Router();
 
@@ -44,7 +46,16 @@ const validateSignup = [
           }
     
           const user = await User.signup({ first_name, last_name, email, username, password });
-      
+          
+          sgMail.setApiKey(send_email);
+          const msg = {
+            to: email,
+            from: 'teacher@teachersaide.io',
+            subject: 'Welcome to Teachersaide.io',
+            text: 'Thanks for registering an account! This application is still in beta, so please send us an email at teacher@teachersaide.io if you find a bug or have questions.'
+          };
+          sgMail.send(msg);
+
           await setTokenCookie(res, user);
           
           return res.json({
