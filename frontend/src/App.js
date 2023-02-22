@@ -14,6 +14,8 @@ import SitePolicies from "./components/SitePolicies";
 import CreateBlogpost from "./components/Blogpost";
 import BlogPosts from "./components/Blogpost/blogposts.js";
 import Teks from "./components/Teks";
+import ResetPasswordForm from "./components/ResetPassword/index.js"
+import ResetPasswordPage from "./components/ResetPassword/ResetPasswordPage.js"
 
 function App() {
   const dispatch = useDispatch();
@@ -68,6 +70,12 @@ function App() {
           </Route>
           <Route exact path="/tek-lesson-plans">
             <Teks />
+          </Route>
+          <Route exact path="/resetpassword">
+            <ResetPasswordForm />
+          </Route>
+          <Route exact path="/resetpasswordpage/:para">
+            <ResetPasswordPage />
           </Route>
         </Switch>
       )}

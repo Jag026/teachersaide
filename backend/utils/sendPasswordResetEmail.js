@@ -6,12 +6,15 @@ sgMail.setApiKey(send_email);
 
 // Function to send password reset email
 async function sendPasswordResetEmail(email, token) {
+  const encodedToken = encodeURIComponent(token);
+  const url = `http://localhost:3000/resetpasswordpage/${encodedToken}`;
+
   const message = {
     to: email,
     from: 'teacher@teachersaide.io',
     subject: 'Password Reset Request',
-    text: `To reset your password, please click on the following link: http://localhost:8000/api/resetpassword/reset-password/${token}`,
-    html: `<p>To reset your password, please click on the following link:</p><p><a href="http://localhost:8000/api/resetpassword/reset-password/${token}">Reset Password</a></p>`,
+    text: `To reset your password, please click on the following link: ${url}`,
+    html: `<p>To reset your password, please click on the following link:</p><p><a href=${url}>Reset Password</a></p>`,
   };
   try {
     await sgMail.send(message);

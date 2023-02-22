@@ -299,4 +299,16 @@ export const restoreUser = () => async dispatch => {
     return response;
   };
 
+  export const requestReset = (email) => async (dispatch) => {
+    const { userEmail } = email;
+    console.log(email)
+    const response = await csrfFetch("/api/resetpassword/request-reset", {
+      method: "POST",
+      body: JSON.stringify({
+        userEmail }),
+    });
+    const data = await response.json();
+    return response;
+  };
+
 export default sessionReducer;
