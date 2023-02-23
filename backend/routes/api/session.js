@@ -2,7 +2,7 @@ const express = require('express')
 const { check } = require('express-validator');
 const { handleValidationErrors } = require('../../utils/validation');
 
-const { setTokenCookie, restoreUser } = require('../../utils/auth');
+const { setTokenCookie, restoreUser, makeLowercase } = require('../../utils/auth');
 const { User } = require('../../db/models');
 const { send_email } = require('../../config/index.js');
 
@@ -26,8 +26,8 @@ router.post(
   '/',
   validateLogin,
   async (req, res, next) => {
-    const { credential, password } = req.body;
-
+    let { credential, password } = req.body;
+    credential = makeLowercase(credential);
     const user = await User.login({ credential, password });
 
     if (!user) {

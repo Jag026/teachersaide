@@ -1,7 +1,7 @@
 const express = require('express')
 const { check } = require('express-validator');
 const { handleValidationErrors } = require('../../utils/validation');
-const { setTokenCookie, requireAuth } = require('../../utils/auth');
+const { setTokenCookie, makeLowercase } = require('../../utils/auth');
 const request = require('request');
 const sgMail = require('@sendgrid/mail');
 
@@ -35,7 +35,7 @@ const validateSignup = [
       '/',
       validateSignup,
       async (req, res) => {
-        const { recaptchaResponse, first_name, last_name, email, password, username } = req.body;
+        let { recaptchaResponse, first_name, last_name, email, password, username } = req.body;
         const secretKey = captcha_secret;
         const verificationUrl = `https://www.google.com/recaptcha/api/siteverify?secret=${secretKey}&response=${recaptchaResponse}`;
       
@@ -44,7 +44,11 @@ const validateSignup = [
           if (body.success !== undefined && !body.success) {
             return res.status(400).json({ message: 'reCAPTCHA verification failed' });
           }
-    
+          
+          email = await makeLowercase(email);
+          username = await makeLowercase(username);
+          console.log(email)
+          console.log(username)
           const user = await User.signup({ first_name, last_name, email, username, password });
           
           sgMail.setApiKey(send_email);

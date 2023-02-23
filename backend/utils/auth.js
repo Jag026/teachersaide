@@ -61,4 +61,17 @@ const requireAuth = function (req, _res, next) {
     return next(err);
   }
 
-module.exports = { setTokenCookie, restoreUser, requireAuth };
+  const makeLowercase = (str) => {
+    let lowercaseStr = "";
+    for (let i = 0; i < str.length; i++) {
+      const charCode = str.charCodeAt(i);
+      if (charCode >= 65 && charCode <= 90) {
+        lowercaseStr += String.fromCharCode(charCode + 32); // convert uppercase letters to lowercase
+      } else {
+        lowercaseStr += str.charAt(i); // append numbers and special characters as-is
+      }
+    }
+    return lowercaseStr;
+  }
+
+module.exports = { setTokenCookie, restoreUser, requireAuth, makeLowercase };
