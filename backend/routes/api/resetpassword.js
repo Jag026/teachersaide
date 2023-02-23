@@ -10,7 +10,7 @@ const bcrypt = require('bcryptjs');
 const { jwtConfig } = require('../../config');
 
 const { secret, expiresIn } = jwtConfig;
-const { setTokenCookie, requireAuth } = require('../../utils/auth');
+const { makeLowercase } = require('../../utils/auth');
 
 const router = express.Router();
 
@@ -18,11 +18,11 @@ const router = express.Router();
 router.post('/request-reset', async (req, res) => {
   try {
     // Get email from request body
-    const { email } = req.body;
-
+    let { email } = req.body;
+    email = makeLowercase(email)
+    
     // Find user with given email
     const user = await User.findOne({ where: { email } });
-    console.log(user.email)
 
     // If user with given email doesn't exist, return error message
     if (!user) {
