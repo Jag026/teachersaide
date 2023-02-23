@@ -19,13 +19,13 @@ const ResetPasswordPage = (props) => {
          }),
       });
       const data = await response.json();
-      window.location.href = "/PasswordUpdated";
       return response;
     };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async(e) => {
     e.preventDefault();
-    updatePassword(token, password);
+    await updatePassword(token, password);
+   window.location.href = await "/PasswordUpdated";
 };
 
 return (
