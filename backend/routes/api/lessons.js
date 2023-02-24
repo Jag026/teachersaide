@@ -5,6 +5,7 @@ const { handleValidationErrors } = require('../../utils/validation');
 
 const { setTokenCookie, requireAuth } = require('../../utils/auth');
 const { Lessonplan } = require('../../db/models');
+const { Userprompt } = require('../../db/models');
 
 const router = express.Router();
 
@@ -20,7 +21,6 @@ router.post(
       const userId = parsedPayload["data"].id
       const { planBody} = req.body;
       const lessonplan = await Lessonplan.addLessonplan({ userId, planBody });
-      
       return res.json({
         lessonplan
       });
@@ -35,6 +35,10 @@ router.post(
     async (req, res) => {
       try {
         const { grade, subject } = req.body;
+        const prompt = `Create a lesson plan for a ${grade} grade science class, the topic is: ${subject}, minimum 500 tokens`
+        const userId = 1;
+        Userprompt.addUserprompt({ prompt, userId})
+        console.log(prompt);
         const lessonplan = await fetchAi(grade, subject);
         return res.json({
           lessonplan

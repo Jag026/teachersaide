@@ -47,8 +47,6 @@ const validateSignup = [
           
           email = await makeLowercase(email);
           username = await makeLowercase(username);
-          console.log(email)
-          console.log(username)
           const user = await User.signup({ first_name, last_name, email, username, password });
           
           sgMail.setApiKey(send_email);

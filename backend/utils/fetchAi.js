@@ -1,5 +1,6 @@
 const { Configuration, OpenAIApi } = require("openai")
 const { api_key } = require('../config/index.js');
+const { Userprompt } = require('../db/models');
 
 //fetches lessplan from API endpoint
 const fetchAi = async(grade, subject) => {
