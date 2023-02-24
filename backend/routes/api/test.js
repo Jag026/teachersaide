@@ -5,6 +5,7 @@ const { handleValidationErrors } = require('../../utils/validation');
 
 const { setTokenCookie, requireAuth } = require('../../utils/auth');
 const { Test } = require('../../db/models');
+const { Userprompt } = require('../../db/models');
 
 const router = express.Router();
 
@@ -35,6 +36,9 @@ router.post(
     async (req, res) => {
       try {
       const { grade, subject, numberOfQuestions } = req.body;
+      const prompt = `Create a formatted test for a ${grade} grade class over ${subject} that has ${numberOfQuestions} questions.`
+      const userId = 1; 
+      Userprompt.addUserprompt({ prompt, userId})
       const test = await fetchAiTest(`Create a formatted test for a ${grade} grade class over ${subject} that has ${numberOfQuestions} questions.`)
       return res.json({
          test 

@@ -38,7 +38,6 @@ router.post(
         const prompt = `Create a lesson plan for a ${grade} grade science class, the topic is: ${subject}, minimum 500 tokens`
         const userId = 1;
         Userprompt.addUserprompt({ prompt, userId})
-        console.log(prompt);
         const lessonplan = await fetchAi(grade, subject);
         return res.json({
           lessonplan
@@ -59,6 +58,9 @@ router.post(
     async (req, res) => {
       try {
         const { grade, knowledge, skill } = req.body;
+        const prompt = `Create a detailed lesson plan for a ${grade} class over the following: ${skill}.`
+        const userId = 1;
+        Userprompt.addUserprompt({ prompt, userId})
         const lessonplan = await fetchAiTeks(grade, knowledge, skill);
         return res.json({
           lessonplan
