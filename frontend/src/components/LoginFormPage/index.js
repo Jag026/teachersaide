@@ -25,32 +25,45 @@ function LoginFormPage() {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="m-10 bg-white p-6 rounded-lg shadow-md flex flex-col sm:w-2/4 sm:max-w-[600px]">
-      <ul>
-        {errors.map((error, idx) => <li key={idx}>{error}</li>)}
-      </ul>
-      <label className="p-2 mb-4">
-        Username or Email
-        <input
-          type="text"
-          value={credential}
-          onChange={(e) => setCredential(e.target.value)}
-          required
-          className="ml-2 border border-sky-500"
-        />
-      </label>
-      <label className="p-2 mb-4">
-        Password
-        <input
-          type="password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          required
-          className="ml-2 border border-sky-500"
-        />
-      </label>
-      <button type="submit" className="w-20 mt-3 p-1 border border-sky-500">Log In</button>
-    </form>
+    <div className="flex flex-col justify-center items-center h-screen">
+      <img src={require("./apple.png")}  alt="apple image" className="w-25 h-[80px]" />
+      <h2 className="mt-6 text-center text-3xl font-bold tracking-tight text-gray-900">Sign in to your account</h2>
+      <p class="mt-2 text-center text-sm text-gray-600">
+        Or
+        <a href="/signup" class="font-medium text-indigo-600 hover:text-indigo-500"> create a free account</a>
+      </p>      
+      <form onSubmit={handleSubmit} className="flex flex-col justify-center items-center w-[450px] mt-8">
+        <ul>
+          {errors.map((error, idx) => <li key={idx}>{error}</li>)}
+        </ul>
+        <label className="w-full">
+          <input
+            type="text"
+            value={credential}
+            onChange={(e) => setCredential(e.target.value)}
+            required
+            className="w-[100%] h-10 border border-grey-100 px-4"
+            placeholder="Username or Email"
+          />
+        </label>
+        <label className="w-full">
+          <input
+            type="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            required
+            className="w-[100%] h-10 border border-grey-100 px-4"
+            placeholder="Password"
+          />
+        </label>
+        <label class="flex justify-between items-center mt-6 mb-6">
+          <input type="checkbox" class="form-checkbox h-4 w-5 text-gray-600"></input>
+          <span class="text-gray-600 text-sm">Remember me</span>
+          <a class="ml-8 text-indigo-600 text-sm" href="/resetpassword">Forgot your password?</a>
+        </label>
+        <button type="submit" className="group relative flex w-full justify-center rounded-md border border-transparent bg-slate-600 py-2 px-4 text-sm font-medium text-white hover:bg-slate-700 focus:outline-none focus:ring-2 focus:ring-slate-500 focus:ring-offset-2"><i class="fa-solid fa-lock color-gray-300 pt-1 mr-2"></i> Log In</button>
+      </form>
+    </div>
   );
 }
 
