@@ -32,7 +32,7 @@ function LoginFormPage() {
         Or
         <a href="/signup" class="font-medium text-indigo-600 hover:text-indigo-500"> create a free account</a>
       </p>      
-      <form onSubmit={handleSubmit} className="flex flex-col justify-center items-center w-[450px] mt-8">
+      <form onSubmit={handleSubmit} className="flex flex-col justify-center items-center sm:w-[450px] mt-8">
         <ul>
           {errors.map((error, idx) => <li key={idx}>{error}</li>)}
         </ul>

@@ -36,80 +36,73 @@ function SignupFormPage() {
   };
 
   return (
-    <div className="m-10 flex flex-col">
-    <div className="m-10">
-      <h2 className="text-2xl">Create An Account To Generate Lesson Plans</h2>
-      <p className="text-xl p-1">It's Free!</p>
-    </div>
-    <form onSubmit={handleSubmit} className="m-10 bg-white p-6 rounded-lg shadow-md flex flex-col sm:w-2/4 sm:max-w-[600px]">
+    <div className="flex flex-col justify-center items-center h-screen">
+      <img src={require("./apple.png")}  alt="apple image" className="w-25 h-[80px]" />
+      <h2 className="mt-6 text-center text-3xl font-bold tracking-tight text-gray-900">Register an account</h2>
+      <p class="mt-2 text-center text-sm text-gray-600">
+        Comes with free access to lesson plans and tests
+      </p>  
+    <form onSubmit={handleSubmit} className="flex flex-col justify-center items-center sm:w-[450px] mt-8">
       <ul>
         {errors.map((error, idx) => <li key={idx}>{error}</li>)}
       </ul>
-      <label className="p-2 mb-4">
-        First Name
         <input
           type="text"
           value={first_name}
           onChange={(e) => setFirst_Name(e.target.value)}
           required
-          className="ml-2 border border-sky-500"
+          className="h-10 border border-grey-100 px-4 w-full"
+          placeholder="First Name"
         />
-      </label>
-      <label className="p-2 mb-4">
-        Last Name
         <input
           type="text"
           value={last_name}
           onChange={(e) => setLast_Name(e.target.value)}
           required
-          className="ml-2 border border-sky-500"
+          className="h-10 border border-grey-100 px-4 w-full"
+          placeholder="Last Name"
         />
-      </label>
-      <label className="p-2 mb-4">
-        Email
         <input
           type="text"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           required
-          className="ml-2 border border-sky-500"
+          className="h-10 border border-grey-100 px-4 w-full"
+          placeholder="Email"
         />
-      </label>
-      <label className="p-2 mb-4">
-        Username
         <input
           type="text"
           value={username}
           onChange={(e) => setUsername(e.target.value)}
           required
-          className="ml-2 border border-sky-500"
-        />
-      </label>
-      <label className="p-2 mb-4">
-        Password
+          className="h-10 border border-grey-100 px-4 w-full"
+          placeholder="Username"
+          />
         <input
           type="password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           required
-          className="ml-2 border border-sky-500"
+          className="h-10 border border-grey-100 px-4 w-full"
+          placeholder="Password"
         />
-      </label>
-      <label className="p-2 mb-4">
-        Confirm Password
         <input
           type="password"
           value={confirmPassword}
           onChange={(e) => setConfirmPassword(e.target.value)}
           required
-          className="ml-2 border border-sky-500"
+          className="h-10 border border-grey-100 px-4 w-full"
+          placeholder="Confirm Password"
         />
-      </label>
       <ReCAPTCHA 
       onChange={handleRecaptcha}
       sitekey="6LcPFVAkAAAAAJHksr21rryn5tB46mu1Pkm7JB2p"
       />
-      <button type="submit" className="w-20 mt-3 p-1 border border-sky-500">Sign Up</button>
+        <label class="flex justify-between items-center mt-6 mb-6">
+          <input type="checkbox" class="form-checkbox h-4 w-5 text-gray-600" required></input>
+          <span class="text-gray-600 text-sm">I agree to <a href='/Policies' className="text-indigo-800">site policy</a></span>
+        </label>      
+        <button type="submit" className="group relative flex w-full justify-center rounded-md border border-transparent bg-slate-600 py-2 px-4 text-sm font-medium text-white hover:bg-slate-700 focus:outline-none focus:ring-2 focus:ring-slate-500 focus:ring-offset-2"><i class="fa-solid fa-lock color-gray-300 pt-1 mr-2"></i> Register</button>
     </form>
     </div>
   );
