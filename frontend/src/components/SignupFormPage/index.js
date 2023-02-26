@@ -91,7 +91,7 @@ function SignupFormPage() {
           value={confirmPassword}
           onChange={(e) => setConfirmPassword(e.target.value)}
           required
-          className="h-10 border border-grey-100 px-4 w-full"
+          className="h-10 border border-grey-100 px-4 w-full mb-4"
           placeholder="Confirm Password"
         />
       <ReCAPTCHA 
