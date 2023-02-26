@@ -28,7 +28,7 @@ function LoginFormPage() {
     <div className="flex flex-col justify-center items-center h-screen">
       <img src={require("./apple.png")}  alt="apple image" className="w-25 h-[80px]" />
       <h2 className="mt-6 text-center text-3xl font-bold tracking-tight text-gray-900">Sign in to your account</h2>
-      <p class="mt-2 text-center text-sm text-gray-600">
+      <p className="mt-2 text-center text-sm text-gray-600">
         Or
         <a href="/signup" class="font-medium text-indigo-600 hover:text-indigo-500"> create a free account</a>
       </p>      

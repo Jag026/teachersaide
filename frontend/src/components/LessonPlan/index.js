@@ -23,6 +23,7 @@ function LessonPlan(props) {
   const [saveSuccessMessage, setSaveSuccessMessage] = useState("");
   const [cookies, setCookie] = useCookies(['usageCount']);
   const [usageCount, setUsageCount] = useState(cookies.usageCount || 0);
+  const [showExamples, setShowExample] = useState(true);
 
   
   const user = sessionUser;
@@ -43,6 +44,7 @@ function LessonPlan(props) {
   const handleSubmit = async(e) => {
     e.preventDefault();
     setErrors([]);
+    setShowExample(false)
     setTextContent("Loading...");
     await setLogoVisible(true);
     incrementUsageCount();
@@ -115,42 +117,39 @@ function LessonPlan(props) {
   }
 
   return (
-    <div className="flex flex-col items-center">
-      <h2 className="font-serif text-5xl mt-14 mb-6">Teacher's AIde</h2>
-      <p className="text-s px-6">A powerful AI assistant that can generate lessons plans for any subject.</p>
-      <div className="mt-14">
-        <p className="px-6 text-s">Examples:</p>
-        <p className="px-6 ml-4 text-s">11th -- World History, the major effects of the following events from 8000 BC to 500 BC</p> 
-        <p className="px-6 ml-4 text-s">2nd -- Science, forms of energy and properties of matter</p>
-        <p className="px-6 ml-4 text-s">7th -- Biology, animal cell structures</p>
-      </div>
+    <div className="flex flex-col justify-center items-center mt-10 sm:mt-20">
+      <img src={require("./apple.png")}  alt="apple image" className="w-25 h-[80px]" />
+      <h2 className="mt-6 text-center text-4xl font-bold tracking-tight text-gray-900">Teacher's AIde</h2>
+      <p className="mt-2 text-center text-gray-600">A powerful AI assistant that can generate lessons plans for any subject.</p>
         {formVisible && <form onSubmit={handleSubmit} className="flex flex-col items-center mt-8">
           <ul>
             {errors.map((error, idx) => <li key={idx}>{error}</li>)}
           </ul>
           <div className="flex flex-col">
-          <label className="mx-4 text-l">
-            Enter a grade level
+          <label className="w-full">
+            Enter a grade level:
             <input
               type="text"
               value={grade}
               onChange={(e) => setGrade(e.target.value)}
               required
-              className="mx-2 my-4 h-10 w-14 p-2 border border-sky-500"
+              className="h-10 border border-grey-100 px-4 w-full mb-4"
+              placeholder="example: 10th"
             />
           </label>
-          <label className="mx-4 text-l">
+          <label className="w-full">
             Enter a subject
             <input
               type="text"
               value={subject}
               onChange={(e) => setSubject(e.target.value)}
               required
-              className="mx-2 h-10 p-2 border border-sky-500"
+              className="h-10 border border-grey-100 px-4 w-full mb-4"
+              placeholder="Science, forms of energy and properties of matter"
             />
           </label>
           </div>
-          <button className="m-10 w-28 h-10 bg-slate-300 border text-l hover:bg-slate-500" type="submit">Create Plan</button>
+          <button className="group relative flex w-full justify-center rounded-md border border-transparent bg-slate-600 py-2 px-4 text-sm font-medium text-white hover:bg-slate-700 focus:outline-none focus:ring-2 focus:ring-slate-500 focus:ring-offset-2" type="submit">Create Plan</button>
         </form>}
         <div className="w-full sm:w-4/5 sm:max-w-2xl px-1 mt-6 flex flex-col items-center">
           {visible && 
@@ -166,7 +165,12 @@ function LessonPlan(props) {
 		        	<img src={require("./apple.png")}  alt="apple image" />
 		        </span>
           </div>}
-
+          {showExamples && <div className="px-20 mt-10">
+            <p className="mt-2 text-gray-600">Examples:</p>
+            <p className="mt-2 text-gray-600">11th -- World History, the major effects of the following events from 8000 BC to 500 BC</p> 
+            <p className="mt-2 text-gray-600">2nd -- Science, forms of energy and properties of matter</p>
+            <p className="mt-2 text-gray-600">7th -- Biology, animal cell structures</p>
+          </div>}
         </div>
         <CookiesBanner />
     </div>
