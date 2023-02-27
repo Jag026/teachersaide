@@ -23,6 +23,7 @@ function Test(props) {
   const [saveSuccessMessage, setSaveSuccessMessage] = useState("");
   const [cookies, setCookie] = useCookies(['usageCount']);
   const [usageCount, setUsageCount] = useState(cookies.usageCount || 0);
+  const [showExamples, setShowExample] = useState(true);
 
   const user = sessionUser;
   if (user) {
@@ -42,6 +43,7 @@ function Test(props) {
   const handleSubmit = async(e) => {
     e.preventDefault();
     setErrors([]);
+    setShowExample(false)
     await setTextContent("Loading...");
     await setLogoVisible(true);
     incrementUsageCount();
@@ -114,52 +116,51 @@ function Test(props) {
   
   return (
     <div className="flex flex-col items-center">
-      <h1 className="font-serif text-6xl mt-10 mb-6">Teacher's AIde</h1>
-      <h2 className="px-6 text-s">A powerful AI assistant that can generate tests and quizzes in a breeze.</h2>
-      <div className="mt-10">
-        <p className="px-6 text-s">Example:</p>
-        <p className="px-6 ml-4 text-s">11th -- Declaration of Independence and the U.S. Constitution -- Number of questions: 10</p> 
-        <p className="px-6 ml-4 text-s">7th -- Models and diagrams to explain the Pythagorean theorem -- Number of questions: 12</p> 
-        <p className="px-6 ml-4 text-s">4th -- Measurement units within the customary and metric systems -- Number of questions: 6</p> 
-
-      </div>
+      <div className="flex flex-col justify-center items-center mt-10 sm:mt-20">
+      <img src={require("./apple.png")}  alt="apple image" className="w-25 h-[80px]" />
+      <h2 className="mt-6 text-center text-4xl font-bold tracking-tight text-gray-900">Teacher's AIde</h2>
+      <p className="mt-2 text-center text-gray-600">A powerful AI assistant that can generate lessons plans for any subject.</p>
+      
         {formVisible && <form onSubmit={handleSubmit} className="flex flex-col items-center mt-8">
           <ul>
             {errors.map((error, idx) => <li key={idx}>{error}</li>)}
           </ul>
           <div className="flex flex-col">
-          <label className="mx-4 text-l">
+          <label className="w-full">
             Enter a grade level
             <input
               type="text"
               value={grade}
               onChange={(e) => setGrade(e.target.value)}
               required
-              className="mx-2 mt-4 h-10 w-14 p-2 border border-sky-500"
+              className="h-10 border border-grey-100 px-4 w-full mb-4"
+              placeholder="example: 10th"
             />
           </label>
-          <label className="mx-4 text-l">
+          <label className="w-full">
             Enter a subject
             <textarea
               type="text"
               value={subject}
               onChange={(e) => setSubject(e.target.value)}
               required
-              className="mx-2 mt-4 h-12 sm:w-[400px] px-2 border border-sky-500"
+              className="h-10=4 border border-grey-100 px-6 pt-1 w-full mb-4"
+              placeholder="example: 10th"
             />
           </label>
-          <label className="mx-4 text-l">
+          <label className="w-full">
             Enter number of questions
             <input
               type="text"
               value={numberOfQuestions}
               onChange={(e) => setNumberOfQuestions(e.target.value)}
               required
-              className="mx-2 mt-4 h-10 w-14 p-2 border border-sky-500"
+              className="h-10 border border-grey-100 px-4 w-full mb-4"
+              placeholder="example: 10th"
             />
           </label>
           </div>
-          <button className="m-6 mt-10 w-28 h-10 bg-slate-300 border text-l" type="submit">Create Test</button>
+          <button className="group relative flex w-full justify-center rounded-md border border-transparent bg-slate-600 py-2 px-4 text-sm font-medium text-white hover:bg-slate-700 focus:outline-none focus:ring-2 focus:ring-slate-500 focus:ring-offset-2" type="submit">Create Test</button>
         </form>}
         <div className="w-full sm:w-4/5 sm:max-w-2xl mt-6 flex flex-col items-center sm:w-3/5">
         {visible && 
@@ -174,9 +175,28 @@ function Test(props) {
 		        	<img src={require("./apple.png")}  alt="apple image" />
 		        </span>
           </div>}
-
+          {showExamples && <div className="mt-16 w-full">
+            <p className="text-center text-2xl font-bold tracking-tight text-gray-900">Examples:</p>
+            <textarea
+              type="text"
+              className="h-12 border border-grey-100 px-4 w-full mb-4"
+              value="11th -- Declaration of Independence and the U.S. Constitution -- Number of questions: 10"
+            />
+            <textarea
+              type="text"
+              className="h-12 border border-grey-100 px-4 w-full mb-4"
+              value="Models and diagrams to explain the Pythagorean theorem -- Number of questions: 12"
+            />
+            <textarea
+              type="text"
+              className="h-12 border border-grey-100 px-4 w-full mb-4"
+              value="th -- Measurement units within the customary and metric systems -- Number of questions: 6"
+            />
+      
+          </div>}
         </div>
     </div>
+   </div>
   );
 }
 
