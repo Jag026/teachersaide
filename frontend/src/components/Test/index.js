@@ -145,7 +145,7 @@ function Test(props) {
               onChange={(e) => setSubject(e.target.value)}
               required
               className="h-10=4 border border-grey-100 px-6 pt-1 w-full mb-4"
-              placeholder="example: 10th"
+              placeholder="Chemistry, acids, bases and molarity questions."
             />
           </label>
           <label className="w-full">
@@ -156,7 +156,7 @@ function Test(props) {
               onChange={(e) => setNumberOfQuestions(e.target.value)}
               required
               className="h-10 border border-grey-100 px-4 w-full mb-4"
-              placeholder="example: 10th"
+              placeholder="12"
             />
           </label>
           </div>
@@ -185,12 +185,12 @@ function Test(props) {
             <textarea
               type="text"
               className="h-12 border border-grey-100 px-4 w-full mb-4"
-              value="Models and diagrams to explain the Pythagorean theorem -- Number of questions: 12"
+              value="9th Models and diagrams to explain the Pythagorean theorem -- Number of questions: 12"
             />
             <textarea
               type="text"
               className="h-12 border border-grey-100 px-4 w-full mb-4"
-              value="th -- Measurement units within the customary and metric systems -- Number of questions: 6"
+              value="5th -- Measurement units within the customary and metric systems -- Number of questions: 6"
             />
       
           </div>}

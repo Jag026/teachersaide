@@ -166,10 +166,22 @@ function LessonPlan(props) {
 		        </span>
           </div>}
           {showExamples && <div className="px-20 mt-10">
-            <p className="mt-2 text-gray-600">Examples:</p>
-            <p className="mt-2 text-gray-600">11th -- World History, the major effects of the following events from 8000 BC to 500 BC</p> 
-            <p className="mt-2 text-gray-600">2nd -- Science, forms of energy and properties of matter</p>
-            <p className="mt-2 text-gray-600">7th -- Biology, animal cell structures</p>
+          <p className="text-center text-2xl font-bold tracking-tight text-gray-900">Examples:</p>
+            <textarea
+              type="text"
+              className="h-12 border border-grey-100 px-4 w-full mb-4"
+              value="11th -- World History, the major effects of the following events from 8000 BC to 500 BC"
+            />
+            <textarea
+              type="text"
+              className="h-12 border border-grey-100 px-4 w-full mb-4"
+              value="2nd -- Science, forms of energy and properties of matter"
+            />
+            <textarea
+              type="text"
+              className="h-12 border border-grey-100 px-4 w-full mb-4"
+              value="7th -- Biology, animal cell structures"
+            />
           </div>}
         </div>
         <CookiesBanner />
