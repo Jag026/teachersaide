@@ -127,7 +127,7 @@ function Test(props) {
           </ul>
           <div className="flex flex-col">
           <label className="w-full">
-            Enter a grade level
+            Grade level
             <input
               type="text"
               value={grade}
@@ -138,7 +138,7 @@ function Test(props) {
             />
           </label>
           <label className="w-full">
-            Enter a subject
+            Subject
             <textarea
               type="text"
               value={subject}
@@ -149,7 +149,7 @@ function Test(props) {
             />
           </label>
           <label className="w-full">
-            Enter number of questions
+            Number of questions
             <input
               type="text"
               value={numberOfQuestions}
