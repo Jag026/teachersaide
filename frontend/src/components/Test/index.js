@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Redirect } from "react-router-dom";
 import * as sessionActions from "../../store/session";
 import RichTextEditor from "./RichText"
+import RegisterAfterAttempts from "./../RegisterAfterAttempts"
 import { useCookies } from 'react-cookie';
 import './index.css'
 
@@ -108,8 +109,7 @@ function Test(props) {
   if (usageCount >= MAX_USAGE_COUNT) {
     return (
       <div>
-        <h1>You have reached the maximum usage limit</h1>
-        <p>Please <a href="/login" className="text-blue-500">login</a> or <a href="/signup" className="text-blue-500">create an account</a> to continue using the app.</p>
+        <RegisterAfterAttempts />
       </div>
     );
   }
