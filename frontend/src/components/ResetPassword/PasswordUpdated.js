@@ -3,10 +3,10 @@ import { Link } from 'react-router-dom'; // assuming you're using react-router f
 
 function PasswordUpdated() {
   return (
-    <div>
-      <h2>Password updated</h2>
-      <p>Your password has been updated successfully.</p>
-      <p>Click <Link to="/login">here</Link> to log in with your new password.</p>
+    <div className="flex flex-col justify-center items-center h-screen">
+    <img src={require("./apple.png")}  alt="apple image" className="w-25 h-[80px]" />
+    <h2 className="mt-6 text-center text-xl font-bold tracking-tight text-gray-900">Password updated</h2>
+      <a href="/login" className="text-violet-800">Click here to log in with your new password.</a>
     </div>
   );
 }
