@@ -16,7 +16,6 @@ import BlogPosts from "./components/Blogpost/blogposts.js";
 import Teks from "./components/Teks";
 import ResetPasswordForm from "./components/ResetPassword/index.js"
 import ResetPasswordPage from "./components/ResetPassword/ResetPasswordPage.js"
-import ResetPasswordConfirmation from "./components/ResetPassword/ResetPasswordConfirmation.js"
 import PasswordUpdated from "./components/ResetPassword/PasswordUpdated.js"
 
 
@@ -77,11 +76,8 @@ function App() {
           <Route exact path="/resetpassword">
             <ResetPasswordForm />
           </Route>
-          <Route exact path="/resetpasswordpage/:para">
+          <Route exact path="/update-password/:para">
             <ResetPasswordPage />
-          </Route>
-          <Route exact path="/ResetPasswordConfirmation">
-            <ResetPasswordConfirmation />
           </Route>
           <Route exact path="/PasswordUpdated">
             <PasswordUpdated />

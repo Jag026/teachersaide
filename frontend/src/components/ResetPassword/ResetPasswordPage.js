@@ -29,28 +29,28 @@ const ResetPasswordPage = (props) => {
 };
 
 return (
-    <div className="flex justify-center">
-     <div className="flex justify-center mt-20">
-       <form onSubmit={handleSubmit} className="bg-slate-200 flex flex-col px-12 pt-12 h-60">
-           <label htmlFor='password'>New Password</label>
+  <div className="flex flex-col justify-center items-center h-screen">
+    <img src={require("./apple.png")}  alt="apple image" className="w-25 h-[80px]" />
+    <h2 className="mt-6 text-center text-xl font-bold tracking-tight text-gray-900">Enter a new password</h2>
+       <form onSubmit={handleSubmit} className="flex flex-col justify-center items-center sm:w-[450px] mt-8">
            <input
                type='password'
                id='password'
                value={password}
                onChange={(e) => setPassword(e.target.value)}
+               className="h-10 border border-grey-100 px-4 w-full"
+               placeholder="New Password"
            />
-           <label htmlFor='confirmPassword'>Confirm Password</label>
            <input
                type='password'
                id='confirmPassword'
                value={confirmPassword}
                onChange={(e) => setConfirmPassword(e.target.value)}
+               className="h-10 border border-grey-100 px-4 w-full"
+               placeholder="Confirm Password"
            />
-          <div className="flex justify-end pt-4">
-            <button type='submit' className="bg-red-400 w-36 mt-3 h-8">Update Password</button>
-           </div>
+            <button type='submit' className="group relative flex w-full justify-center rounded-md border border-transparent bg-slate-600 py-2 px-4 text-sm font-medium text-white hover:bg-slate-700 focus:outline-none focus:ring-2 focus:ring-slate-500 focus:ring-offset-2 mt-1"><i class="fa-solid fa-lock color-gray-300 pt-1 mr-2"></i>Update Password</button>
        </form>
-      </div>
      </div>
        );
 };

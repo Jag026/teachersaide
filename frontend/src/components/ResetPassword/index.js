@@ -13,7 +13,6 @@ const ResetPasswordForm = () => {
           email }),
       });
       const data = await response.json();
-      //window.location.href = "/ResetPasswordConfirmation";
       return response;
     };
 
