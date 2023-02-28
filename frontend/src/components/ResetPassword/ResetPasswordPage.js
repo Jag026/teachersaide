@@ -7,7 +7,7 @@ const ResetPasswordPage = (props) => {
   const [confirmPassword, setConfirmPassword] = useState('');
   
   const location = useLocation();
-  const token = decodeURIComponent(location.pathname.slice('/resetpasswordpage/'.length));
+  const token = decodeURIComponent(location.pathname.slice('/update-password/'.length));
 
   const updatePassword = async(token, password) => {
     console.log(token)
