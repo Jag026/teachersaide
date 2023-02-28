@@ -10,11 +10,10 @@ const configuration = new Configuration({
   const response = await openai.createCompletion({
     model: "text-davinci-003",
     prompt: `Create a detailed lesson plan for a ${grade} grade class, the topic is: ${subject}, minimum 3000 words. Include objectives at the top.`,
-    temperature: 0.28,
-    max_tokens: 1107,
+    max_tokens: 3000,
     top_p: 1,
-    frequency_penalty: 1,
-    presence_penalty: 1.01,
+    frequency_penalty: 0,
+    presence_penalty: 0,
   });
   return response.data.choices[0].text;
 }
