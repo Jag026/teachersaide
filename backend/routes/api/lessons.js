@@ -1,5 +1,5 @@
 const express = require('express')
-const { fetchAi, fetchAiTeks } = require('../../utils/fetchAi');
+const { fetchAi, fetchAiTeks, fetchAiLab } = require('../../utils/fetchAi');
 const { check } = require('express-validator');
 const { handleValidationErrors } = require('../../utils/validation');
 
@@ -40,7 +40,6 @@ router.post(
         Userprompt.addUserprompt({ prompt, userId})
         let returnedPrompt = await fetchAi(grade, subject);
         const lessonplan = await returnedPrompt['content']
-        console.log(lessonplan['content'])
         return res.json({
           lessonplan
         });

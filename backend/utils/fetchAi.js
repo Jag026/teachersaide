@@ -49,4 +49,22 @@ const fetchAiTest = async(grade, subject, numberOfQuestions) => {
       })
       return response.data.choices[0].text;
     }
-module.exports = { fetchAi, fetchAiTest, fetchAiTeks };
+
+    //fetches lessplan from API endpoint
+const fetchAiLab = async(grade, subject) => {
+  const configuration = new Configuration({
+    apiKey: api_key,
+  });
+  const openai = new OpenAIApi(configuration);
+  
+  const completion = await openai.createChatCompletion({
+    model: "gpt-3.5-turbo",
+    messages: [
+          {"role": "system", "content": `You are a ${grade} grade science teacher.`},
+          {"role": "user", "content": `Create a detailed lab guide for students to follow. The lab should be over ${subject}, contain an expiriment with steps and a set of questions periodically through the lab. It should be a minimum of 2700 words`},
+      ],
+  });
+  return completion.data.choices[0].message;
+}
+
+module.exports = { fetchAi, fetchAiTest, fetchAiTeks, fetchAiLab };
