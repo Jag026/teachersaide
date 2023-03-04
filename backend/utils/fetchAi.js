@@ -61,7 +61,7 @@ const fetchAiLab = async(grade, subject) => {
     model: "gpt-3.5-turbo",
     messages: [
           {"role": "system", "content": `You are a ${grade} grade science teacher.`},
-          {"role": "user", "content": `Create a detailed lab guide for students to follow. The lab should be over ${subject}, contain an expiriment with steps and a set of questions periodically through the lab. It should be a minimum of 2700 words`},
+          {"role": "user", "content": `Create a detailed lab guide for students to follow. The lab should be over ${subject}, contain an expiriment with steps and a set of questions periodically through the lab. Include a chart for students to fill out. It should be a minimum of 2700 words`},
       ],
   });
   return completion.data.choices[0].message;
