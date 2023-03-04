@@ -1,7 +1,7 @@
 const { Configuration, OpenAIApi } = require("openai")
 const { api_key } = require('../config/index.js');
 
-//fetches lessplan from API endpoint
+//fetches lessplan from API endpoint//
 const fetchAi = async(grade, subject) => {
   const configuration = new Configuration({
     apiKey: api_key,
@@ -66,5 +66,6 @@ const fetchAiLab = async(grade, subject) => {
   });
   return completion.data.choices[0].message;
 }
+
 
 module.exports = { fetchAi, fetchAiTest, fetchAiTeks, fetchAiLab };
