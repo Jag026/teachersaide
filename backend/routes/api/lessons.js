@@ -1,5 +1,5 @@
 const express = require('express')
-const { fetchAi, fetchAiTeks, fetchAiLab } = require('../../utils/fetchAi');
+const { fetchAi, fetchAiTeks, fetchAiLab, fetchAiWorksheet } = require('../../utils/fetchAi');
 const { check } = require('express-validator');
 const { handleValidationErrors } = require('../../utils/validation');
 
@@ -38,7 +38,8 @@ router.post(
         const prompt = `Create a lesson plan for a ${grade} grade science class, the topic is: ${subject}, minimum 500 tokens`
         const userId = 1;
         Userprompt.addUserprompt({ prompt, userId})
-        let returnedPrompt = await fetchAi(grade, subject);
+        // let returnedPrompt = await fetchAi(grade, subject);
+        let returnedPrompt = await fetchAiWorksheet(grade, subject, 'acids and bases', 'read along', '[practice problems, unscramble words]');
         const lessonplan = await returnedPrompt['content']
         return res.json({
           lessonplan

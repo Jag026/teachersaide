@@ -67,5 +67,21 @@ const fetchAiLab = async(grade, subject) => {
   return completion.data.choices[0].message;
 }
 
+    //fetches lessplan from API endpoint
+    const fetchAiWorksheet = async(grade, subject, topic, worksheetType, parts) => {
+      const configuration = new Configuration({
+        apiKey: api_key,
+      });
+      const openai = new OpenAIApi(configuration);
+      
+      const completion = await openai.createChatCompletion({
+        model: "gpt-3.5-turbo",
+        messages: [
+              {"role": "system", "content": `You are a ${grade} grade ${subject} teacher.`},
+              {"role": "user", "content": `Create a ${worksheetType} worksheet that explains ${topic} and the worksheet has practice problems over US American revolution. The worksheet should also include: ${parts} `},
+          ],
+      });
+      return completion.data.choices[0].message;
+    }
 
-module.exports = { fetchAi, fetchAiTest, fetchAiTeks, fetchAiLab };
+module.exports = { fetchAi, fetchAiTest, fetchAiTeks, fetchAiLab, fetchAiWorksheet };
