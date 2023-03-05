@@ -77,8 +77,8 @@ const fetchAiLab = async(grade, subject) => {
       const completion = await openai.createChatCompletion({
         model: "gpt-3.5-turbo",
         messages: [
-              {"role": "system", "content": `You are a ${grade} grade ${subject} teacher.`},
-              {"role": "user", "content": `Create a ${worksheetType} worksheet that explains ${topic} and the worksheet has practice problems over US American revolution. The worksheet should also include: ${parts} `},
+              {"role": "system", "content": `You are a ${grade} grade teacher.`},
+              {"role": "user", "content": `Create a worksheet that explains ${subject}. The worksheet should be a minimum of 2700 words and also include: [practice problems, a word scrample]`},
           ],
       });
       return completion.data.choices[0].message;

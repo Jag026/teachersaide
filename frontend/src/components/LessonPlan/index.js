@@ -85,7 +85,7 @@ function LessonPlan(props) {
     
     plan =  await dispatch(await sessionActions.fetchLessonplan({ grade, subject }))
 
-    await setTextContent(<RichTextEditor text={plan.replace(/\n/g, '\n')} />)
+    await setTextContent(<RichTextEditor text={plan} />)
     await setLogoVisible(false);
     await setVisible(true)
     await setFormVisible(false)
