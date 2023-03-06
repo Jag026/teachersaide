@@ -223,11 +223,13 @@ export const restoreUser = () => async dispatch => {
         worksheetType, 
         selectedOptions
       }),
-      timeout: 1000, // 5 seconds timeout
     });
     const data = await response.json();
-    dispatch(setWorksheet(data.worksheet));
-    return data.worksheet;
+    console.log('Returned data from store:');
+    console.log(data['worksheetContent']);
+    console.log('--------------------------------')
+    dispatch(setWorksheet(data['worksheetContent']));
+    return data['worksheetContent'];
   };
 
   export const fetchLessonplanTeks = (lessonplan) => async (dispatch) => {

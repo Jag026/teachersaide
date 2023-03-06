@@ -38,9 +38,13 @@ router.post(
         const prompt = `Create a lesson plan for a ${grade} grade science class, the topic is: ${subject}, minimum 500 tokens`
         const userId = 1;
         Userprompt.addUserprompt({ prompt, userId})
-        let returnedLessonplan = await fetchAi(grade, subject);
-        let returnedWorksheet = await fetchAiWorksheet(grade, subject, 'acids and bases', 'read along', '[practice problems, unscramble words]');
-        const lessonplan = returnedLessonplan['content'] + '\n' + `\n` + returnedWorksheet['content'];
+        let lessonplan = await fetchAi(grade, subject);
+        lessonplan = lessonplan['content'];
+        //Code to update the lesson plan to add a worksheet
+        // let returnedLessonplan = await fetchAi(grade, subject);
+        // let returnedWorksheet = await fetchAiWorksheet(grade, subject, 'acids and bases', 'read along', '[practice problems, unscramble words]');
+        // const lessonplan = returnedLessonplan['content'] + '\n' + `\n` + returnedWorksheet['content'];
+
         return res.json({
           lessonplan
         });
