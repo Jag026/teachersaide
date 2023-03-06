@@ -78,10 +78,9 @@ const fetchAiLab = async(grade, subject) => {
         model: "gpt-3.5-turbo",
         messages: [
               {"role": "system", "content": `You are a ${grade} grade ${subject} teacher.`},
-              {"role": "system", "content": `You are also a great teacher who is extremely detailed and you make all created worksheets as long as possible.`},
-              {"role": "system", "content": `When creating a worksheet you should first go into great detail and teach: ${topic}`},
-              {"role": "system", "content": `The last part of the worksheet shoul include the ${selectedOptions}`},
-              {"role": "user", "content": `Create a detailed worksheet that explains ${topic}.`},
+              {"role": "system", "content": `Make all worksheets as close to 3000 words as you can. It's ok to go over that amount if you have tokens to spare.`},
+              {"role": "system", "content": `Only return what's on the worksheet, never any extra commentary from you and don't list a word count.`},
+              {"role": "user", "content": `Create a detailed ${worksheetType} worksheet that explains ${topic}. The 2nd part of the worksheet should contain ${selectedOptions} if they are specified`},
           ],
       });
       return completion.data.choices[0].message;
