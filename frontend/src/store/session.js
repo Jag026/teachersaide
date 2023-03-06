@@ -11,6 +11,8 @@ const SET_TEST= 'session/setTest';
 const REMOVE_TEST = 'session/setTest';
 const SET_BLOGPOST= 'session/setBlogpost';
 const REMOVE_BLOGPOST = 'session/setBlogpost';
+const SET_WORKSHEET = 'session/setTest';
+const REMOVE_WORKSHEET = 'session/setTest';
 
 const setUser = (user) => {
   return {
@@ -32,6 +34,14 @@ const setLessonplan = (lessonplan) => {
       payload: test,
     };
   };
+
+  const setWorksheet = (worksheet) => {
+    return {
+      type: SET_WORKSHEET,
+      payload: worksheet,
+    };
+  };
+
   const setBlogpost = (blogpost) => {
     return {
       type: SET_BLOGPOST,
@@ -54,6 +64,12 @@ const removeLessonplan = () => {
   const removeTest = () => {
     return {
       type: REMOVE_TEST
+    };
+  };
+
+  const removeWorksheet = () => {
+    return {
+      type: REMOVE_WORKSHEET
     };
   };
 
@@ -119,22 +135,30 @@ const sessionReducer = (state = initialState, action) => {
           newState = Object.assign({}, state);
           newState.test = null;
           return newState;
-          case SET_LESSONS:
-            newState = Object.assign({}, state);
-            newState.lessons = action.payload;
-            return newState;
-          case REMOVE_LESSONS:
-            newState = Object.assign({}, state);
-            newState.lessons = null;
-            return newState;
-            case SET_BLOGPOST:
-              newState = Object.assign({}, state);
-              newState.blogpost = action.payload;
-              return newState;
-            case REMOVE_BLOGPOST:
-              newState = Object.assign({}, state);
-              newState.blogpost = null;
-              return newState;
+        case SET_WORKSHEET:
+          newState = Object.assign({}, state);
+          newState.worksheet = action.payload;
+          return newState;
+        case REMOVE_WORKSHEET:
+          newState = Object.assign({}, state);
+          newState.worksheet = null;
+          return newState;
+        case SET_LESSONS:
+          newState = Object.assign({}, state);
+          newState.lessons = action.payload;
+          return newState;
+        case REMOVE_LESSONS:
+          newState = Object.assign({}, state);
+          newState.lessons = null;
+          return newState;
+        case SET_BLOGPOST:
+          newState = Object.assign({}, state);
+          newState.blogpost = action.payload;
+          return newState;
+        case REMOVE_BLOGPOST:
+          newState = Object.assign({}, state);
+          newState.blogpost = null;
+          return newState;
     default:
       return state;
   }
@@ -186,6 +210,24 @@ export const restoreUser = () => async dispatch => {
     const data = await response.json();
     dispatch(setLessonplan(data.lessonplan));
     return data.lessonplan;
+  };
+
+  export const fetchWorksheet = (worksheet) => async (dispatch) => {
+    const { grade, subject, topic, worksheetType, selectedOptions } = worksheet;;
+    const response = await csrfFetch("/api/lessons/get-worksheet", {
+      method: "POST",
+      body: JSON.stringify({
+        grade, 
+        subject, 
+        topic, 
+        worksheetType, 
+        selectedOptions
+      }),
+      timeout: 1000, // 5 seconds timeout
+    });
+    const data = await response.json();
+    dispatch(setWorksheet(data.worksheet));
+    return data.worksheet;
   };
 
   export const fetchLessonplanTeks = (lessonplan) => async (dispatch) => {

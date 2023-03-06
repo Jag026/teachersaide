@@ -53,6 +53,23 @@ router.post(
   );
 
   router.post(
+    '/get-worksheet',
+    async (req, res) => {
+      try {
+      const { grade, subject, topic, worksheetType, selectedOptions } = req.body;
+      const worksheet = await fetchAiWorksheet(grade, subject, topic, worksheetType, selectedOptions)
+      return res.json({
+         worksheet 
+    })
+      } catch (error) {
+      return res.status(500).json({
+        error: "Could not fetch worksheet. Please try again later."
+      });
+    }
+    }
+  );
+
+  router.post(
     '/get-lessonplan-tek', (req, res, next) => {
       req.setTimeout(90000); // 5 seconds for this route
       next();

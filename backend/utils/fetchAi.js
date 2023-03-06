@@ -68,7 +68,7 @@ const fetchAiLab = async(grade, subject) => {
 }
 
     //fetches lessplan from API endpoint
-    const fetchAiWorksheet = async(grade, subject, topic, worksheetType, parts) => {
+    const fetchAiWorksheet = async(grade, subject, topic, worksheetType, selectedOptions) => {
       const configuration = new Configuration({
         apiKey: api_key,
       });
@@ -77,8 +77,9 @@ const fetchAiLab = async(grade, subject) => {
       const completion = await openai.createChatCompletion({
         model: "gpt-3.5-turbo",
         messages: [
-              {"role": "system", "content": `You are a ${grade} grade teacher.`},
-              {"role": "user", "content": `Create a worksheet that explains ${subject}. The worksheet should be a minimum of 2700 words and also include: [practice problems, a word scrample]`},
+              {"role": "system", "content": `You are a ${grade} grade ${subject} teacher.`},
+              {"role": "system", "content": `You are also the best teacher in the world and are extremely detailed and you make all created content as long as possible.`},
+              {"role": "user", "content": `Create a ${worksheetType} worksheet that explains ${topic}. The worksheet should be a minimum of 3000 words and also include: ${selectedOptions}`},
           ],
       });
       return completion.data.choices[0].message;

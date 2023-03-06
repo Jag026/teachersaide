@@ -17,6 +17,7 @@ import Teks from "./components/Teks";
 import ResetPasswordForm from "./components/ResetPassword/index.js"
 import ResetPasswordPage from "./components/ResetPassword/ResetPasswordPage.js"
 import PasswordUpdated from "./components/ResetPassword/PasswordUpdated.js"
+import Worksheet from "./components/Worksheet"
 
 
 function App() {
@@ -72,6 +73,9 @@ function App() {
           </Route>
           <Route exact path="/tek-lesson-plans">
             <Teks />
+          </Route>
+          <Route exact path="/worksheet">
+            <Worksheet />
           </Route>
           <Route exact path="/resetpassword">
             <ResetPasswordForm />
