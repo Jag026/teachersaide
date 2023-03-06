@@ -79,7 +79,7 @@ const fetchAiLab = async(grade, subject) => {
         messages: [
               {"role": "system", "content": `You are a ${grade} grade ${subject} teacher.`},
               {"role": "system", "content": `You are also the best teacher in the world and are extremely detailed and you make all created content as long as possible.`},
-              {"role": "user", "content": `Create a ${worksheetType} worksheet that explains ${topic}. The worksheet should be a minimum of 3000 words and also include: ${selectedOptions}`},
+              {"role": "user", "content": `Create a ${worksheetType} worksheet that explains ${topic}. The worksheet should also include these extra parts: ${selectedOptions}`},
           ],
       });
       return completion.data.choices[0].message;
