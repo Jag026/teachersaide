@@ -78,11 +78,10 @@ const fetchAiLab = async(grade, subject) => {
         model: "gpt-3.5-turbo",
         messages: [
               {"role": "system", "content": `You are a ${grade} grade ${subject} teacher.`},
-              {"role": "system", "content": `You are also the best teacher in the world and are extremely detailed and you make all created content as long as possible.`},
+              {"role": "system", "content": `You are also a great teacher who is extremely detailed and you make all created worksheets as long as possible.`},
               {"role": "system", "content": `When creating a worksheet you should first go into great detail and teach: ${topic}`},
               {"role": "system", "content": `The last part of the worksheet shoul include the ${selectedOptions}`},
-
-              {"role": "user", "content": `Create a detailed worksheet that explains ${topic} through ${worksheetType}.`},
+              {"role": "user", "content": `Create a detailed worksheet that explains ${topic}.`},
           ],
       });
       return completion.data.choices[0].message;
