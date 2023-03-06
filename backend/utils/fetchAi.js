@@ -79,7 +79,10 @@ const fetchAiLab = async(grade, subject) => {
         messages: [
               {"role": "system", "content": `You are a ${grade} grade ${subject} teacher.`},
               {"role": "system", "content": `You are also the best teacher in the world and are extremely detailed and you make all created content as long as possible.`},
-              {"role": "user", "content": `Create a detailed worksheet that explains ${topic} through ${worksheetType}. If present, add these parts to the worksheet: ${selectedOptions}`},
+              {"role": "system", "content": `When creating a worksheet you should first go into great detail and teach: ${topic}`},
+              {"role": "system", "content": `The last part of the worksheet shoul include the ${selectedOptions}`},
+
+              {"role": "user", "content": `Create a detailed worksheet that explains ${topic} through ${worksheetType}.`},
           ],
       });
       return completion.data.choices[0].message;
