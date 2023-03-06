@@ -57,9 +57,11 @@ router.post(
     async (req, res) => {
       try {
       const { grade, subject, topic, worksheetType, selectedOptions } = req.body;
-      const worksheet = await fetchAiWorksheet(grade, subject, topic, worksheetType, selectedOptions)
+      let worksheet = await fetchAiWorksheet(grade, subject, topic, worksheetType, selectedOptions)
+      const worksheetContent = await worksheet['content']
+      console.log(worksheetContent);
       return res.json({
-         worksheet 
+         worksheetContent
     })
       } catch (error) {
       return res.status(500).json({

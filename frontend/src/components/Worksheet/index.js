@@ -64,6 +64,7 @@ function Worksheet(props) {
     await setTextContent("Loading...");
     await setLogoVisible(true);
     incrementUsageCount();
+    setSelectedOptions(JSON.stringify(selectedOptions))
     let plan = "";
 
     //update text while plan is loading
@@ -99,6 +100,7 @@ function Worksheet(props) {
     }, 48000)
 
     plan =  await dispatch(await sessionActions.fetchWorksheet({ grade, subject, topic, worksheetType, selectedOptions }))
+    console.log(plan)
     await setTextContent(<RichTextEditor text={plan} />)
     await setLogoVisible(false);
     await setVisible(true)
@@ -255,7 +257,7 @@ function Worksheet(props) {
             <br />
           </label>
           </div>
-          <button className="group relative flex w-full justify-center rounded-md border border-transparent bg-slate-600 py-2 px-4 text-sm font-medium text-white hover:bg-slate-700 focus:outline-none focus:ring-2 focus:ring-slate-500 focus:ring-offset-2" type="submit">Create Test</button>
+          <button className="group relative flex w-full justify-center rounded-md border border-transparent bg-slate-600 py-2 px-4 text-sm font-medium text-white hover:bg-slate-700 focus:outline-none focus:ring-2 focus:ring-slate-500 focus:ring-offset-2" type="submit">Create Worksheet</button>
         </form>}
         <div className="w-full sm:w-4/5 sm:max-w-2xl mt-6 flex flex-col items-center sm:w-3/5">
         {visible && 
