@@ -25,7 +25,6 @@ function Worksheet(props) {
   const [saveSuccessMessage, setSaveSuccessMessage] = useState("");
   const [cookies, setCookie] = useCookies(['usageCount']);
   const [usageCount, setUsageCount] = useState(cookies.usageCount || 0);
-  const [showExamples, setShowExample] = useState(true);
   const [selectedOptions, setSelectedOptions] = useState([]);
 
   const user = sessionUser;
@@ -60,9 +59,9 @@ function Worksheet(props) {
   const handleSubmit = async(e) => {
     e.preventDefault();
     setErrors([]);
-    setShowExample(false)
     await setTextContent("Loading...");
     await setLogoVisible(true);
+    setFormVisible(false)
     incrementUsageCount();
     setSelectedOptions(JSON.stringify(selectedOptions))
     let plan = "";
@@ -77,17 +76,17 @@ function Worksheet(props) {
       if (plan === "") {
         setTextContent("Drafting questions...");
         }
-    }, 8000)
+    }, 9000)
     setTimeout(() => {
       if (plan === "") {
         setTextContent("Writing answer choices...");
         }
-    }, 12000)
+    }, 16000)
     setTimeout(() => {
       if (plan === "") {
         setTextContent("Formatting test...");
         }
-    }, 16000)
+    }, 24000)
     setTimeout(() => {
       if (plan === "") {
         setTextContent("Almost finished...");
@@ -100,7 +99,6 @@ function Worksheet(props) {
     }, 48000)
 
     plan =  await dispatch(await sessionActions.fetchWorksheet({ grade, subject, topic, worksheetType, selectedOptions }))
-    console.log(plan)
     await setTextContent(<RichTextEditor text={plan} />)
     await setLogoVisible(false);
     await setVisible(true)
@@ -137,7 +135,7 @@ function Worksheet(props) {
       <div className="flex flex-col justify-center items-center mt-10 sm:mt-20">
       <img src={require("./apple.png")}  alt="apple image" className="w-25 h-[80px]" />
       <h2 className="mt-6 text-center text-4xl font-bold tracking-tight text-gray-900">Teacher's AIde</h2>
-      <p className="mt-2 text-center text-gray-600">A powerful AI assistant that can generate lessons plans for any subject.</p>
+      <p className="mt-2 px-4 text-center text-gray-600">Generate a worksheet in under 60 seconds. Any subject, any topic. </p>
       
         {formVisible && <form onSubmit={handleSubmit} className="flex flex-col items-center mt-8">
           <ul>
@@ -174,7 +172,7 @@ function Worksheet(props) {
               value={subject}
               onChange={(e) => setSubject(e.target.value)}
               required
-              className="h-10=4 border border-grey-100 px-6 pt-1 w-full mb-4"
+              className="h-10 border border-grey-100 px-6 pt-1 w-full mb-4"
             >
                 <option value="reading">Reading</option>
                 <option value="math">Math</option>
@@ -191,7 +189,7 @@ function Worksheet(props) {
               value={topic}
               onChange={(e) => setTopic(e.target.value)}
               required
-              className="h-10 border border-grey-100 px-4 w-full mb-4"
+              className="h-14 border border-grey-100 px-4 w-full mb-4"
               placeholder="Science, forms of energy and properties of matter"
             />
           </label>
@@ -257,41 +255,24 @@ function Worksheet(props) {
             <br />
           </label>
           </div>
-          <button className="group relative flex w-full justify-center rounded-md border border-transparent bg-slate-600 py-2 px-4 text-sm font-medium text-white hover:bg-slate-700 focus:outline-none focus:ring-2 focus:ring-slate-500 focus:ring-offset-2" type="submit">Create Worksheet</button>
+          <button className="mt-4 group relative flex w-full justify-center rounded-md border border-transparent bg-slate-600 py-2 px-4 text-sm font-medium text-white hover:bg-slate-700 focus:outline-none focus:ring-2 focus:ring-slate-500 focus:ring-offset-2" type="submit">Create Worksheet</button>
         </form>}
-        <div className="w-full sm:w-4/5 sm:max-w-2xl mt-6 flex flex-col items-center sm:w-3/5">
+        <div className="w-full sm:max-w-2xl mt-6 flex flex-col items-center">
         {visible && 
             <div>
               <button className="m-6 w-28 h-10 bg-slate-300 border text-l hover:bg-slate-500" onClick={resetForm} type="submit">Reset</button>
               <button className="m-6 w-28 h-10 bg-slate-300 border text-l" onClick={saveTest} type="submit">Save Test</button>
               <p className="mx-6 mb-10 text-s">{saveSuccessMessage}</p>
             </div>}          
-          {textContent}
           {logoVisible && <div class="container">
 		        <span class="gear-logo">
 		        	<img src={require("./apple.png")}  alt="apple image" />
 		        </span>
           </div>}
-          {showExamples && <div className="mt-16 w-full">
-            <p className="text-center text-2xl font-bold tracking-tight text-gray-900">Examples:</p>
-            <textarea
-              type="text"
-              className="h-12 border border-grey-100 px-4 w-full mb-4"
-              value="11th -- Declaration of Independence and the U.S. Constitution -- Number of questions: 10"
-            />
-            <textarea
-              type="text"
-              className="h-12 border border-grey-100 px-4 w-full mb-4"
-              value="9th Models and diagrams to explain the Pythagorean theorem -- Number of questions: 12"
-            />
-            <textarea
-              type="text"
-              className="h-12 border border-grey-100 px-4 w-full mb-4"
-              value="5th -- Measurement units within the customary and metric systems -- Number of questions: 6"
-            />
-      
-          </div>}
         </div>
+    </div>
+    <div className="w-full sm:w-[860px] flex flex-col items-center">
+      {textContent}
     </div>
    </div>
   );

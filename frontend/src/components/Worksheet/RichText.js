@@ -33,7 +33,7 @@ function RichTextEditor(props) {
   }, [props.text]);
 
   return (
-    <div>
+    <div className='w-1200'>
       <div ref={editorRef} />
       {content && <PrintButton content={content} />}
     </div>
