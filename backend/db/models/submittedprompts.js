@@ -1,23 +1,24 @@
 'use strict';
-const bcrypt = require('bcryptjs');
 const { Model, Validator } = require('sequelize');
 
 module.exports = (sequelize, DataTypes) => {
   class SubmittedPrompts extends Model {
     toSafeObject() {
-      const { id, email, token } = this; // context will be the User instance
-      return { id, email, token };
+      const { id, prompt, response, userId, promptToken } = this; // context will be the SubmittedPrompt instance
+      return { id, prompt, response, userId, promptToken };
     }
 
-  static async addSubmittedPrompt({ prompt, response, userId, token }) {
+    static getCurrentUserById(id) {
+      return SubmittedPrompts.scope("currentSubmittedPrompts").findByPk(id);
+    }
 
+
+    static async add({ prompt, response, userId, promptToken }) {
+      console.log(`${prompt}, ${response}, ${userId}, ${promptToken}`);
       const submittedPrompt = await SubmittedPrompts.create({
-        prompt, 
-        response, 
-        userId, 
-        promptToken
+        prompt, response, userId, promptToken
       });
-      return await submittedPrompt.scope('currentSubmittedPrompt').findByPk(submittedPrompt.id);
+      return await SubmittedPrompts.scope('currentSubmittedPrompts').findByPk(submittedPrompt.id);
     }
     
     static associate(models) {
@@ -25,47 +26,40 @@ module.exports = (sequelize, DataTypes) => {
     }
   };
   
-  PasswordReset.init(
+  SubmittedPrompts.init(
     {
-    id: {
-      type: DataTypes.INTEGER,
-      primaryKey: true,
-      autoIncrement: true,
-    },
-    prompt: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
-    response: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
-    userId: {
-      type: DataTypes.INTEGER,
-      allowNull: true,
-    },
-    promptToken: {
-      type: DataTypes.STRING,
-      allowNull: false,
-      unique: true,
-    },
-    createdAt: {
-      type: DataTypes.DATE,
-      allowNull: false,
-    },
-  },
-  {
-    sequelize,
-    modelName: "SubmittedPrompts",
-    defaultScope: {
-      attributes: {
-      }
-    },
-    scopes: {
-      currentSubmittedPrompt: {
+      prompt: {
+        type: DataTypes.STRING,
+        allowNull: false,
       },
+      response: {
+        type: DataTypes.STRING,
+        allowNull: false,
+      },
+      userId: {
+        type: DataTypes.INTEGER,
+        allowNull: true,
+      },
+      promptToken: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        unique: true,
+      },
+    },
+    {
+      sequelize,
+      modelName: "SubmittedPrompts",
+      defaultScope: {
+        attributes: {
+          exclude: ["createdAt", "updatedAt"]
+        }
+      },
+      scopes: {
+        currentSubmittedPrompts: {
+          attributes: {}
+        },
+      }
     }
-  }
- );
+  );
   return SubmittedPrompts;
 };

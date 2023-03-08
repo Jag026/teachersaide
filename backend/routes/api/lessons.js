@@ -2,10 +2,15 @@ const express = require('express')
 const { fetchAi, fetchAiTeks, fetchAiLab, fetchAiWorksheet } = require('../../utils/fetchAi');
 const { check } = require('express-validator');
 const { handleValidationErrors } = require('../../utils/validation');
-
+const jwt = require('jsonwebtoken');
 const { setTokenCookie, requireAuth } = require('../../utils/auth');
 const { Lessonplan } = require('../../db/models');
 const { Userprompt } = require('../../db/models');
+const { SubmittedPrompts } = require('../../db/models');
+
+const { jwtConfig } = require('../../config');
+
+const { secret, expiresIn } = jwtConfig;
 
 const router = express.Router();
 
@@ -72,6 +77,72 @@ router.post(
         error: "Could not fetch worksheet. Please try again later."
       });
     }
+    }
+  );
+
+
+
+  router.post(
+    '/get-db-worksheet', 
+    (req, res, next) => {
+      req.setTimeout(90000); // 5 seconds for this route
+      next();
+    },
+    async (req, res) => {
+      try {
+
+        const userId = 1;
+
+        const { grade, subject, topic, worksheetType, selectedOptions } = req.body;
+        const prompt = await `This is the prompt: ${grade}, ${subject}, ${topic}, ${worksheetType}, ${selectedOptions}`;
+        console.log(`Prompt: ${prompt}`);
+
+        // Generate JWT token and store in cookie
+        const promptToken = jwt.sign({ prompt }, secret);
+        res.cookie('promptToken', promptToken, { httpOnly: true });
+        console.log(`Prompt: ${prompt}`);
+        console.log(`Prompt Token: ${promptToken}`);
+
+        // Store lesson plan in database
+        let worksheet = await fetchAiWorksheet(grade, subject, topic, worksheetType, selectedOptions)
+        const worksheetContent = await worksheet['content']
+        const response = await worksheetContent;
+        const submittedPrompt = await SubmittedPrompts.add({ prompt, response, userId, promptToken });
+
+        console.log(submittedPrompt)
+        // Set cookie with lesson plan ID
+        res.cookie('submittedPromptId', submittedPrompt.id.toString(), { httpOnly: true });
+  
+        // Return success message
+        return res.status(200).json({ message: 'Prompt generated successfully.' });
+      } catch (error) {
+        return res.status(500).json({
+          error: "Could not fetch prompt. Please try again later."
+        });
+      }
+    }
+  );
+  
+  router.get(
+    '/get-lessonplan',
+    async (req, res) => {
+      try {
+        // Retrieve lesson plan ID from cookie
+        const lessonPlanId = req.cookies.lessonPlanId;
+  
+        // Retrieve lesson plan from database
+        const lessonPlan = await LessonPlan.findById(lessonPlanId);
+        if (!lessonPlan) {
+          return res.status(404).json({ error: 'Lesson plan not found.' });
+        }
+  
+        // Return lesson plan content
+        return res.json({ lessonPlan: lessonPlan.content });
+      } catch (error) {
+        return res.status(500).json({
+          error: "Could not retrieve lesson plan. Please try again later."
+        });
+      }
     }
   );
 
