@@ -8,7 +8,7 @@ module.exports = (sequelize, DataTypes) => {
       return { id, prompt, response, userId, promptToken };
     }
 
-    static getCurrentUserById(id) {
+    static getCurrentSubmittedPromptsById(id) {
       return SubmittedPrompts.scope("currentSubmittedPrompts").findByPk(id);
     }
 

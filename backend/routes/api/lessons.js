@@ -124,20 +124,22 @@ router.post(
   );
   
   router.get(
-    '/get-lessonplan',
+    '/get-submittedPromptId',
     async (req, res) => {
       try {
         // Retrieve lesson plan ID from cookie
-        const lessonPlanId = req.cookies.lessonPlanId;
-  
+        const submittedPromptId = req.cookies.submittedPromptId;
+
         // Retrieve lesson plan from database
-        const lessonPlan = await LessonPlan.findById(lessonPlanId);
-        if (!lessonPlan) {
-          return res.status(404).json({ error: 'Lesson plan not found.' });
+        const submittedPrompt = await SubmittedPrompts.getCurrentSubmittedPromptsById(submittedPromptId);
+
+        if (!submittedPrompt) {
+          return res.status(404).json({ error: 'Requested document could not be found.' });
         }
-  
+        
         // Return lesson plan content
-        return res.json({ lessonPlan: lessonPlan.content });
+        const response = await submittedPrompt.response
+        return res.json({ response });
       } catch (error) {
         return res.status(500).json({
           error: "Could not retrieve lesson plan. Please try again later."
