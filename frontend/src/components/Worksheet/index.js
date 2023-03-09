@@ -96,7 +96,7 @@ function Worksheet(props) {
       if (plan === "") {
         plan =  await dispatch(await sessionActions.fetchWorksheet())
         await setTextContent(<RichTextEditor text={plan} />)
-        await setTextContent("Sorry, unable to draft plan, we're currently experiencing high volume. Please try again soon.");
+        //await setTextContent("Sorry, unable to draft plan, we're currently experiencing high volume. Please try again soon.");
         }
     }, 48000)
 
