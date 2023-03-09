@@ -77,7 +77,7 @@ const fetchAiLab = async(grade, subject) => {
       const completion = await openai.createChatCompletion({
         model: "gpt-3.5-turbo",
         messages: [
-              {"role": "system", "content": `You are a ${grade} grade ${subject} teacher. Make all worksheets as close to 300 words as you can. It's ok to go over that amount if you have tokens to spare. Only return what's on the worksheet, never any extra commentary from you and don't list a word count.`},
+              {"role": "system", "content": `You are a ${grade} grade ${subject} teacher. Make all worksheets as close to 3000 words as you can. It's ok to go over that amount if you have tokens to spare. Only return what's on the worksheet, never any extra commentary from you and don't list a word count.`},
               {"role": "user", "content": `Create a detailed ${worksheetType} worksheet that explains ${topic}. The 2nd part of the worksheet should contain ${selectedOptions} if they are specified`},
           ],
       });
