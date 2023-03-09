@@ -96,21 +96,19 @@ router.post(
         const { grade, subject, topic, worksheetType, selectedOptions } = req.body;
         const prompt = await `This is the prompt: ${grade}, ${subject}, ${topic}, ${worksheetType}, ${selectedOptions}`;
 
+
         // Generate JWT token and store in cookie
         const promptToken = jwt.sign({ prompt }, secret);
         res.cookie('promptToken', promptToken, { httpOnly: true });
 
         // Store lesson plan in database
-        let response = 'hello there'
-
-        // let worksheet = await fetchAiWorksheet(grade, subject, topic, worksheetType, selectedOptions)
-        // const worksheetContent = await worksheet['content']
-        //const response = await JSON.stringify(worksheetContent);
+        let worksheet = await fetchAiWorksheet(grade, subject, topic, worksheetType, selectedOptions)
+        console.log('____________________________')
+        console.log(worksheet);
+        console.log('____________________________')
+        const worksheetContent = await worksheet['content']
+        const response = await worksheet;
         const submittedPrompt = await SubmittedPrompts.add({ prompt, response, userId, promptToken });
-
-        console.log('____________________________')
-        console.log(response);
-        console.log('____________________________')
 
         // Set cookie with lesson plan ID
         res.cookie('submittedPromptId', submittedPrompt.id.toString(), { httpOnly: true });
