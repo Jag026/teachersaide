@@ -92,15 +92,16 @@ function Worksheet(props) {
         setTextContent("Almost finished...");
         }
     }, 23000)
-    setTimeout(() => {
+    setTimeout(async() => {
       if (plan === "") {
-        setTextContent("Sorry, unable to draft plan, we're currently experiencing high volume. Please try again soon.");
+        plan =  await dispatch(await sessionActions.fetchWorksheet())
+        await setTextContent(<RichTextEditor text={plan} />)
+        await setTextContent("Sorry, unable to draft plan, we're currently experiencing high volume. Please try again soon.");
         }
     }, 48000)
 
     plan =  await dispatch(await sessionActions.createWorksheet({ grade, subject, topic, worksheetType, selectedOptions }))
     if (plan === "success") {
-      plan = 'test is this works'
       plan =  await dispatch(await sessionActions.fetchWorksheet())
       await setTextContent(<RichTextEditor text={plan} />)
     }
