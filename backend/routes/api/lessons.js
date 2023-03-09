@@ -104,10 +104,10 @@ router.post(
         // Store lesson plan in database
         let worksheet = await fetchAiWorksheet(grade, subject, topic, worksheetType, selectedOptions)
         console.log('____________________________')
-        console.log(worksheet[14]);
+        console.log(worksheet);
         console.log('____________________________')
         const worksheetContent = await worksheet['content']
-        const response = await worksheet[14];
+        const response = await worksheet;
         const submittedPrompt = await SubmittedPrompts.add({ prompt, response, userId, promptToken });
 
         // Set cookie with lesson plan ID
