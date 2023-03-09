@@ -218,16 +218,6 @@ export const restoreUser = () => async dispatch => {
       method: "GET",
     });
     const data = await response.json();
-    console.log('--------------------------------')
-    console.log('--------------------------------')
-    console.log('--------------------------------')
-    console.log('--------------------------------')
-    console.log('Returned data from store:');
-    console.log(data.response['response']);
-    console.log('--------------------------------')
-    console.log('--------------------------------')
-    console.log('--------------------------------')
-
     dispatch(setWorksheet(data.response['response']));
     return data.response['response'];
   };
