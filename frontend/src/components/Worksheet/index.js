@@ -76,27 +76,29 @@ function Worksheet(props) {
       if (plan === "") {
         setTextContent("Drafting questions...");
         }
-    }, 9000)
+    }, 14000)
     setTimeout(() => {
       if (plan === "") {
         setTextContent("Writing answer choices...");
         }
-    }, 16000)
+    }, 20000)
     setTimeout(() => {
       if (plan === "") {
         setTextContent("Formatting worksheet...");
         }
-    }, 24000)
+    }, 30000)
     setTimeout(() => {
       if (plan === "") {
         setTextContent("Almost finished...");
         }
-    }, 23000)
+    }, 34000)
     setTimeout(async() => {
       if (plan === "") {
         plan =  await dispatch(await sessionActions.fetchWorksheet())
         await setTextContent(<RichTextEditor text={plan} />)
-        //await setTextContent("Sorry, unable to draft plan, we're currently experiencing high volume. Please try again soon.");
+        if (plan === "") {
+           setTextContent("Sorry, unable to draft worksheet, we're currently experiencing high volume. Please refresh and try again.");
+        }
         }
     }, 48000)
 
@@ -266,7 +268,7 @@ function Worksheet(props) {
         {visible && 
             <div>
               <button className="m-6 w-28 h-10 bg-slate-300 border text-l hover:bg-slate-500" onClick={resetForm} type="submit">Reset</button>
-              <button className="m-6 w-28 h-10 bg-slate-300 border text-l" onClick={saveTest} type="submit">Save Test</button>
+              <button className="m-6 w-28 h-10 bg-slate-300 border text-l" onClick={saveTest} type="submit">Save</button>
               <p className="mx-6 mb-10 text-s">{saveSuccessMessage}</p>
             </div>}          
           {logoVisible && <div class="container">
