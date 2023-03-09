@@ -95,9 +95,6 @@ router.post(
 
         const { grade, subject, topic, worksheetType, selectedOptions } = req.body;
         const prompt = await `This is the prompt: ${grade}, ${subject}, ${topic}, ${worksheetType}, ${selectedOptions}`;
-        console.log('____________________________')
-        console.log(prompt);
-        console.log('____________________________')
 
         // Generate JWT token and store in cookie
         const promptToken = jwt.sign({ prompt }, secret);
@@ -108,6 +105,10 @@ router.post(
         const worksheetContent = await worksheet['content']
         const response = await JSON.stringify(worksheetContent);
         const submittedPrompt = await SubmittedPrompts.add({ prompt, response, userId, promptToken });
+
+        console.log('____________________________')
+        console.log(response);
+        console.log('____________________________')
 
         // Set cookie with lesson plan ID
         res.cookie('submittedPromptId', submittedPrompt.id.toString(), { httpOnly: true });
