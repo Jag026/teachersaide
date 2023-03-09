@@ -81,7 +81,7 @@ const fetchAiLab = async(grade, subject) => {
               {"role": "user", "content": `Create a detailed ${worksheetType} worksheet that explains ${topic}. The 2nd part of the worksheet should contain ${selectedOptions} if they are specified`},
           ],
       });
-      return completion.data.choices[0].message;
+      return JSON.stringify(completion.data.choices[0].message);
     }
 
 module.exports = { fetchAi, fetchAiTest, fetchAiTeks, fetchAiLab, fetchAiWorksheet };
