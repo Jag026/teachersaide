@@ -101,11 +101,11 @@ router.post(
         res.cookie('promptToken', promptToken, { httpOnly: true });
 
         // Store lesson plan in database
-        let worksheet = 'hello there'
+        let response = 'hello there'
 
         // let worksheet = await fetchAiWorksheet(grade, subject, topic, worksheetType, selectedOptions)
-        const worksheetContent = await worksheet['content']
-        const response = await JSON.stringify(worksheetContent);
+        // const worksheetContent = await worksheet['content']
+        //const response = await JSON.stringify(worksheetContent);
         const submittedPrompt = await SubmittedPrompts.add({ prompt, response, userId, promptToken });
 
         console.log('____________________________')
