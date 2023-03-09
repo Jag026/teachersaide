@@ -212,25 +212,47 @@ export const restoreUser = () => async dispatch => {
     return data.lessonplan;
   };
 
+  
   export const fetchWorksheet = (worksheet) => async (dispatch) => {
-    const { grade, subject, topic, worksheetType, selectedOptions } = worksheet;;
-    const response = await csrfFetch("/api/lessons/get-worksheet", {
-      method: "POST",
-      body: JSON.stringify({
-        grade, 
-        subject, 
-        topic, 
-        worksheetType, 
-        selectedOptions
-      }),
+    const response = await csrfFetch("/api/lessons/get-submittedPromptId", {
+      method: "GET",
     });
     const data = await response.json();
-    console.log('Returned data from store:');
-    console.log(data['worksheetContent']);
     console.log('--------------------------------')
-    dispatch(setWorksheet(data['worksheetContent']));
-    return data['worksheetContent'];
+    console.log('--------------------------------')
+    console.log('--------------------------------')
+    console.log('--------------------------------')
+    console.log('Returned data from store:');
+    console.log(data.response['response']);
+    console.log('--------------------------------')
+    console.log('--------------------------------')
+    console.log('--------------------------------')
+
+    dispatch(setWorksheet(data.response['response']));
+    return data.response['response'];
   };
+
+
+export const createWorksheet = (worksheet) => async (dispatch) => {
+  const { grade, subject, topic, worksheetType, selectedOptions } = worksheet;;
+  const response = await csrfFetch('/api/lessons/get-db-worksheet', {
+    method: "POST",
+    body: JSON.stringify({
+      grade,
+      subject,
+      topic,
+      worksheetType,
+      selectedOptions,
+    }),
+  });
+  if (response.status === 200) {
+    // Wait for lesson plan to be generated and stored in database
+    return 'success'
+  } else {
+    return 'failed'
+  }
+};
+
 
   export const fetchLessonplanTeks = (lessonplan) => async (dispatch) => {
     removeLessonplan();
@@ -248,6 +270,7 @@ export const restoreUser = () => async dispatch => {
     dispatch(setLessonplan(data.lessonplan));
     return data.lessonplan;
   };
+
 
   export const fetchTest = (test) => async (dispatch) => {
     const { grade, subject, numberOfQuestions } = test;

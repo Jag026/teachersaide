@@ -84,7 +84,7 @@ function Worksheet(props) {
     }, 16000)
     setTimeout(() => {
       if (plan === "") {
-        setTextContent("Formatting test...");
+        setTextContent("Formatting worksheet...");
         }
     }, 24000)
     setTimeout(() => {
@@ -98,8 +98,12 @@ function Worksheet(props) {
         }
     }, 48000)
 
-    plan =  await dispatch(await sessionActions.fetchWorksheet({ grade, subject, topic, worksheetType, selectedOptions }))
-    await setTextContent(<RichTextEditor text={plan} />)
+    plan =  await dispatch(await sessionActions.createWorksheet({ grade, subject, topic, worksheetType, selectedOptions }))
+    if (plan === "success") {
+      plan = 'test is this works'
+      plan =  await dispatch(await sessionActions.fetchWorksheet())
+      await setTextContent(<RichTextEditor text={plan} />)
+    }
     await setLogoVisible(false);
     await setVisible(true)
     await setFormVisible(false)

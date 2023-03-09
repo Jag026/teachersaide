@@ -95,13 +95,10 @@ router.post(
 
         const { grade, subject, topic, worksheetType, selectedOptions } = req.body;
         const prompt = await `This is the prompt: ${grade}, ${subject}, ${topic}, ${worksheetType}, ${selectedOptions}`;
-        console.log(`Prompt: ${prompt}`);
 
         // Generate JWT token and store in cookie
         const promptToken = jwt.sign({ prompt }, secret);
         res.cookie('promptToken', promptToken, { httpOnly: true });
-        console.log(`Prompt: ${prompt}`);
-        console.log(`Prompt Token: ${promptToken}`);
 
         // Store lesson plan in database
         let worksheet = await fetchAiWorksheet(grade, subject, topic, worksheetType, selectedOptions)
@@ -109,7 +106,6 @@ router.post(
         const response = await worksheetContent;
         const submittedPrompt = await SubmittedPrompts.add({ prompt, response, userId, promptToken });
 
-        console.log(submittedPrompt)
         // Set cookie with lesson plan ID
         res.cookie('submittedPromptId', submittedPrompt.id.toString(), { httpOnly: true });
   
@@ -132,13 +128,13 @@ router.post(
 
         // Retrieve lesson plan from database
         const submittedPrompt = await SubmittedPrompts.getCurrentSubmittedPromptsById(submittedPromptId);
-
         if (!submittedPrompt) {
           return res.status(404).json({ error: 'Requested document could not be found.' });
         }
         
         // Return lesson plan content
-        const response = await submittedPrompt.response
+        const response = await submittedPrompt
+        console.log(response)
         return res.json({ response });
       } catch (error) {
         return res.status(500).json({

@@ -14,7 +14,6 @@ module.exports = (sequelize, DataTypes) => {
 
 
     static async add({ prompt, response, userId, promptToken }) {
-      console.log(`${prompt}, ${response}, ${userId}, ${promptToken}`);
       const submittedPrompt = await SubmittedPrompts.create({
         prompt, response, userId, promptToken
       });
