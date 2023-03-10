@@ -41,7 +41,7 @@ function Navigation({ isLoaded }) {
     return <Redirect to="profile" />
   };
 
-  
+
   let sessionLinks;
 
   if (sessionUser) {
@@ -69,7 +69,7 @@ function Navigation({ isLoaded }) {
     sessionLinks = (
       <div className='flex justify-between pt-4 p-3 h-14 bg-red-500'>
         <div className='flex sm:ml-16 justify-start'>
-          <button onClick={toggleDropdown} className="text-white">
+          <button onClick={toggleDropdown} className="text-black">
             <i className="fa-solid fa-bars" style={{fontSize: '24px'}}></i>
           </button>
           {isOpen && (
