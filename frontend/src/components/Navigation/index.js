@@ -41,6 +41,7 @@ function Navigation({ isLoaded }) {
     return <Redirect to="profile" />
   };
 
+  
   let sessionLinks;
 
   if (sessionUser) {
