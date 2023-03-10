@@ -46,7 +46,7 @@ function Navigation({ isLoaded }) {
   if (sessionUser) {
     sessionLinks = (
       <div className='flex justify-between pt-4 p-3 h-14 bg-red-500 shadow-lg'>
-        <div className='flex sm:ml-16 justify-start items-center' ref={dropdownRef}>
+        <div className='flex sm:ml-12 justify-start items-center text-center text-3xl tracking-tight text-gray-900' ref={dropdownRef}>
           <button onClick={toggleDropdown} className="text-black">
             <i class="fa-solid fa-bars text-3xl"></i>          
           </button>
