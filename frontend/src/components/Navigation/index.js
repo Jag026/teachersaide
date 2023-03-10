@@ -68,16 +68,16 @@ function Navigation({ isLoaded }) {
   } else {
     sessionLinks = (
       <div className='flex justify-between pt-4 p-3 h-14 bg-red-500'>
-        <div className='flex sm:ml-16 justify-start'>
+        <div className='flex sm:ml-12 justify-start items-center text-center text-3xl tracking-tight text-gray-900' ref={dropdownRef}>
           <button onClick={toggleDropdown} className="text-black">
-            <i className="fa-solid fa-bars" style={{fontSize: '24px'}}></i>
+            <i className="fa-solid fa-bars text-3xl"></i>
           </button>
           {isOpen && (
-            <ul className="absolute z-50 top-16 right-16 bg-white py-2 rounded shadow-md">
-              <NavLink exact to="/test" className="block px-4 py-2 hover:bg-red-400" onClick={toggleDropdownClose}>Test/Quizzes</NavLink>
+            <div className="absolute z-50 top-16 w-[200px] text-xl sm:left-16 bg-white py-2 rounded shadow-md">
+            <NavLink exact to="/test" className="block px-4 py-2 hover:bg-red-400" onClick={toggleDropdownClose}>Test/Quizzes</NavLink>
               <NavLink exact to="/" className="block px-4 py-2 hover:bg-red-400" onClick={toggleDropdownClose}>Lesson Plans</NavLink>
               <NavLink exact to="/worksheet" className="block px-4 py-2 hover:bg-red-400" onClick={toggleDropdownClose}>Worksheets</NavLink>
-            </ul>
+            </div>
           )}
         </div>
         <div className='flex mr-6 justify-end'>
