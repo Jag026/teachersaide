@@ -20,7 +20,6 @@ function Navigation({ isLoaded }) {
     };
   }, [dropdownRef]);
 
-
   const logout = (e) => {
     e.preventDefault();
     dispatch(sessionActions.logout());
