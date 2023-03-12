@@ -197,9 +197,9 @@ export const restoreUser = () => async dispatch => {
     return response;
   };
 
-  export const fetchLessonplan = (lessonplan) => async (dispatch) => {
+  export const createLessonplan = (lessonplan) => async (dispatch) => {
     const { grade, subject } = lessonplan;
-    const response = await csrfFetch("/api/lessons/get-lessonplan", {
+    const response = await csrfFetch("/api/lessons/get-db-lessonplan", {
       method: "POST",
       body: JSON.stringify({
         grade, 
@@ -207,12 +207,24 @@ export const restoreUser = () => async dispatch => {
       }),
       timeout: 1000, // 5 seconds timeout
     });
-    const data = await response.json();
-    dispatch(setLessonplan(data.lessonplan));
-    return data.lessonplan;
+    if (response.status === 200) {
+      // Wait for lesson plan to be generated and stored in database
+      return 'success'
+    } else {
+      return 'failed'
+    }
   };
 
+  export const fetchLessonPlan = (worksheet) => async (dispatch) => {
+    const response = await csrfFetch("/api/lessons/get-submittedPromptId", {
+      method: "GET",
+    });
+    const data = await response.json();
+    dispatch(setWorksheet(data.response['response']));
+    return data.response['response'];
+  };
   
+
   export const fetchWorksheet = (worksheet) => async (dispatch) => {
     const response = await csrfFetch("/api/lessons/get-submittedPromptId", {
       method: "GET",

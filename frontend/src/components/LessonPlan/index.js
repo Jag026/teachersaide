@@ -83,7 +83,11 @@ function LessonPlan(props) {
         }
     }, 48000)
     
-    plan =  await dispatch(await sessionActions.fetchLessonplan({ grade, subject }))
+    plan =  await dispatch(await sessionActions.createLessonplan({ grade, subject }))
+    if (plan === "success") {
+      plan =  await dispatch(await sessionActions.fetchWorksheet())
+      await setTextContent(<RichTextEditor text={plan} />)
+    }
 
     await setTextContent(<RichTextEditor text={plan} />)
     await setLogoVisible(false);

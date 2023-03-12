@@ -33,29 +33,38 @@ router.post(
   );
 
   router.post(
-    '/get-lessonplan', (req, res, next) => {
+    '/get-db-lessonplan', 
+    (req, res, next) => {
       req.setTimeout(90000); // 5 seconds for this route
       next();
     },
     async (req, res) => {
       try {
-        const { grade, subject } = req.body;
-        const prompt = `Create a lesson plan for a ${grade} grade science class, the topic is: ${subject}, minimum 500 tokens`
-        const userId = 1;
-        Userprompt.addUserprompt({ prompt, userId})
-        let lessonplan = await fetchAi(grade, subject);
-        lessonplan = lessonplan['content'];
-        //Code to update the lesson plan to add a worksheet
-        // let returnedLessonplan = await fetchAi(grade, subject);
-        // let returnedWorksheet = await fetchAiWorksheet(grade, subject, 'acids and bases', 'read along', '[practice problems, unscramble words]');
-        // const lessonplan = returnedLessonplan['content'] + '\n' + `\n` + returnedWorksheet['content'];
 
-        return res.json({
-          lessonplan
-        });
+        const userId = 1;
+
+        const { grade, subject } = req.body;
+        const prompt = await `This is the prompt: ${grade}, ${subject}`;
+
+
+        // Generate JWT token and store in cookie
+        const promptToken = jwt.sign({ prompt }, secret);
+        res.cookie('promptToken', promptToken, { httpOnly: true });
+
+        // Store lesson plan in database
+        let lessonplan = await fetchAi(grade, subject)
+        const lessonplanContent = await lessonplan['content']
+        const response = await lessonplanContent;
+        const submittedPrompt = await SubmittedPrompts.add({ prompt, response, userId, promptToken });
+
+        // Set cookie with lesson plan ID
+        res.cookie('submittedPromptId', submittedPrompt.id.toString(), { httpOnly: true });
+  
+        // Return success message
+        return res.status(200).json({ message: 'Prompt generated successfully.' });
       } catch (error) {
         return res.status(500).json({
-          error: "Could not fetch lesson plan. Please try again later."
+          error: "Could not fetch prompt. Please try again later."
         });
       }
     }
