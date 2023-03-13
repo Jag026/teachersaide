@@ -18,6 +18,7 @@ import ResetPasswordForm from "./components/ResetPassword/index.js"
 import ResetPasswordPage from "./components/ResetPassword/ResetPasswordPage.js"
 import PasswordUpdated from "./components/ResetPassword/PasswordUpdated.js"
 import Worksheet from "./components/Worksheet"
+import Search from "./components/Search"
 
 
 function App() {
@@ -86,7 +87,10 @@ function App() {
           <Route exact path="/PasswordUpdated">
             <PasswordUpdated />
           </Route>
-          
+          <Route exact path="/search">
+            <Search />
+          </Route>
+
         </Switch>
       )}
       <Footer />

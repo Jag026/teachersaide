@@ -5,6 +5,8 @@ const lessonsRouter = require('./lessons.js');
 const testRouter = require('./test.js');
 const postRouter = require('./posts.js');
 const resetpasswordRouter = require('./resetpassword.js');
+const searchRouter = require('./search.js');
+
 
 const { restoreUser } = require("../../utils/auth.js");
 
@@ -24,5 +26,8 @@ router.use('/tests', testRouter);
 router.use('/posts', postRouter);
 
 router.use('/resetpassword', resetpasswordRouter);
+
+router.use('/search', searchRouter);
+
 
 module.exports = router;
