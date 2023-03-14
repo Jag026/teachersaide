@@ -19,7 +19,7 @@ function Search() {
       });
       const data = await response.json();
       console.log(data.entries);
-      setSearchResults(JSON.stringify(data.entries))
+      setSearchResults(data.entries)
       return data
   }
 
@@ -39,7 +39,11 @@ function Search() {
           </label>
             <button type="submit">Search</button>
         </form>
-        {searchResults && <p className="px-10 lg:px-[300px]">{searchResults}</p>}
+        {searchResults && searchResults.map((result) => {
+            return <div>
+                <p className="px-10 py-10 border-b border-grey-400 lg:px-[300px]">{result.response}.....</p>
+              </div>
+          })}
    </div>
   );
 }
