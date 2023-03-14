@@ -5,24 +5,40 @@ import { csrfFetch } from '../../store/csrf.js';
 
 function Search() {
   const [searchResults, setSearchResults] = useState("")
+  const [topic, setTopic] = useState("")
   const dispatch = useDispatch();
 
  const handleSubmit = async(e) => {
     e.preventDefault();
 
-    const response = await csrfFetch("/api/search/get-submitted-prompts", {
-        method: "GET",
+    const response = await csrfFetch("/api/search/topics", {
+        method: "POST",
+        body: JSON.stringify({
+            topic
+          }),
       });
       const data = await response.json();
-      const subPrompts = data.submittedPrompts[9]
-      console.log(data.submittedPrompts);
-      setSearchResults(subPrompts['response'])
-      return data.response;
+      console.log(data.entries);
+      setSearchResults(JSON.stringify(data.entries))
+      return data
   }
 
   return (
     <div className="flex flex-col items-center" style={{ whiteSpace: 'pre-line' }}>
-        <button onClick={handleSubmit}>Search</button>
+        <form onSubmit={handleSubmit} className="flex flex-col items-center mt-8">
+        <label className="w-full">
+            Enter a keyword:
+            <input
+              type="text"
+              value={topic}
+              onChange={(e) => setTopic(e.target.value)}
+              required
+              className="h-10 border border-grey-100 px-4 w-full mb-4"
+              placeholder="example: 10th"
+            />
+          </label>
+            <button type="submit">Search</button>
+        </form>
         {searchResults && <p className="px-10 lg:px-[300px]">{searchResults}</p>}
    </div>
   );
