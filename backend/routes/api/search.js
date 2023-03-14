@@ -20,7 +20,7 @@ const router = express.Router();
     async (req, res) => {
       try {
         const submittedPrompts = await SubmittedPrompts.findAll({ 
-            attributes: ['response'],
+            attributes: ['id','response'],
             where: { 
               id: { [Op.gt]: 22 } 
             },
@@ -35,5 +35,34 @@ const router = express.Router();
     }
   );
 
-
+  router.post(
+    '/topics',
+    async (req, res) => {
+      try {
+      const { topic } = req.body;
+      const entries = await SubmittedPrompts.findAll({
+        where: {
+          [Op.or]: [
+            {
+              prompt: {
+                [Op.like]: `%${topic}%`,
+              },
+            },
+            {
+              prompt: {
+                [Op.like]: `%${topic}`,
+              },
+            },
+          ],
+        },
+      });
+      res.json({ entries }) 
+      } catch (error) {
+      return res.status(500).json({
+        error: "Could not fetch test. Please try again later."
+      });
+    }
+    }
+  );
+  
 module.exports = router;

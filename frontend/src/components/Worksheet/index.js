@@ -102,7 +102,7 @@ function Worksheet(props) {
         }
     }, 48000)
 
-    plan =  await dispatch(await sessionActions.createLessonplan({ grade, subject }))
+    plan =  await dispatch(await sessionActions.createWorksheet({ grade, subject, topic, worksheetType, selectedOptions }))
     if (plan === "success") {
       plan =  await dispatch(await sessionActions.fetchWorksheet())
       await setTextContent(<RichTextEditor text={plan} />)
